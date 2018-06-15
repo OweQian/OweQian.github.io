@@ -1,5 +1,5 @@
 ---
-title: ES6---Airbnb JavaScript（ES6）代码规范
+title: ES6-Airbnb JavaScript（ES6）代码规范
 date: 2018-4-11 16:06:52
 tags: [ES6]
 categories: 前端

@@ -1,6 +1,6 @@
 ---
-title: Vue-Vue-cli中Webpack配置基础文件详解
-date: 2018-4-13 14:06:52
+title: Vue-cli中Webpack配置基础文件详解
+date: 2018-4-11 20:06:52
 tags: [Vue]
 categories: 前端
 ---
@@ -9,6 +9,7 @@ categories: 前端
 > Vue-cli是构建Vue单页应用的脚手架，输入一串指定的命令行从而自动生成Vue.js+Wepack的项目模板。
 
 <!--more-->
+
 ## 前言
 通过Vue-cli生成的Vue.js+Webpack的项目模板，这其中webpack发挥了很大的作用，它使得我们的代码模块化，引入一些插件帮我们完善功能可以将文件打包压缩，图片转base64等。后期对项目的配置使得我们对于脚手架自动生成的代码的理解更为重要，接下来我们将基于webpack3.6.0版本结合文档将文件各个击破。
 
