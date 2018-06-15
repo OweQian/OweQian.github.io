@@ -67,11 +67,12 @@ categories: 前端
 │  ├── utils.js        // 全局公用方法
 ├── static           // 第三方不打包资源
 ├── .babelrc          // babel-loader 配置
-├── .editorconfig       // 编辑器格式化代码配置
+├── .editorconfig       // 编辑器的配置文件
 ├── .eslintrc.js        // eslint 配置项
 ├── .gitignore         // git 忽略项
 ├── index.html         // html模板
 └── package.json        // package.json
+└── package-lock.json  // 锁定安装时的包的版本号
 ```
 ***
 简单介绍一下src：
