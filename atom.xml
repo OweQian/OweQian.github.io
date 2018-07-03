@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-06-29T16:02:28.000Z</updated>
+  <updated>2018-07-03T17:54:33.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Other-摘录前端业界大牛及业界平台</title>
+    <link href="http://yoursite.com/2018/07/03/Other-%E6%91%98%E5%BD%95%E5%89%8D%E7%AB%AF%E4%B8%9A%E7%95%8C%E5%A4%A7%E7%89%9B%E5%8F%8A%E4%B8%9A%E7%95%8C%E5%B9%B3%E5%8F%B0/"/>
+    <id>http://yoursite.com/2018/07/03/Other-摘录前端业界大牛及业界平台/</id>
+    <published>2018-07-03T12:52:52.000Z</published>
+    <updated>2018-07-03T17:54:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote><p>想要在“每天都有新事物冒出来”的前端世界中跟上步伐，眼下已经成为了一个艰巨的任务。 很多人都有这样的感觉：不需要几个月你的技术就会过时，全新的炒作、类库、框架总会让你迷失，面对这场比赛，你只能选择退出。</p></blockquote><a id="more"></a><h2 id="业界大牛不完全名单"><a href="#业界大牛不完全名单" class="headerlink" title="业界大牛不完全名单"></a>业界大牛不完全名单</h2><p>Addy Osmani<br>TodoMVC、Material-Design-Lite、Yeoman等项目作者，Google Chrome工程经理<br>主页：<a href="https://addyosmani.com/" target="_blank" rel="external">https://addyosmani.com/</a><br>github：<a href="https://github.com/addyosmani" target="_blank" rel="external">https://github.com/addyosmani</a><br>twitter：<a href="https://twitter.com/addyosmani" target="_blank" rel="external">https://twitter.com/addyosmani</a></p><hr><p>Lea Verou<br>麻省理工学院HCI研究员， W3C-CSSWG成员，github多个项目作者<br>主页：<a href="http://lea.verou.me/" target="_blank" rel="external">http://lea.verou.me/</a><br>github：<a href="https://github.com/LeaVerou" target="_blank" rel="external">https://github.com/LeaVerou</a><br>twitter：<a href="https://twitter.com/leaverou" target="_blank" rel="external">https://twitter.com/leaverou</a></p><hr><p>Evan You 尤雨溪<br>大名鼎鼎的Vue.js作者，前端布道者，业界大V<br>主页：<a href="http://evanyou.me/" target="_blank" rel="external">http://evanyou.me/</a><br>github：<a href="https://github.com/yyx990803" target="_blank" rel="external">https://github.com/yyx990803</a><br>twitter：<a href="https://twitter.com/youyuxi" target="_blank" rel="external">https://twitter.com/youyuxi</a></p><hr><p>Axel Rauschmayer<br>2ality博主，写有《Speaking JavaScript》等著作，ES.next News刊物主编<br>主页：<a href="http://2ality.com/" target="_blank" rel="external">http://2ality.com/</a><br>github：<br>twitter：<a href="https://twitter.com/rauschma" target="_blank" rel="external">https://twitter.com/rauschma</a></p><hr><p>Ben Alman<br>GruntJS作者，jQuery界大神，开发了jQuery BBQ等大量插件<br>主页：<a href="http://benalman.com/" target="_blank" rel="external">http://benalman.com/</a><br>github：<a href="https://github.com/cowboy" target="_blank" rel="external">https://github.com/cowboy</a><br>twitter：<a href="https://twitter.com/cowboy" target="_blank" rel="external">https://twitter.com/cowboy</a></p><hr><p>Nicholas C. Zakas<br>著名的《JavaScript高级程序设计》作者，JS布道者<br>主页：<a href="https://www.nczonline.net/" target="_blank" rel="external">https://www.nczonline.net/</a><br>github：<br>twitter：<a href="https://twitter.com/slicknet" target="_blank" rel="external">https://twitter.com/slicknet</a></p><hr><h2 id="好的资讯平台"><a href="#好的资讯平台" class="headerlink" title="好的资讯平台"></a>好的资讯平台</h2><p>EchoJS<br>地址：www.echojs.com/</p><hr><p>DailyJS<br>地址：medium.com/dailyjs/</p><hr><p>Front-End Front<br>地址：frontendfront.com/</p><hr><p>ES.next News<br>地址：esnextnews.com/</p><hr><p>Web Design Weekly<br>地址：web-design-weekly.com/</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;导语&quot;&gt;&lt;a href=&quot;#导语&quot; class=&quot;headerlink&quot; title=&quot;导语&quot;&gt;&lt;/a&gt;导语&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;想要在“每天都有新事物冒出来”的前端世界中跟上步伐，眼下已经成为了一个艰巨的任务。 很多人都有这样的感觉：不需要几个月你的技术就会过时，全新的炒作、类库、框架总会让你迷失，面对这场比赛，你只能选择退出。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="杂谈" scheme="http://yoursite.com/categories/%E6%9D%82%E8%B0%88/"/>
+    
+    
+      <category term="Other" scheme="http://yoursite.com/tags/Other/"/>
+    
+  </entry>
   
   <entry>
     <title>Vue-从头到尾撸官方文档系列(Vue基础篇)</title>
