@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-04T15:39:03.000Z</updated>
+  <updated>2018-07-09T14:25:37.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue-cli配置环境变量[转]</title>
+    <link href="http://yoursite.com/2018/07/09/Vue-cli%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%5B%E8%BD%AC%5D/"/>
+    <id>http://yoursite.com/2018/07/09/Vue-cli配置环境变量[转]/</id>
+    <published>2018-07-09T14:19:00.000Z</published>
+    <updated>2018-07-09T14:25:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote><p>vue-cli环境下，默认已经配置了一个NODE_ENV的环境变量，有时我们可能觉得光是只有一个开发环境和生产环境还不够，比如我们还想来一个测试坏境，这时候就需要自己定义了。</p></blockquote><a id="more"></a><p>在实际项目开发中，经常会碰到需要环境变量的情景，在vue-cli的环境下，默认已经配置了一个NODE_ENV的环境变量，当npm run dev的时候这个是development， 当npm run build 的时候这个是production.用过vue-cli开发的通常对这个都不陌生，用这个最多的基本就是我们配置ajax请求的域名头了。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (process.env.NODE_ENV === &apos;production&apos;) &#123;</div><div class="line">  axios.defaults.baseURL = &apos;http://customer.medsci.cn&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure><hr><p>通常会有测试服务器和正式服务器环境之分，我们请求的域名也得区分，所以通过proces.env.NODE_ENV来区分环境变量，通过这个能够全局访问的参数，我们可以处理很多需要环境处理不同的操作。</p><p>上面的process.env.NODE_ENV是vue-cli默认配置的，有时候我们可能觉得光是只有一个开发环境和生产环境还不够，比如我们还想来一个测试坏境，这时候就需要自己定义了。以下以windows坏境为例，mac环境类似。</p><p>首先可以安装cross-env</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install cross-env --save-dev</div></pre></td></tr></table></figure><p>vue-cli的配置本质就是webpack的配置，当我们运行npm run dev 的时候，其实执行的是package.json 中的scripts 的dev中 ，即build/dev-server.js 这里面一系列的配置启动整个服务。</p><p>我们只想加一个环境变量，可以复制一份，在dev下加一个devtest命令:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;devtest&quot;: &quot;cross-env TESTING=true  node build/dev-server.js&quot;</div></pre></td></tr></table></figure><p>这样我们就可以通过npm run devtest也能启动整个服务了，注意上面的命令，我们加了一个TESTING=true ，这个就是加入的环境变量，TESTING:true， 通过上面的devtest的配置，我们可以运行npm run devtest像nppm run dev那样运行起来整个程序，不过我们发现，此时在项目中我们获取不到process.env.TESTING这个变量，这是为什么呢，如果是直接用webpack是可以的，经过查看，是在vue-cli的一系列配置文件中，已经写死了这些，不过我们可以改动加上<br>在根目录 config下，有dev.env.js和prod.env.js，这两个文件就是关键了，我们在NODE_ENV下面加一行TESTING:process.env.TESTING。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  NODE_ENV: &apos;&quot;production&quot;&apos;，</div><div class="line">  TESTING: process.env.TESTING</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>这时我们就能全局访问process.env.TESTING变量了，当我们npm run dev的时候，这个是undefined，当npm run devtest的时候是true， 同理我们可以添加一个npm run test命令， 与npm run build命令对应，加入打包测试的环境变量。<br>vue-cli的配置本质还是webpack的配置， 普通的webpack配置也可以采用此方法。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;导语&quot;&gt;&lt;a href=&quot;#导语&quot; class=&quot;headerlink&quot; title=&quot;导语&quot;&gt;&lt;/a&gt;导语&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;vue-cli环境下，默认已经配置了一个NODE_ENV的环境变量，有时我们可能觉得光是只有一个开发环境和生产环境还不够，比如我们还想来一个测试坏境，这时候就需要自己定义了。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="Vue" scheme="http://yoursite.com/tags/Vue/"/>
+    
+  </entry>
   
   <entry>
     <title>ES6-ES6的几个小技巧[转]</title>
