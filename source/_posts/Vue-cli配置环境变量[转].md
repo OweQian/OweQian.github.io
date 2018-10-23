@@ -41,6 +41,8 @@ vue-cli的配置本质就是webpack的配置，当我们运行npm run dev 的时
 
 ```
 module.exports = {
+
+
   NODE_ENV: '"production"'，
   TESTING: process.env.TESTING
 }
