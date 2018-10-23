@@ -29,7 +29,13 @@
 <meta property="og:site_name" content="W | 个人博客 | web前端">
 <meta property="og:description" content="导语 接触小程序并做了一些项目之后，又开始了Vue的旅程，受其核心思想的影响，对数据/状态管理、组件化、跨平台等都有较高的追求，mpvue 是一个使用 Vue.js开发小程序的前端框架，由此开始了mpvue踩坑之旅，想在提高代码可读性的同时，也增加一点Vue.js的开发体验。">
 <meta property="og:image" content="http://ow43yt5wd.bkt.clouddn.com/user1.gif">
-<meta property="og:updated_time" content="2018-10-07T07:54:50.772Z">
+<meta property="og:image" content="http://ow43yt5wd.bkt.clouddn.com/user2.gif">
+<meta property="og:image" content="http://ow43yt5wd.bkt.clouddn.com/home1.gif">
+<meta property="og:image" content="http://ow43yt5wd.bkt.clouddn.com/home1.gif">
+<meta property="og:image" content="http://ow43yt5wd.bkt.clouddn.com/list-01.gif">
+<meta property="og:image" content="http://ow43yt5wd.bkt.clouddn.com/naotu.jpg">
+<meta property="og:image" content="http://static.imkk.xin/blog/photo/uploadToTecentCloud.png">
+<meta property="og:updated_time" content="2018-10-08T07:17:22.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序-全栈开发(mpvue+koa2+mysql)">
 <meta name="twitter:description" content="导语 接触小程序并做了一些项目之后，又开始了Vue的旅程，受其核心思想的影响，对数据/状态管理、组件化、跨平台等都有较高的追求，mpvue 是一个使用 Vue.js开发小程序的前端框架，由此开始了mpvue踩坑之旅，想在提高代码可读性的同时，也增加一点Vue.js的开发体验。">
@@ -175,7 +181,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#技术栈"><span class="post-toc-number"></span> <span class="post-toc-text">技术栈</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#小程序介绍"><span class="post-toc-number"></span> <span class="post-toc-text">小程序介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#成果分享"><span class="post-toc-number"></span> <span class="post-toc-text">成果分享</span></a>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#技术栈"><span class="post-toc-number"></span> <span class="post-toc-text">技术栈</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#小程序介绍"><span class="post-toc-number"></span> <span class="post-toc-text">小程序介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#成果分享"><span class="post-toc-number"></span> <span class="post-toc-text">成果分享</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#脑图"><span class="post-toc-number"></span> <span class="post-toc-text">脑图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#初始化项目"><span class="post-toc-number"></span> <span class="post-toc-text">初始化项目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#项目目录"><span class="post-toc-number"></span> <span class="post-toc-text">项目目录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#搭建后端本地开发环境"><span class="post-toc-number"></span> <span class="post-toc-text">搭建后端本地开发环境</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#部署到腾讯云环境"><span class="post-toc-number"></span> <span class="post-toc-text">部署到腾讯云环境</span></a>
         </nav>
     </aside>
 
@@ -206,17 +212,100 @@
 </blockquote>
 <a id="more"></a>
 <h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><hr>
-<p>前端： 微信小程序、mpvue、 eslint、sass、ES6、ES7<br>后端：koa2、Koa-Router、腾讯云Wafer2<br>数据库：Mysql<br>数据库可视化工具：Navicate Premium</p>
+<p>前端： 微信小程序、mpvue、 eslint、sass、ES6、ES7<br>后端：koa2、Koa-Router、Knex、腾讯云Wafer2<br>数据库：Mysql<br>数据库可视化工具：Navicate Premium</p>
 <hr>
 <h2 id="小程序介绍"><a href="#小程序介绍" class="headerlink" title="小程序介绍"></a>小程序介绍</h2><p>一个功能简单的小程序，包含了个人中心、图书列表、个人评论列表三个tab页，后端的数据定义、分类、和存取等，各有其色。</p>
 <hr>
-<h3 id="成果分享"><a href="#成果分享" class="headerlink" title="成果分享"></a>成果分享</h3><figure class="image-bubble">
+<h3 id="成果分享"><a href="#成果分享" class="headerlink" title="成果分享"></a>成果分享</h3><p>个人中心：</p>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://ow43yt5wd.bkt.clouddn.com/user1.gif" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
+<p>个人中心：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ow43yt5wd.bkt.clouddn.com/user2.gif" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>图书列表：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ow43yt5wd.bkt.clouddn.com/home1.gif" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>图书详情：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ow43yt5wd.bkt.clouddn.com/home1.gif" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>评论列表：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ow43yt5wd.bkt.clouddn.com/list-01.gif" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<hr>
+<h3 id="脑图"><a href="#脑图" class="headerlink" title="脑图"></a>脑图</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ow43yt5wd.bkt.clouddn.com/naotu.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<hr>
+<h3 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h3><p>*全局安装vue-cli</p>
+<p>$npm install –global vue-cli</p>
+<p>*创建基于mpvue-quickstart模板的新项目，一路回车。</p>
+<p>$vue init mpvue/mpvue-quickstart koa-wx</p>
+<p>*安装依赖</p>
+<p>$cd koa-wx</p>
+<p>$npm install</p>
+<p>$npm run dev</p>
+<hr>
+<h3 id="项目目录"><a href="#项目目录" class="headerlink" title="项目目录"></a>项目目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">├── build           // 构建相关  </div><div class="line">├── config           // 配置相关</div><div class="line">├── dist            // 编译后静态文件 </div><div class="line">├── node_modules        // 依赖相关</div><div class="line">├── server            // 服务端源代码</div><div class="line">│  ├── controllers     </div><div class="line">│  ├── middlewares    </div><div class="line">│  ├── node_modules    </div><div class="line">│  ├── routes    </div><div class="line">│  ├── tools     </div><div class="line">│  ├── .eslintrc.js </div><div class="line">│  ├── .eslintrc.json  </div><div class="line">│  ├── app.js     </div><div class="line">│  ├── config.js   </div><div class="line">│  ├── nodemon.json   </div><div class="line">│  ├── package.json    </div><div class="line">│  ├── process.prod.json   </div><div class="line">│  ├── qcloud.js   </div><div class="line">│  ├── README.md    </div><div class="line">│  ├── tools.md  </div><div class="line">├── src            // 前端源代码</div><div class="line">│  ├── components     </div><div class="line">│  ├── config    </div><div class="line">│  ├── mock     </div><div class="line">│  ├── pages     </div><div class="line">│  ├── styles     </div><div class="line">│  ├── utils       </div><div class="line">│  ├── App.vue        </div><div class="line">│  ├── main.js       </div><div class="line">│  ├── store.js      </div><div class="line">│  ├── weui.css    </div><div class="line">├── static          </div><div class="line">├── .babelrc         </div><div class="line">├── .editorconfig      </div><div class="line">├── .eslintignore    </div><div class="line">├── .eslintrc.js       </div><div class="line">├── .postcssrc.js      </div><div class="line">├── index.html        </div><div class="line">└── package.json      </div><div class="line">└── package-lock.json </div><div class="line">└── project.config.json </div><div class="line">└── README.md</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="搭建后端本地开发环境"><a href="#搭建后端本地开发环境" class="headerlink" title="搭建后端本地开发环境"></a>搭建后端本地开发环境</h3><p>打开 server/config.js添加以下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">const CONF = &#123;</div><div class="line">      // 其他配置 ...</div><div class="line">    serverHost: &apos;localhost&apos;,</div><div class="line">    tunnelServerUrl: &apos;&apos;,</div><div class="line">    tunnelSignatureKey: &apos;27fb7d1c161b7ca52d73cce0f1d833f9f5b5ec89&apos;,</div><div class="line">      // 腾讯云相关配置可以查看云 API 秘钥控制台：https://console.cloud.tencent.com/capi</div><div class="line">    qcloudAppId: &apos;您的腾讯云 AppID&apos;,</div><div class="line">    qcloudSecretId: &apos;您的腾讯云 SecretId&apos;,</div><div class="line">    qcloudSecretKey: &apos;您的腾讯云 SecretKey&apos;,</div><div class="line">    wxMessageToken: &apos;weixinmsgtoken&apos;,</div><div class="line">    networkTimeout: 30000</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>并修改 MySQL 相关的配置为本地的 MySQL 数据库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql: &#123;</div><div class="line">    host: &apos;localhost&apos;,</div><div class="line">    port: 3306,</div><div class="line">    user: &apos;root&apos;,</div><div class="line">    db: &apos;cAuth&apos;,</div><div class="line">    pass: &apos;******&apos;,</div><div class="line">    char: &apos;utf8mb4&apos;</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
+<p>*切换到服务端代码目录<br>$cd server</p>
+<p>*安装依赖<br>$npm install</p>
+<p>*安装全局依赖<br>$npm install -g nodemon</p>
+<p>$npm run dev</p>
+<p>初始化数据库 - 打开 terminal 输入如下命令：</p>
+<p>$node tools/initdb.js</p>
+<p>进入Mysql选中刚才创建的数据库，输入 show tables; 可以看到初始化时创建了一个名叫 cSessionInfo 的表。说明本地环境已经搭建成功。</p>
+<hr>
+<h3 id="部署到腾讯云环境"><a href="#部署到腾讯云环境" class="headerlink" title="部署到腾讯云环境"></a>部署到腾讯云环境</h3><p>当本地本地开发出一版时，可以部署到腾讯云的开发环境，这样就可以在线上访问该项目。</p>
+<p>首先修改项目根目录的 project.config.json 文件，添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;qcloudRoot&quot;: &quot;./server/&quot;,</div></pre></td></tr></table></figure>
+<p>然后将本地开发时添加到 server/config.js 的配置删除，在 mysql.pass 那里填上自己的 APPID。</p>
+<p>接着进入小程序开发工具，点击右上角的 腾讯云，上传测试代码，弹出如图选项。第一次部署如下选择，之后再次上传选择 智能上传 即可。部署成功会有提示。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://static.imkk.xin/blog/photo/uploadToTecentCloud.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<hr>
+<p>###上传前端代码</p>
+<p>在小程序开发工具右上角找到 上传 选项，填写版本信息，上传后进入开发者控制台，开发管理页面，将该小程序设置为体验版本。</p>
+<p>然后在用户身份 ==&gt; 成员管理中，添加项目成员，配置权限，这样好友也可以体验该小程序了。</p>
+<p>项目地址：<a href="https://github.com/wangqian2017/mpvue-koa2" target="_blank" rel="external">https://github.com/wangqian2017/mpvue-koa2</a></p>
+
         </div>
 
         <blockquote class="post-copyright">
@@ -224,7 +313,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-10-07T07:54:50.772Z" itemprop="dateUpdated">2018-10-07 15:54:50</time>
+    最后更新时间：<time datetime="2018-10-08T07:17:22.149Z" itemprop="dateUpdated">2018-10-08 15:17:22</time>
 </span><br>
 
 
@@ -506,7 +595,24 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
         }
     });
 })();
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
