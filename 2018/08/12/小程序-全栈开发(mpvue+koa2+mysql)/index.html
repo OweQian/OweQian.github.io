@@ -14,24 +14,26 @@
     
     
     
-    <title>Vue-cli配置环境变量[转] | W | 个人博客 | web前端</title>
+    <title>小程序-全栈开发(mpvue+koa2+mysql) | W | 个人博客 | web前端</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#000000">
     
     
-    <meta name="keywords" content="Vue">
-    <meta name="description" content="导语 vue-cli环境下，默认已经配置了一个NODE_ENV的环境变量，有时我们可能觉得光是只有一个开发环境和生产环境还不够，比如我们还想来一个测试坏境，这时候就需要自己定义了。">
-<meta name="keywords" content="Vue">
+    <meta name="keywords" content="小程序">
+    <meta name="description" content="导语 接触小程序并做了一些项目之后，又开始了Vue的旅程，受其核心思想的影响，对数据/状态管理、组件化、跨平台等都有较高的追求，mpvue 是一个使用 Vue.js开发小程序的前端框架，由此开始了mpvue踩坑之旅，想在提高代码可读性的同时，也增加一点Vue.js的开发体验。">
+<meta name="keywords" content="小程序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue-cli配置环境变量[转]">
-<meta property="og:url" content="http://yoursite.com/2018/07/09/Vue-cli配置环境变量[转]/index.html">
+<meta property="og:title" content="小程序-全栈开发(mpvue+koa2+mysql)">
+<meta property="og:url" content="http://yoursite.com/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/index.html">
 <meta property="og:site_name" content="W | 个人博客 | web前端">
-<meta property="og:description" content="导语 vue-cli环境下，默认已经配置了一个NODE_ENV的环境变量，有时我们可能觉得光是只有一个开发环境和生产环境还不够，比如我们还想来一个测试坏境，这时候就需要自己定义了。">
-<meta property="og:updated_time" content="2018-07-10T14:34:58.000Z">
+<meta property="og:description" content="导语 接触小程序并做了一些项目之后，又开始了Vue的旅程，受其核心思想的影响，对数据/状态管理、组件化、跨平台等都有较高的追求，mpvue 是一个使用 Vue.js开发小程序的前端框架，由此开始了mpvue踩坑之旅，想在提高代码可读性的同时，也增加一点Vue.js的开发体验。">
+<meta property="og:image" content="http://ow43yt5wd.bkt.clouddn.com/user1.gif">
+<meta property="og:updated_time" content="2018-10-07T07:54:50.772Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue-cli配置环境变量[转]">
-<meta name="twitter:description" content="导语 vue-cli环境下，默认已经配置了一个NODE_ENV的环境变量，有时我们可能觉得光是只有一个开发环境和生产环境还不够，比如我们还想来一个测试坏境，这时候就需要自己定义了。">
+<meta name="twitter:title" content="小程序-全栈开发(mpvue+koa2+mysql)">
+<meta name="twitter:description" content="导语 接触小程序并做了一些项目之后，又开始了Vue的旅程，受其核心思想的影响，对数据/状态管理、组件化、跨平台等都有较高的追求，mpvue 是一个使用 Vue.js开发小程序的前端框架，由此开始了mpvue踩坑之旅，想在提高代码可读性的同时，也增加一点Vue.js的开发体验。">
+<meta name="twitter:image" content="http://ow43yt5wd.bkt.clouddn.com/user1.gif">
     
         <link rel="alternate" type="application/atom+xml" title="W | 个人博客 | web前端" href="/atom.xml">
     
@@ -126,7 +128,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Vue-cli配置环境变量[转]</div>
+        <div class="flex-col header-title ellipsis">小程序-全栈开发(mpvue+koa2+mysql)</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -148,11 +150,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">Vue-cli配置环境变量[转]</h1>
+        <h1 class="title">小程序-全栈开发(mpvue+koa2+mysql)</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-07-09T14:19:00.000Z" itemprop="datePublished" class="page-time">
-  2018-07-09
+                <time datetime="2018-08-12T08:06:52.000Z" itemprop="datePublished" class="page-time">
+  2018-08-12
 </time>
 
 
@@ -173,18 +175,18 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#技术栈"><span class="post-toc-number"></span> <span class="post-toc-text">技术栈</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#小程序介绍"><span class="post-toc-number"></span> <span class="post-toc-text">小程序介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#成果分享"><span class="post-toc-number"></span> <span class="post-toc-text">成果分享</span></a>
         </nav>
     </aside>
 
 
-<article id="post-Vue-cli配置环境变量[转]"
+<article id="post-小程序-全栈开发(mpvue+koa2+mysql)"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">Vue-cli配置环境变量[转]</h1>
+        <h1 class="post-card-title">小程序-全栈开发(mpvue+koa2+mysql)</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-07-09 22:19:00" datetime="2018-07-09T14:19:00.000Z"  itemprop="datePublished">2018-07-09</time>
+            <time class="post-time" title="2018-08-12 16:06:52" datetime="2018-08-12T08:06:52.000Z"  itemprop="datePublished">2018-08-12</time>
 
             
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
@@ -200,23 +202,21 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
-<p>vue-cli环境下，默认已经配置了一个NODE_ENV的环境变量，有时我们可能觉得光是只有一个开发环境和生产环境还不够，比如我们还想来一个测试坏境，这时候就需要自己定义了。</p>
+<p>接触小程序并做了一些项目之后，又开始了Vue的旅程，受其核心思想的影响，对数据/状态管理、组件化、跨平台等都有较高的追求，mpvue 是一个使用 Vue.js开发小程序的前端框架，由此开始了mpvue踩坑之旅，想在提高代码可读性的同时，也增加一点Vue.js的开发体验。</p>
 </blockquote>
 <a id="more"></a>
-<p>在实际项目开发中，经常会碰到需要环境变量的情景，在vue-cli的环境下，默认已经配置了一个NODE_ENV的环境变量，当npm run dev的时候这个是development， 当npm run build 的时候这个是production.用过vue-cli开发的通常对这个都不陌生，用这个最多的基本就是我们配置ajax请求的域名头了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (process.env.NODE_ENV === &apos;production&apos;) &#123;</div><div class="line">  axios.defaults.baseURL = &apos;http://customer.medsci.cn&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><hr>
+<p>前端： 微信小程序、mpvue、 eslint、sass、ES6、ES7<br>后端：koa2、Koa-Router、腾讯云Wafer2<br>数据库：Mysql<br>数据库可视化工具：Navicate Premium</p>
 <hr>
-<p>通常会有测试服务器和正式服务器环境之分，我们请求的域名也得区分，所以通过proces.env.NODE_ENV来区分环境变量，通过这个能够全局访问的参数，我们可以处理很多需要环境处理不同的操作。</p>
-<p>上面的process.env.NODE_ENV是vue-cli默认配置的，有时候我们可能觉得光是只有一个开发环境和生产环境还不够，比如我们还想来一个测试坏境，这时候就需要自己定义了。以下以windows坏境为例，mac环境类似。</p>
-<p>首先可以安装cross-env</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install cross-env --save-dev</div></pre></td></tr></table></figure>
-<p>vue-cli的配置本质就是webpack的配置，当我们运行npm run dev 的时候，其实执行的是package.json 中的scripts 的dev中 ，即build/dev-server.js 这里面一系列的配置启动整个服务。</p>
-<p>我们只想加一个环境变量，可以复制一份，在dev下加一个devtest命令:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;devtest&quot;: &quot;cross-env TESTING=true  node build/dev-server.js&quot;</div></pre></td></tr></table></figure>
-<p>这样我们就可以通过npm run devtest也能启动整个服务了，注意上面的命令，我们加了一个TESTING=true ，这个就是加入的环境变量，TESTING:true， 通过上面的devtest的配置，我们可以运行npm run devtest像nppm run dev那样运行起来整个程序，不过我们发现，此时在项目中我们获取不到process.env.TESTING这个变量，这是为什么呢，如果是直接用webpack是可以的，经过查看，是在vue-cli的一系列配置文件中，已经写死了这些，不过我们可以改动加上<br>在根目录 config下，有dev.env.js和prod.env.js，这两个文件就是关键了，我们在NODE_ENV下面加一行TESTING:process.env.TESTING。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line"></div><div class="line"></div><div class="line">  NODE_ENV: &apos;&quot;production&quot;&apos;，</div><div class="line">  TESTING: process.env.TESTING</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这时我们就能全局访问process.env.TESTING变量了，当我们npm run dev的时候，这个是undefined，当npm run devtest的时候是true， 同理我们可以添加一个npm run test命令， 与npm run build命令对应，加入打包测试的环境变量。<br>vue-cli的配置本质还是webpack的配置， 普通的webpack配置也可以采用此方法。</p>
-
+<h2 id="小程序介绍"><a href="#小程序介绍" class="headerlink" title="小程序介绍"></a>小程序介绍</h2><p>一个功能简单的小程序，包含了个人中心、图书列表、个人评论列表三个tab页，后端的数据定义、分类、和存取等，各有其色。</p>
+<hr>
+<h3 id="成果分享"><a href="#成果分享" class="headerlink" title="成果分享"></a>成果分享</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ow43yt5wd.bkt.clouddn.com/user1.gif" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
         </div>
 
         <blockquote class="post-copyright">
@@ -224,12 +224,12 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-07-10T14:34:58.000Z" itemprop="dateUpdated">2018-07-10 22:34:58</time>
+    最后更新时间：<time datetime="2018-10-07T07:54:50.772Z" itemprop="dateUpdated">2018-10-07 15:54:50</time>
 </span><br>
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/07/09/Vue-cli配置环境变量[转]/" target="_blank" rel="external">http://yoursite.com/2018/07/09/Vue-cli配置环境变量[转]/</a>
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/" target="_blank" rel="external">http://yoursite.com/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/</a>
         
     </div>
     
@@ -250,7 +250,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li></ul>
 
 
             
@@ -260,7 +260,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/09/Vue-cli配置环境变量[转]/&title=《Vue-cli配置环境变量[转]》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/&title=《小程序-全栈开发(mpvue+koa2+mysql)》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -270,23 +270,23 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/09/Vue-cli配置环境变量[转]/&title=《Vue-cli配置环境变量[转]》 — W | 个人博客 | web前端&source=导语
-vue-cli环境下，默认已经配置了一个NODE_ENV的环境变量，有时我们可能觉得光是只有一个开发环境和生产环境还不够，比如我们还想来一个测试坏境..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/&title=《小程序-全栈开发(mpvue+koa2+mysql)》 — W | 个人博客 | web前端&source=导语
+接触小程序并做了一些项目之后，又开始了Vue的旅程，受其核心思想的影响，对数据/状态管理、组件化、跨平台等都有较高的追求，mpvue 是一个使用 V..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/09/Vue-cli配置环境变量[转]/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue-cli配置环境变量[转]》 — W | 个人博客 | web前端&url=http://yoursite.com/2018/07/09/Vue-cli配置环境变量[转]/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《小程序-全栈开发(mpvue+koa2+mysql)》 — W | 个人博客 | web前端&url=http://yoursite.com/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/09/Vue-cli配置环境变量[转]/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -306,21 +306,14 @@ vue-cli环境下，默认已经配置了一个NODE_ENV的环境变量，有时�
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">小程序-全栈开发(mpvue+koa2+mysql)</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/07/04/ES6-ES6的几个小技巧[转]/" id="post-next" class="post-nav-link">
+      <a href="/2018/07/09/Vue-cli配置环境变量[转]/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">ES6-ES6的几个小技巧[转]</h4>
+        <h4 class="title">Vue-cli配置环境变量[转]</h4>
       </a>
     </div>
   
@@ -417,7 +410,7 @@ vue-cli环境下，默认已经配置了一个NODE_ENV的环境变量，有时�
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/09/Vue-cli配置环境变量[转]/&title=《Vue-cli配置环境变量[转]》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/&title=《小程序-全栈开发(mpvue+koa2+mysql)》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -427,23 +420,23 @@ vue-cli环境下，默认已经配置了一个NODE_ENV的环境变量，有时�
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/09/Vue-cli配置环境变量[转]/&title=《Vue-cli配置环境变量[转]》 — W | 个人博客 | web前端&source=导语
-vue-cli环境下，默认已经配置了一个NODE_ENV的环境变量，有时我们可能觉得光是只有一个开发环境和生产环境还不够，比如我们还想来一个测试坏境..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/&title=《小程序-全栈开发(mpvue+koa2+mysql)》 — W | 个人博客 | web前端&source=导语
+接触小程序并做了一些项目之后，又开始了Vue的旅程，受其核心思想的影响，对数据/状态管理、组件化、跨平台等都有较高的追求，mpvue 是一个使用 V..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/09/Vue-cli配置环境变量[转]/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue-cli配置环境变量[转]》 — W | 个人博客 | web前端&url=http://yoursite.com/2018/07/09/Vue-cli配置环境变量[转]/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《小程序-全栈开发(mpvue+koa2+mysql)》 — W | 个人博客 | web前端&url=http://yoursite.com/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/09/Vue-cli配置环境变量[转]/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/08/12/小程序-全栈开发(mpvue+koa2+mysql)/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -454,7 +447,7 @@ vue-cli环境下，默认已经配置了一个NODE_ENV的环境变量，有时�
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3ay27CMBAF0P7/T6fbSuBwrw2VsE9WFQ3EJ4vRvH5+4usaXH//O7r/8Z7H+0ffevOFgYHxtYzr9kqO1WJWPh9SMTAwDmCMIlgeIhNYG46Ts2FgYGDc3xM94Dbtu/8EAwMDY47RBtk8xUwSUAwMjJMZbUMtP0TbPvt4LY6BgfGFjLmf/p+/PzLfwMDA+CrGVV55Cph83obX4akwMDC2ZuQBrm3l57/ZsodPwcDAOIaRr0HkeVresEvWNaKuIQYGxnaMtmXfhtc2TOfF7YveIQYGxhaMtlhth5FJ0dsuZ2BgYJzGSLrr+SHaVl07Lo1GCBgYGNsxkmDXLl4k381fUDTOxMDA2JoxV2Tm48Z2eaItkl8MBjAwMLZjvCtRmwugeSB+McLEwMDYlNG2t9oh5cov1CkjBgbGdow8+VspffMFjnq1AgMD4xhG2/Rvw/TKyLNetsDAwNiU0aaAc7C58rjuF2JgYGzHyBv3bXO/XQjLx5bDF4GBgbE149MNtZXasx1qYmBg7MooVq8Cdju2zBt5k3kuBgbGRox88at9TLI28QYYBgbGkYy5hK9t5LWFdFG4YmBgbMG4yiuvGVfAOfXJJBYDA2M7xnqxmqd6czAMDAyMJLNaP9D6Imz07jEwMA5gtIEvecB6Iy8/LQYGBkY+nmyXMNYHnBgYGBhJU2yu0F0pa598FwMD4wBGvjbaFrp5i79NEDEwMM5htKVjznjXgKEtnjEwMDZi/ALrpiy6y+5B3wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsElEQVR42u3awW7jMAwE0Pz/T2eBngosvDtDSm0Oz6cicGM/FRCnFF+v+Hp/XbPP39+uv+95up7ued248PDw8Eavnjwm4eXgzTsk9+Ph4eHd5uUvlGzT/2bnZePpnqJQ4eHh4f0qL39kcn+ehJPSgoeHh/eZvE38PfUsPDw8vM/h5e3UvF/aBuKWd7jXgoeHhxfz2gOwT/j54vkeHh4e3uJUPd98k1bs5khs9rZ4eHh4N3inGqybkN22HtqAjoeHh3ebl2zEeXbNW8BJgcmbI4+FAQ8PD+8Qrz0My5ut7avky5cPe+Hh4eHd4yUvlyCTEJw3IGYRHA8PD+8eb/bq7eH9ZhRgVpzw8PDw7vE20XkWx/MAfbaA4eHh4d3gJWUgxyQt3fy32r8SHh4e3m1ePth0dihqFq/b2I2Hh4f3M7xNecgXZXaUVbct8PDw8I7y2rC7b8u2ZWY2fICHh4d3m9cWhqTRcGrTL+bFnioeHh4e3lFecsi02dDzp8zate2y4uHh4d3gtUf7s3vyxdocv+Hh4eHd4OVbc35glpeEV3zlzWU8PDy827x8426pp2L3jI2Hh4f3k7zNeFMekWdxfBjx8fDw8I7yckB7kJ+Uls1YVdTwxcPDw7vASwJ0Mi7Qtifaodg86P/nb4iHh4d3iJdvx+24VT62lW/9w3YwHh4e3lHeKrCWjYk8yudlKSoJeHh4eJd5bUnYNIJn8bqoBXh4eHhHee/ymoGTZkQ7vrBqQODh4eEteMNKsvh81hZpm7/10/Hw8PBK3uzf/lnTIV/jY6UIDw8P7xovP+CfheZZXN6XLjw8PLxP480OsdrYnSzQ43fi4eHh/Sov+dIk+LZhPVmmejICDw8Pb83Lv2L2yWxzz8cLDvRa8PDw8GLeJtTmizUDt08ZIvHw8PBS3h9ohJxxIMttMgAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
