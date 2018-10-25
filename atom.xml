@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-08T07:17:22.149Z</updated>
+  <updated>2018-10-25T12:13:31.897Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue移动端自动转换px为rem(postcss-pxtorem)</title>
+    <link href="http://yoursite.com/2018/10/25/Vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%8D%A2px%E4%B8%BArem(postcss-pxtorem)/"/>
+    <id>http://yoursite.com/2018/10/25/Vue移动端自动转换px为rem(postcss-pxtorem)/</id>
+    <published>2018-10-25T09:41:00.000Z</published>
+    <updated>2018-10-25T12:13:31.897Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote><p>前端在开发移动端webapp还原设计稿的重要性母庸质疑，目前来说应用最多的应该是rem。然而很多前端开发依然选择要么自己去计算rem值，要么依靠编辑器安装插件转换。</p></blockquote><a id="more"></a><p>其实，通过一系列的配置后，我们在开发中可以直接使用设计图的尺寸，它为我们自动编译，转换成rem。</p><h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><hr><ul><li>vue-cli@3.0: 脚手架工具创建项目</li><li>postcss-pxtorem: 转换px为rem的依赖包</li></ul><p>只需以下几步，就可以愉快地开发了😊。</p><hr><h3 id="创建rem-js文件"><a href="#创建rem-js文件" class="headerlink" title="创建rem.js文件"></a>创建rem.js文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// 基准大小</div><div class="line">const baseSize = 32</div><div class="line">// 设置 rem 函数</div><div class="line">function setRem() &#123;</div><div class="line">  // 当前页面宽度相对于 750 宽的缩放比例，可根据自己需要修改。</div><div class="line">  const scale = document.documentElement.clientWidth / 750</div><div class="line">  // 设置页面根节点字体大小</div><div class="line">  document.documentElement.style.fontSize = baseSize * Math.min(scale, 2) + &apos;px&apos;</div><div class="line">&#125;</div><div class="line">// 初始化</div><div class="line">setRem()</div><div class="line">// 改变窗口大小时重新设置 rem</div><div class="line">window.onresize = function() &#123;</div><div class="line">  setRem()</div><div class="line">&#125;</div></pre></td></tr></table></figure><hr><h3 id="main-js中引入rem-js"><a href="#main-js中引入rem-js" class="headerlink" title="main.js中引入rem.js"></a>main.js中引入rem.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &apos;./utils/rem&apos;</div></pre></td></tr></table></figure><p>引入文件后，可以看到页面的html节点，被自动添加 font-size</p><hr><h3 id="安装并配置postcss-pxtoren"><a href="#安装并配置postcss-pxtoren" class="headerlink" title="安装并配置postcss-pxtoren"></a>安装并配置postcss-pxtoren</h3><h4 id="安装postcss-pxtorem"><a href="#安装postcss-pxtorem" class="headerlink" title="安装postcss-pxtorem"></a>安装postcss-pxtorem</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install postcss-pxtorem -D</div></pre></td></tr></table></figure><hr><h4 id="修改跟目录postcss-config-js"><a href="#修改跟目录postcss-config-js" class="headerlink" title="修改跟目录postcss.config.js"></a>修改跟目录postcss.config.js</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  plugins: &#123;</div><div class="line">    autoprefixer: &#123;</div><div class="line">      browsers: [&apos;Android &gt;= 4.0&apos;, &apos;iOS &gt;= 7&apos;]</div><div class="line">    &#125;,</div><div class="line">    &apos;postcss-pxtorem&apos;: &#123;</div><div class="line">      rootValue: 32, // The root element font size</div><div class="line">      propList: [&apos;*&apos;], // The properties that can change from px to rem.</div><div class="line">      minPixelValue: 20, // Set the minimum pixel value to replace.</div><div class="line">      selectorBlackList: [</div><div class="line">        &apos;.weui-&apos;,</div><div class="line">        &apos;.ig-&apos;,</div><div class="line">        &apos;.vux-&apos;,</div><div class="line">        &apos;.scroller-&apos;,</div><div class="line">        &apos;.dp-&apos;,</div><div class="line">        &apos;.mt-&apos;,</div><div class="line">        &apos;.mint-&apos;,</div><div class="line">        &apos;.range&apos;</div><div class="line">      ] //  The selectors to ignore and leave as px.</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>按上述完成配置后，即可在开发中直接使用px单位开发。</p><p>举个🌰：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">body &#123;</div><div class="line"> width: 750px;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>转换后：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">body &#123;</div><div class="line"> width: 23.4375rem;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;导语&quot;&gt;&lt;a href=&quot;#导语&quot; class=&quot;headerlink&quot; title=&quot;导语&quot;&gt;&lt;/a&gt;导语&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;前端在开发移动端webapp还原设计稿的重要性母庸质疑，目前来说应用最多的应该是rem。然而很多前端开发依然选择要么自己去计算rem值，要么依靠编辑器安装插件转换。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="Vue" scheme="http://yoursite.com/tags/Vue/"/>
+    
+      <category term="移动端" scheme="http://yoursite.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>小程序-全栈开发(mpvue+koa2+mysql)</title>
