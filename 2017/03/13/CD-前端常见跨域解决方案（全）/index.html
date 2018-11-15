@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    
+    
+    
+    <title>CD-前端常见跨域解决方案（全） | W | 个人博客 | web前端</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="Cross-Domain">
+    <meta name="description" content="导语 跨域是指一个域下的文档或脚本试图去请求另一个域下的资源，这里跨域是广义的。">
+<meta name="keywords" content="Cross-Domain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CD-前端常见跨域解决方案（全）">
+<meta property="og:url" content="http://yoursite.com/2017/03/13/CD-前端常见跨域解决方案（全）/index.html">
+<meta property="og:site_name" content="W | 个人博客 | web前端">
+<meta property="og:description" content="导语 跨域是指一个域下的文档或脚本试图去请求另一个域下的资源，这里跨域是广义的。">
+<meta property="og:updated_time" content="2018-11-15T12:39:29.777Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CD-前端常见跨域解决方案（全）">
+<meta name="twitter:description" content="导语 跨域是指一个域下的文档或脚本试图去请求另一个域下的资源，这里跨域是广义的。">
+    
+        <link rel="alternate" type="application/atom+xml" title="W | 个人博客 | web前端" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">wangxiaobai</h5>
+          <a href="mailto:1510106069@qq.com" title="1510106069@qq.com" class="mail">1510106069@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://wangqian2017.github.io/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CD-前端常见跨域解决方案（全）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CD-前端常见跨域解决方案（全）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-13T13:06:52.000Z" itemprop="datePublished" class="page-time">
+  2017-03-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是跨域？"><span class="post-toc-number"></span> <span class="post-toc-text">什么是跨域？</span></a>
+        </nav>
+    </aside>
+
+
+<article id="post-CD-前端常见跨域解决方案（全）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CD-前端常见跨域解决方案（全）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-03-13 21:06:52" datetime="2017-03-13T13:06:52.000Z"  itemprop="datePublished">2017-03-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>跨域是指一个域下的文档或脚本试图去请求另一个域下的资源，这里跨域是广义的。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="什么是跨域？"><a href="#什么是跨域？" class="headerlink" title="什么是跨域？"></a>什么是跨域？</h2><p>跨域是指一个域下的文档或脚本试图去请求另一个域下的资源，这里跨域是广义的。</p>
+<p>广义的跨域：</p>
+<ol>
+<li><p>资源跳转： A链接、重定向、表单提交</p>
+</li>
+<li><p>资源嵌入：<link>、<script>、<img>、<frame>等dom标签，还有样式中background:url()、@font-face()等文件外链</p>
+</li>
+<li><p>脚本请求： js发起的ajax请求、dom和js对象的跨域操作等</p>
+</li>
+</ol>
+<p>其实我们通常所说的跨域是狭义的，是由浏览器同源策略限制的一类请求场景。</p>
+<hr>
+<h3 id="什么是同源策略？"><a href="#什么是同源策略？" class="headerlink" title="什么是同源策略？"></a>什么是同源策略？</h3><p>同源策略/SOP（Same origin policy）是一种约定，由Netscape公司1995年引入浏览器，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到XSS、CSFR等攻击。所谓同源是指”协议+域名+端口”三者相同，即便两个不同的域名指向同一个ip地址，也非同源。</p>
+<p>同源策略限制以下几种行为：</p>
+<ol>
+<li><p>Cookie、LocalStorage 和 IndexDB 无法读取</p>
+</li>
+<li><p>DOM 和 Js对象无法获得</p>
+</li>
+<li><p>AJAX 请求不能发送</p>
+</li>
+</ol>
+<hr>
+<h2 id="常见跨域场景"><a href="#常见跨域场景" class="headerlink" title="常见跨域场景"></a>常见跨域场景</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">URL                                      说明                    是否允许通信</div><div class="line"></div><div class="line">http://www.domain.com/a.js</div><div class="line">http://www.domain.com/b.js         同一域名，不同文件或路径           允许</div><div class="line">http://www.domain.com/lab/c.js</div><div class="line"></div><div class="line">http://www.domain.com:8000/a.js</div><div class="line">http://www.domain.com/b.js         同一域名，不同端口                不允许</div><div class="line">http://www.domain.com/a.js</div><div class="line"></div><div class="line">https://www.domain.com/b.js        同一域名，不同协议                不允许</div><div class="line">http://www.domain.com/a.js</div><div class="line"></div><div class="line">http://192.168.4.12/b.js           域名和域名对应相同ip              不允许</div><div class="line">http://www.domain.com/a.js</div><div class="line"></div><div class="line">http://x.domain.com/b.js           主域相同，子域不同                不允许</div><div class="line">http://domain.com/c.js</div><div class="line"></div><div class="line">http://www.domain1.com/a.js</div><div class="line">http://www.domain2.com/b.js        不同域名                         不允许</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="跨域解决方案"><a href="#跨域解决方案" class="headerlink" title="跨域解决方案"></a>跨域解决方案</h2><p>通过jsonp跨域</p>
+<ol>
+<li><p>document.domain + iframe跨域</p>
+</li>
+<li><p>location.hash + iframe</p>
+</li>
+<li><p>window.name + iframe跨域</p>
+</li>
+<li><p>postMessage跨域</p>
+</li>
+<li><p>跨域资源共享（CORS）</p>
+</li>
+<li><p>nginx代理跨域</p>
+</li>
+<li><p>nodejs中间件代理跨域</p>
+</li>
+<li><p>WebSocket协议跨域</p>
+</li>
+</ol>
+</script></p></li></ol>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-11-15T12:39:29.777Z" itemprop="dateUpdated">2018-11-15 20:39:29</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/03/13/CD-前端常见跨域解决方案（全）/" target="_blank" rel="external">http://yoursite.com/2017/03/13/CD-前端常见跨域解决方案（全）/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="wangxiaobai">
+            wangxiaobai
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cross-Domain/">Cross-Domain</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/03/13/CD-前端常见跨域解决方案（全）/&title=《CD-前端常见跨域解决方案（全）》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/03/13/CD-前端常见跨域解决方案（全）/&title=《CD-前端常见跨域解决方案（全）》 — W | 个人博客 | web前端&source=导语
+跨域是指一个域下的文档或脚本试图去请求另一个域下的资源，这里跨域是广义的。
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/03/13/CD-前端常见跨域解决方案（全）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CD-前端常见跨域解决方案（全）》 — W | 个人博客 | web前端&url=http://yoursite.com/2017/03/13/CD-前端常见跨域解决方案（全）/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/03/13/CD-前端常见跨域解决方案（全）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/14/Babel-如何写好.babelrc？/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Babel-如何写好.babelrc?</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/03/12/ES6-ES6的几个小技巧[转]/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ES6-ES6的几个小技巧[转]</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        👍谢谢您的赞赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>wangxiaobai &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/03/13/CD-前端常见跨域解决方案（全）/&title=《CD-前端常见跨域解决方案（全）》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/03/13/CD-前端常见跨域解决方案（全）/&title=《CD-前端常见跨域解决方案（全）》 — W | 个人博客 | web前端&source=导语
+跨域是指一个域下的文档或脚本试图去请求另一个域下的资源，这里跨域是广义的。
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/03/13/CD-前端常见跨域解决方案（全）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CD-前端常见跨域解决方案（全）》 — W | 个人博客 | web前端&url=http://yoursite.com/2017/03/13/CD-前端常见跨域解决方案（全）/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/03/13/CD-前端常见跨域解决方案（全）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3a0U4cMQwFUP7/p6nU13Z273ViupXOPKEBsjlBio3tr6/4+f79/Pnm6Xn6mac1Zytce/Dw8PBGW883+vTm9UE8fff17+bH8XgEeHh4eGu8ZLnXSyd38jkp3zMeHh7eJ/BmweAJnGz6daDCw8PD+x95SZkgB3xcYMDDw8N7yUuKEXmqnddU76b1eHh4eD/Daxtgn/D1Yn8PDw8P76CrPgsYeRki39tst3h4eHgbvFm5NnmfJ82zG774FDw8PLxlXp6XnuSubUFhNuyFh4eH9zO85Po+GZM6aXTVyTQeHh7eAi+/6GfDBHebYfmB/qXWgoeHh3eVl1/9eUhI3iSX/sn6eHh4eHu8PNnNi7bJpvOAVIcEPDw8vDVevnRU1Rgd2az91oYoPDw8vLu8diCgTb7zVHhW9n2Dx8PDw7vKy4eZkk2clF9zUjF6hYeHh7fASy739oJu15yVJ+oyBB4eHt4lXt5qSraYt/+TAJOv/yYk4OHh4S3wbjWxzlPqtpDxJinHw8PDW+DdDQZt+TUfumoLEHh4eHh7vNk/+e1lna/Whpk3x42Hh4e3xms33WLaUkUSTqKwhIeHh7fGywcC8oLFrTZbm8Tj4eHhbfPaYsSseJG/ycH5YAEeHh7eXd6twDAbk2rHtuqGGR4eHt4CL29cnTTy23ZXnqbniTseHh7eLV4yEDD7brvpdhwhCjN4eHh4C7xZQtzGnDzJbsNAgsfDw8O7y/sunzxRnh1WG4TqvxUeHh7eMW829jRLgk/GBU4KH3h4eHgbvFlJoi3XnreyZuUSPDw8vD1e8mH5SMF58eIkK8bDw8P7fF7+YecHVI8a4OHh4f1TXnsEeXOrHTsoxrPw8PDw1ngnzac8mZ4FjKSg/HgEeHh4eAu82b/6dxnt1Z8cNB4eHt4C7xepCpKX2eJ8EAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '😤去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '😊欢迎回来!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</body>
+</html>
