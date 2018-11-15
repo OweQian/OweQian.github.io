@@ -1,6 +1,6 @@
 ---
 title: Vue-cli配置环境变量[转]
-date: 2018-7-09 22:19:00
+date: 2017-3-06 22:19:00
 tags: [Vue]
 categories: 前端
 ---

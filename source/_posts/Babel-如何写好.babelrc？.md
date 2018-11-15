@@ -1,6 +1,6 @@
 ---
 title: Babel-如何写好.babelrc?
-date: 2018-4-12 14:06:52
+date: 2017-3-14 14:06:52
 tags: [ES6]
 categories: 前端
 ---
