@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    
+    
+    
+    <title>Vue-Chrome插件开发实录[转] | W | 个人博客 | web前端</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="Vue">
+    <meta name="description" content="导语 开发一个Chrome插件就跟我们平时做web开发流程没多大的区别，就是先搭好基本的页面，然后使用js来写交互逻辑等功能。">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-Chrome插件开发实录[转]">
+<meta property="og:url" content="http://yoursite.com/2017/03/10/Vue-Chrome 插件开发实录[转]/index.html">
+<meta property="og:site_name" content="W | 个人博客 | web前端">
+<meta property="og:description" content="导语 开发一个Chrome插件就跟我们平时做web开发流程没多大的区别，就是先搭好基本的页面，然后使用js来写交互逻辑等功能。">
+<meta property="og:image" content="http://ow43yt5wd.bkt.clouddn.com/%E5%89%8D%E7%AB%AF%E5%A4%A7%E5%85%A8.png">
+<meta property="og:image" content="http://ow43yt5wd.bkt.clouddn.com/670.jpeg">
+<meta property="og:updated_time" content="2018-11-15T12:38:53.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue-Chrome插件开发实录[转]">
+<meta name="twitter:description" content="导语 开发一个Chrome插件就跟我们平时做web开发流程没多大的区别，就是先搭好基本的页面，然后使用js来写交互逻辑等功能。">
+<meta name="twitter:image" content="http://ow43yt5wd.bkt.clouddn.com/%E5%89%8D%E7%AB%AF%E5%A4%A7%E5%85%A8.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="W | 个人博客 | web前端" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">wangxiaobai</h5>
+          <a href="mailto:1510106069@qq.com" title="1510106069@qq.com" class="mail">1510106069@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://wangqian2017.github.io/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vue-Chrome插件开发实录[转]</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Vue-Chrome插件开发实录[转]</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-10T13:06:52.000Z" itemprop="datePublished" class="page-time">
+  2017-03-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Chrome插件开发基本知识"><span class="post-toc-number"></span> <span class="post-toc-text">Chrome插件开发基本知识</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#manifest-json文件"><span class="post-toc-number"></span> <span class="post-toc-text">manifest.json文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#功能实现-Vuejs实践"><span class="post-toc-number"></span> <span class="post-toc-text">功能实现-Vuejs实践</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#功能实现"><span class="post-toc-number"></span> <span class="post-toc-text">功能实现</span></a>
+        </nav>
+    </aside>
+
+
+<article id="post-Vue-Chrome 插件开发实录[转]"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Vue-Chrome插件开发实录[转]</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-03-10 21:06:52" datetime="2017-03-10T13:06:52.000Z"  itemprop="datePublished">2017-03-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>开发一个Chrome插件就跟我们平时做web开发流程没多大的区别，就是先搭好基本的页面，然后使用js来写交互逻辑等功能。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Chrome插件开发基本知识"><a href="#Chrome插件开发基本知识" class="headerlink" title="Chrome插件开发基本知识"></a>Chrome插件开发基本知识</h2><p>在应用商店中下载下来的插件基本上都是以.crx为文件后缀，该文件其实就是一个压缩包，包括插件所需要的html、css、javascript、图片资源等等文件。</p>
+<p>开发一个插件就跟我们平时做web开发流程没多大的区别，就是先搭好基本的页面，然后使用js来写交互逻辑等功能。</p>
+<p>比如我这个插件的目录文件如下：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ow43yt5wd.bkt.clouddn.com/%E5%89%8D%E7%AB%AF%E5%A4%A7%E5%85%A8.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<hr>
+<h2 id="manifest-json文件"><a href="#manifest-json文件" class="headerlink" title="manifest.json文件"></a>manifest.json文件</h2><p>文件中需要注意一下的mainfest.json这个文件，这个json文件的作用是提供插件的各种信息，例如插件能够做的事情，以及插件的文件配置等等信息。下面是一个清单文件的示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;manifest_version&quot;: 2,</div><div class="line">  &quot;name&quot;: &quot;One-click Kittens&quot;,</div><div class="line">  &quot;description&quot;: &quot;This extension demonstrates a browser action with kittens.&quot;,</div><div class="line">  &quot;version&quot;: &quot;1.0&quot;,</div><div class="line">  &quot;permissions&quot;: [</div><div class="line">    &quot;https://secure.flickr.com/&quot;</div><div class="line">  ],</div><div class="line">  &quot;browser_action&quot;: &#123;</div><div class="line">    &quot;default_icon&quot;: &quot;icon.png&quot;,</div><div class="line">    &quot;default_popup&quot;: &quot;popup.html&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第一行声明我们使用清单文件格式的版本 2，必须包含（版本 1 是旧的，已弃用，不建议使用）。</p>
+<p>接下来的部分定义扩展程序的名称、描述与版本。这些都会在 Chrome 浏览器中使用，向用户显示已安装的扩展程序，同时在 Chrome 网上应用店中向潜在的新用户显示您的扩展程序。名称应该简练，描述不要比一句话左右还长（后面将会有更多的空间用于更详细的描述）。</p>
+<p>最后一部分首先请求权限，用于访问 <a href="https://secure.flickr.com/" target="_blank" rel="external">https://secure.flickr.com/</a> 上的数据，并声明该扩展程序实现了一个浏览器按钮，同时在这一过程中为它指定一个默认图标与弹出窗口。</p>
+<p>定义浏览器按钮时指向了两个资源文件：icon.png 与 popup.html。这两个资源都必须在扩展程序包中存在，图片是扩展的显示，html是扩展具体运行的基础文件。</p>
+<p>具体详细的开发教程可以看看官方的这个文档，非常简明的入门教程。</p>
+<hr>
+<h2 id="功能实现-Vuejs实践"><a href="#功能实现-Vuejs实践" class="headerlink" title="功能实现-Vuejs实践"></a>功能实现-Vuejs实践</h2><p>整个插件的核心交互功能非常简单，如文章开头的动图所示，用户选择对齐方式，代码区域显示对应的代码。这种简单数据交互使用vuejs再适合不过了，vuejs基础知识这里就不再细说了。</p>
+<p>这里需要注意的一点是，chrome 扩展的运行环境有一些特殊要求，称为 Content Security Policy (CSP)，使得通常的 vue 不能被正常使用。如果用的是 vue 1.x，那么可以下载 csp 版本，在 这里。如果是 2.x 版本，请参考官网文档的这一段。</p>
+<p>核心代码如下所示。</p>
+<p>HTML：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">  &lt;!-- 引入样式 --&gt;</div><div class="line">  &lt;link rel=&quot;stylesheet&quot; href=&quot;main.css&quot;&gt;</div><div class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;mystique.css&quot;&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div id=&quot;app&quot;&gt;</div><div class="line">      &lt;h1 class=&quot;title-box&quot;&gt;flexbox对齐就是这么简单&lt;/h1&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div id=&quot;type-select&quot;&gt;</div><div class="line">      &lt;select v-model=&quot;selected&quot;&gt;</div><div class="line">        &lt;option v-for=&quot;option in options&quot; v-bind:value=&quot;option.value&quot;&gt;</div><div class="line">          &#123;&#123; option.text &#125;&#125;</div><div class="line">        &lt;/option&gt;</div><div class="line">      &lt;/select&gt;</div><div class="line">      &lt;!-- &lt;span&gt;Selected: &#123;&#123; selected &#125;&#125;&lt;/span&gt; --&gt;</div><div class="line">      &lt;div class=&quot;resule-preview&quot;&gt;</div><div class="line">        &lt;div v-bind:class=&quot;selected&quot; class=&quot;cols&quot;&gt;</div><div class="line">          &lt;div class=&quot;col col-3&quot;&gt;</div><div class="line">              &lt;p&gt;对齐&lt;/p&gt;</div><div class="line">          &lt;/div&gt;</div><div class="line">          &lt;div class=&quot;col col-3&quot;&gt;</div><div class="line">            &lt;p&gt;对齐&lt;/p&gt;</div><div class="line">          &lt;/div&gt;</div><div class="line">          &lt;div class=&quot;col col-3&quot;&gt;</div><div class="line">            &lt;p&gt;对齐&lt;/p&gt;</div><div class="line">          &lt;/div&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">      &lt;div class=&quot;resule-code&quot;&gt;</div><div class="line">        &lt;pre class=&quot;code-display&quot;&gt;</div><div class="line">            &lt;code class=&quot;code-lang&quot;&gt;</div><div class="line">               &#123;&#123; cssMsg &#125;&#125;</div><div class="line">            &lt;/code&gt;</div><div class="line">        &lt;/pre&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;!-- 先引入 Vue --&gt;</div><div class="line">    &lt;script src=&quot;vue.js&quot;&gt;&lt;/script&gt;</div><div class="line">    &lt;!-- 引入组件库 --&gt;</div><div class="line">    &lt;script src=&quot;main.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;&lt;!-- 引入样式 --&gt;</div></pre></td></tr></table></figure>
+<p>CSS就不列出来了，可以在源代码中查看。</p>
+<p>下面来使用vuejs来实现插件的功能。</p>
+<hr>
+<h2 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h2><p>使用 v-for 指令根据一组数组的选项列表进行渲染。 v-for 指令需要以 item in items 形式的特殊语法， items 是源数据数组并且 item 是数组元素迭代的别名。</p>
+<p>而下拉框（select）列表的渲染，就可以使用vue中的v-for方法来渲染下拉列表选项，下拉选项数据写在js中的data对象中的options中。用v-bind方法来绑定option的value值，代码如下所示：</p>
+<p>XHTML</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;select v-model=&quot;selected&quot;&gt;</div><div class="line">  &lt;option v-for=&quot;option in options&quot; v-bind:value=&quot;option.value&quot;&gt;</div><div class="line">    &#123;&#123; option.text &#125;&#125;</div><div class="line">  &lt;/option&gt;</div><div class="line">&lt;/select&gt;</div></pre></td></tr></table></figure>
+<p>在vuejs中可以用 v-model 指令在表单控件元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。这里在select中使用v-model方法来监听选中的值。</p>
+<p>为了能预览不同对齐的效果，先在CSS中写好和下拉框中值相同的对应的类名样式，这样当用户选中不同的值的时候能显示不同的效果。这里我们使用v-bind方法来实现这个功能，它主要用于属性绑定，我们可以给v-bind:class一个对象，以动态地切换class。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;div v-bind:class=&quot;selected&quot; class=&quot;cols&quot;&gt;</div><div class="line">  &lt;div class=&quot;col col-3&quot;&gt;</div><div class="line">    &lt;p&gt;对齐&lt;/p&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div class=&quot;col col-3&quot;&gt;</div><div class="line">    &lt;p&gt;对齐&lt;/p&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;div class=&quot;col col-3&quot;&gt;</div><div class="line">    &lt;p&gt;对齐&lt;/p&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>下拉框这块功能就这样，简简单单几行代码就实现了。想想要是用jquery或者是原生的js来实现同样的功能，不仅代码量要大而且写起来也没有vuejs这么舒服。</p>
+<p>接下来是代码同步功能，即在代码区域显示对应flex对齐的CSS代码。</p>
+<p>开始之前先讲讲vuejs中的computed属性方法，可计算属性 (computed properties) 就是不存在于原始数据中，而是在运行时实时计算出来的属性。</p>
+<p>对应到我们这个实例，就是当用户选择flexbox不同的对齐方式的时候，及时同步对应的CSS代码到代码预览区域。简单起见，直接把几个不同的代码写到js中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">data: &#123;</div><div class="line">    selected: &apos;cols-center&apos;,</div><div class="line">      cssText: &#123;</div><div class="line">      &apos;cols-center&apos; : &apos;nr-webkit-justify-content: center;nr-ms-flex-pack: center;nrjustify-content: center;&apos;,</div><div class="line">      &apos;cols-space-between&apos; : &apos;nr-webkit-justify-content: space-between;nr-ms-flex-pack: justify;nrjustify-content: space-between;&apos;,</div><div class="line">      &apos;cols-space-around&apos; : &apos;nr-webkit-justify-content: space-around;nr-ms-flex-pack: distribute;nrjustify-content: space-around;&apos;</div><div class="line">    &#125;,</div><div class="line">    options: [</div><div class="line">      &#123; text: &apos;居中对齐&apos;, value: &apos;cols-center&apos;&#125;,</div><div class="line">      &#123; text: &apos;两端对齐&apos;, value: &apos;cols-space-between&apos;&#125;,</div><div class="line">      &#123; text: &apos;间隔相等&apos;, value: &apos;cols-space-around&apos;&#125;</div><div class="line">    ]</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>根据不同的名字对应不同的CSS代码。然后使用computed方法来根据用户选取的值实时取出对应的CSS代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">computed:&#123;</div><div class="line">   cssMsg:function()&#123;</div><div class="line">   console.log(this)</div><div class="line">   return this.cssText[this.selected];</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>完整代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var typeSelect = new Vue(&#123;</div><div class="line">  	el: &apos;body&apos;,</div><div class="line">  	data: &#123;</div><div class="line">    selected: &apos;cols-center&apos;,</div><div class="line">    cssText:&#123;</div><div class="line">    	&apos;cols-center&apos; : &apos;nr-webkit-justify-content: center;nr-ms-flex-pack: center;nrjustify-content: center;&apos;,</div><div class="line">    	&apos;cols-space-between&apos; : &apos;nr-webkit-justify-content: space-between;nr-ms-flex-pack: justify;nrjustify-content: space-between;&apos;,</div><div class="line">    	&apos;cols-space-around&apos; : &apos;nr-webkit-justify-content: space-around;nr-ms-flex-pack: distribute;nrjustify-content: space-around;&apos;</div><div class="line">    &#125;,</div><div class="line">    options: [</div><div class="line">      &#123; text: &apos;居中对齐&apos;, value: &apos;cols-center&apos;&#125;,</div><div class="line">      &#123; text: &apos;两端对齐&apos;, value: &apos;cols-space-between&apos;&#125;,</div><div class="line">      &#123; text: &apos;间隔相等&apos;, value: &apos;cols-space-around&apos;&#125;</div><div class="line">     ]</div><div class="line">    &#125;,</div><div class="line">    computed:&#123;</div><div class="line">    	cssMsg:function()&#123;</div><div class="line">    	console.log(this)</div><div class="line">    	return this.cssText[this.selected];</div><div class="line">    	&#125;</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>最后在html中绑定通过computed方法得到数据也就是CSS：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;resule-code&quot;&gt;</div><div class="line"> &lt;pre class=&quot;code-display&quot;&gt;</div><div class="line">   &lt;code class=&quot;code-lang&quot;&gt;</div><div class="line">     &#123;&#123; cssMsg &#125;&#125;</div><div class="line">   &lt;/code&gt;</div><div class="line"> &lt;/pre&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>插件代码下载（<a href="https://share.weiyun.com/d51b9e473e12f8c43e7eaafc9e2f11a7）" target="_blank" rel="external">https://share.weiyun.com/d51b9e473e12f8c43e7eaafc9e2f11a7）</a></p>
+<p>开发好之后，可以直接在chrome中运行来调试。打开扩展面板，勾选开发者模式，然后加载刚开发扩展所在的目录就可以直接运行了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ow43yt5wd.bkt.clouddn.com/670.jpeg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>一个简单的插件就完成了，通过这一个简单的chrome插件就可以体验到vuejs在web开发中简单、优雅的魅力，还有什么理由不用起来呢。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-11-15T12:38:53.845Z" itemprop="dateUpdated">2018-11-15 20:38:53</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/03/10/Vue-Chrome 插件开发实录[转]/" target="_blank" rel="external">http://yoursite.com/2017/03/10/Vue-Chrome 插件开发实录[转]/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="wangxiaobai">
+            wangxiaobai
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/03/10/Vue-Chrome 插件开发实录[转]/&title=《Vue-Chrome插件开发实录[转]》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/03/10/Vue-Chrome 插件开发实录[转]/&title=《Vue-Chrome插件开发实录[转]》 — W | 个人博客 | web前端&source=导语
+开发一个Chrome插件就跟我们平时做web开发流程没多大的区别，就是先搭好基本的页面，然后使用js来写交互逻辑等功能。
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/03/10/Vue-Chrome 插件开发实录[转]/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue-Chrome插件开发实录[转]》 — W | 个人博客 | web前端&url=http://yoursite.com/2017/03/10/Vue-Chrome 插件开发实录[转]/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/03/10/Vue-Chrome 插件开发实录[转]/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/11/JS-精心收集的48个JavaScript代码片段/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">精心收集的48个JavaScript代码片段</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/03/09/Vue-cli中Webpack配置基础文件详解/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Vue-cli中Webpack配置基础文件详解</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        👍谢谢您的赞赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>wangxiaobai &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/03/10/Vue-Chrome 插件开发实录[转]/&title=《Vue-Chrome插件开发实录[转]》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/03/10/Vue-Chrome 插件开发实录[转]/&title=《Vue-Chrome插件开发实录[转]》 — W | 个人博客 | web前端&source=导语
+开发一个Chrome插件就跟我们平时做web开发流程没多大的区别，就是先搭好基本的页面，然后使用js来写交互逻辑等功能。
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/03/10/Vue-Chrome 插件开发实录[转]/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue-Chrome插件开发实录[转]》 — W | 个人博客 | web前端&url=http://yoursite.com/2017/03/10/Vue-Chrome 插件开发实录[转]/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/03/10/Vue-Chrome 插件开发实录[转]/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3awW4bMQwEUP//T6dATwFSOzOklLjA25NROCu9LbCUh3w84uvj7/X58+fr678/+6tn93x259d3OHbh4eHhjba+ufXX7ycPYna3fM94eHh4t3lJMdgUj6RgvP6c7AcPDw/v3Xizl3WyVlIe8PDw8P5HXotvY4gkScDDw8N7H15yCE5e+rODdX6Hi1kLHh4eXsybNcB+9/P1/h4eHh7eqKs+u2ZBQ15Iip3g4eHhXeAlUcImYG0P0208ERUMPDw8vKO8ZKP10ypj2dcFII8k/rE6Hh4e3mVe3l461tSP22z58f3pYRoPDw/vEG9zRD57aM5ba3W5wsPDw7vGa5tPbYy7iWhXg194eHh4R3n7KLZdso2M2+bZ8P8NDw8PL+bNfvC341n7iGE2fICHh4d3j5ePNJ0KXttgomAkYS4eHh7emtceeduNtgNeydbzoBkPDw/vNi+pIW0gm//VbOAg+sWAh4eHd4i3X74dPpiFFMkeisM0Hh4e3lFeHkzkweumVZYPIuDh4eH9DC8PEdrvJK39pGC0j6aeLMPDw8Nb82ax7CzGbQcFZivi4eHh3eDNjrOP+NpHDG3k8XSmDA8PD+8yrw0j2sBiNqZQH9bx8PDwjvKSr85e7nmskK+SP/oi/8DDw8MrefkCpzY3Cyny0vLNPvHw8PCO8mYv5Vl8MDt2100vPDw8vGu8ZPipbfy3bbDNmFfxuwEPDw/vKK9teuWjBsNtlQ22ojrh4eHhLXibRlf+CJLPbRCcFDM8PDy8G7z9y3ezzGx0YBYE4+Hh4Z3lzYrBbOG2nMwi3eJgjYeHh7fg5S/ldtNteZjVLjw8PLz35+1HBGaH6bYth4eHh/e7vDzMbSPX1/dvh7Tw8PDwfoaXb6sdwzqFvzJAgIeHhzfitQ2wlrovD2cfBB4eHt6C9wdpTSIWF8ibOQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '😤去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '😊欢迎回来!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</body>
+</html>

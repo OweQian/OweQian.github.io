@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    
+    
+    
+    <title>ES6-Airbnb JavaScript（ES6）代码规范 | W | 个人博客 | web前端</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="ES6">
+    <meta name="description" content="导语 本文摘自—Airbnb JavaScript（ES6）代码规范。">
+<meta name="keywords" content="ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6-Airbnb JavaScript（ES6）代码规范">
+<meta property="og:url" content="http://yoursite.com/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/index.html">
+<meta property="og:site_name" content="W | 个人博客 | web前端">
+<meta property="og:description" content="导语 本文摘自—Airbnb JavaScript（ES6）代码规范。">
+<meta property="og:updated_time" content="2018-11-15T12:39:23.826Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6-Airbnb JavaScript（ES6）代码规范">
+<meta name="twitter:description" content="导语 本文摘自—Airbnb JavaScript（ES6）代码规范。">
+    
+        <link rel="alternate" type="application/atom+xml" title="W | 个人博客 | web前端" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">wangxiaobai</h5>
+          <a href="mailto:1510106069@qq.com" title="1510106069@qq.com" class="mail">1510106069@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://wangqian2017.github.io/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ES6-Airbnb JavaScript（ES6）代码规范</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ES6-Airbnb JavaScript（ES6）代码规范</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-12T08:06:52.000Z" itemprop="datePublished" class="page-time">
+  2017-03-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#声明变量的新姿势"><span class="post-toc-number"></span> <span class="post-toc-text">声明变量的新姿势</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用let不用var"><span class="post-toc-number"></span> <span class="post-toc-text">用let不用var</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#某些场景，const比let更好"><span class="post-toc-number"></span> <span class="post-toc-text">某些场景，const比let更好</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#动态字符串"><span class="post-toc-number"></span> <span class="post-toc-text">动态字符串</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解构赋值的骚操作"><span class="post-toc-number"></span> <span class="post-toc-text">解构赋值的骚操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量赋值"><span class="post-toc-number"></span> <span class="post-toc-text">变量赋值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#函数传对象"><span class="post-toc-number"></span> <span class="post-toc-text">函数传对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于对象的细节"><span class="post-toc-number"></span> <span class="post-toc-text">关于对象的细节</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逗号"><span class="post-toc-number">1.</span> <span class="post-toc-text">逗号</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一次性初始化完全"><span class="post-toc-number">2.</span> <span class="post-toc-text">一次性初始化完全</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#在简洁一点"><span class="post-toc-number">3.</span> <span class="post-toc-text">在简洁一点</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数组"><span class="post-toc-number"></span> <span class="post-toc-text">数组</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#扩展运算符…"><span class="post-toc-number"></span> <span class="post-toc-text">扩展运算符…</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Array-form（）"><span class="post-toc-number"></span> <span class="post-toc-text">Array.form（）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#函数"><span class="post-toc-number"></span> <span class="post-toc-text">函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#箭头函数-gt"><span class="post-toc-number"></span> <span class="post-toc-text">箭头函数=></span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#别再用arguments（类数组）了！"><span class="post-toc-number"></span> <span class="post-toc-text">别再用arguments（类数组）了！</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#传参时试试设置默认值"><span class="post-toc-number"></span> <span class="post-toc-text">传参时试试设置默认值</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Object？Map！"><span class="post-toc-number"></span> <span class="post-toc-text">Object？Map！</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#简单的键值对优先Map"><span class="post-toc-number"></span> <span class="post-toc-text">简单的键值对优先Map</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#class语法"><span class="post-toc-number"></span> <span class="post-toc-text">class语法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模块化"><span class="post-toc-number"></span> <span class="post-toc-text">模块化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#引入模块"><span class="post-toc-number"></span> <span class="post-toc-text">引入模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#输出模块"><span class="post-toc-number"></span> <span class="post-toc-text">输出模块</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编码规范"><span class="post-toc-number"></span> <span class="post-toc-text">编码规范</span></a>
+        </nav>
+    </aside>
+
+
+<article id="post-ES6-Airbnb JavaScript（ES6）代码规范"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ES6-Airbnb JavaScript（ES6）代码规范</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-03-12 16:06:52" datetime="2017-03-12T08:06:52.000Z"  itemprop="datePublished">2017-03-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>本文摘自—Airbnb JavaScript（ES6）代码规范。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="声明变量的新姿势"><a href="#声明变量的新姿势" class="headerlink" title="声明变量的新姿势"></a>声明变量的新姿势</h2><h3 id="用let不用var"><a href="#用let不用var" class="headerlink" title="用let不用var"></a>用let不用var</h3><p>ES6之前我们使用var声明一个变量，但是它有很多弊病：</p>
+<ul>
+<li>无块级作用域变量，很容易声明全局变量。</li>
+<li>变量提升。</li>
+<li>可重复声明。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var a = [];</div><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">  a[i] = function () &#123;</div><div class="line">    console.log(i);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line">a[6](); // 10</div><div class="line">a[7](); // 10</div><div class="line">a[8](); // 10</div><div class="line">a[9](); // 10</div></pre></td></tr></table></figure>
+<p>所以，你有什么理由不用let?</p>
+<hr>
+<h3 id="某些场景，const比let更好"><a href="#某些场景，const比let更好" class="headerlink" title="某些场景，const比let更好"></a>某些场景，const比let更好</h3><p>const和let的唯一区别就是，const不可以被更改，所以当声明变量的时候，尤其是在声明容易被更改的全局变量的时候，尽量使用const。</p>
+<ul>
+<li>更好的代码语义化，一眼看到就是常量。</li>
+<li>另一个原因是因为JavaScript 编译器对const的优化要比let好，多使用const，有利于提高程序的运行效率。</li>
+<li>所有的函数都应该设置为常量。</li>
+</ul>
+<hr>
+<h2 id="动态字符串"><a href="#动态字符串" class="headerlink" title="动态字符串"></a>动态字符串</h2><p>不要使用“双引号”，一律用单引号或反引号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// low</div><div class="line">const a = &quot;foobar&quot;;</div><div class="line">const b = &apos;foo&apos; + a + &apos;bar&apos;;</div><div class="line"></div><div class="line">// best</div><div class="line">const a = &apos;foobar&apos;;</div><div class="line">const b = `foo$&#123;a&#125;bar`;</div><div class="line">const c = &apos;foobar&apos;;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="解构赋值的骚操作"><a href="#解构赋值的骚操作" class="headerlink" title="解构赋值的骚操作"></a>解构赋值的骚操作</h2><h3 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h3><p>在用到数组成员对变量赋值时，尽量使用解构赋值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">const arr = [1, 2, 3, 4];</div><div class="line"></div><div class="line">// low</div><div class="line">const first = arr[0];</div><div class="line">const second = arr[1];</div><div class="line"></div><div class="line">// good</div><div class="line">const [first, second] = arr;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="函数传对象"><a href="#函数传对象" class="headerlink" title="函数传对象"></a>函数传对象</h3><p>函数的参数如果是对象的成员，优先使用解构赋值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// low</div><div class="line">function getFullName(user) &#123;</div><div class="line">  const firstName = user.firstName;</div><div class="line">  const lastName = user.lastName;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// good</div><div class="line">function getFullName(&#123; firstName, lastName &#125;) &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果函数返回多个值，优先使用对象的解构赋值，而不是数组的解构赋值。这样便于以后添加返回值，以及更改返回值的顺序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// low</div><div class="line">function processInput(input) &#123;</div><div class="line">  return [left, right, top, bottom];</div><div class="line">&#125;</div><div class="line"></div><div class="line">// good</div><div class="line">function processInput(input) &#123;</div><div class="line">  return &#123; left, right, top, bottom &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const &#123; left, right &#125; = processInput(input);</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="关于对象的细节"><a href="#关于对象的细节" class="headerlink" title="关于对象的细节"></a>关于对象的细节</h3><h4 id="逗号"><a href="#逗号" class="headerlink" title="逗号"></a>逗号</h4><p>单行定义的对象结尾不要逗号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// low</div><div class="line">const a = &#123; k1: v1, k2: v2, &#125;;</div><div class="line"></div><div class="line">// good</div><div class="line">const a = &#123; k1: v1, k2: v2 &#125;;</div></pre></td></tr></table></figure>
+<p>多行定义的对象要保留逗号：：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// low</div><div class="line">const b = &#123;</div><div class="line">  k1: v1,</div><div class="line">  k2: v2</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// good</div><div class="line">const b = &#123;</div><div class="line">  k1: v1,</div><div class="line">  k2: v2,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="一次性初始化完全"><a href="#一次性初始化完全" class="headerlink" title="一次性初始化完全"></a>一次性初始化完全</h4><p>不要声明之后又给对象添加新属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// low</div><div class="line">const a = &#123;&#125;;</div><div class="line">a.x = 3;</div><div class="line"></div><div class="line">// good</div><div class="line">const a = &#123; x: null &#125;;</div><div class="line">a.x = 3;</div></pre></td></tr></table></figure>
+<p>如果一定非要加请使用Object.assign：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const a = &#123;&#125;;</div><div class="line">Object.assign(a, &#123; x: 3 &#125;);</div></pre></td></tr></table></figure>
+<p>如果对象的属性名是动态的，可以在创造对象的时候，使用属性表达式定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/ low</div><div class="line">const obj = &#123;</div><div class="line">  id: 5,</div><div class="line">  name: &apos;San Francisco&apos;,</div><div class="line">&#125;;</div><div class="line">obj[getKey(&apos;enabled&apos;)] = true;</div><div class="line"></div><div class="line">// good</div><div class="line">const obj = &#123;</div><div class="line">  id: 5,</div><div class="line">  name: &apos;San Francisco&apos;,</div><div class="line">[getKey(&apos;enabled&apos;)]: true,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h4 id="在简洁一点"><a href="#在简洁一点" class="headerlink" title="在简洁一点"></a>在简洁一点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">var ref = &apos;some value&apos;;</div><div class="line"></div><div class="line">// low</div><div class="line">const atom = &#123;</div><div class="line">  ref: ref,</div><div class="line"></div><div class="line">  value: 1,</div><div class="line"></div><div class="line">  addValue: function (value) &#123;</div><div class="line">    return atom.value + value;</div><div class="line">  &#125;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// good</div><div class="line">const atom = &#123;</div><div class="line">  ref,</div><div class="line"></div><div class="line">  value: 1,</div><div class="line"></div><div class="line">  addValue(value) &#123;</div><div class="line">    return atom.value + value;</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="扩展运算符…"><a href="#扩展运算符…" class="headerlink" title="扩展运算符…"></a>扩展运算符…</h3><p>使用扩展运算符（…）拷贝数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 还在用for i 你就太low了</div><div class="line">const len = items.length;</div><div class="line">const itemsCopy = [];</div><div class="line">let i;</div><div class="line"></div><div class="line">for (i = 0; i &lt; len; i++) &#123;</div><div class="line">  itemsCopy[i] = items[i];</div><div class="line">&#125;</div><div class="line"></div><div class="line">// cool !</div><div class="line">const itemsCopy = [...items];</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="Array-form（）"><a href="#Array-form（）" class="headerlink" title="Array.form（）"></a>Array.form（）</h3><p>用 Array.from 方法，将类似数组的对象转为数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const foo = document.querySelectorAll(&apos;.foo&apos;);</div><div class="line">const nodes = Array.from(foo);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="箭头函数-gt"><a href="#箭头函数-gt" class="headerlink" title="箭头函数=&gt;"></a>箭头函数=&gt;</h3><p>立即执行函数可以写成箭头函数的形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(() =&gt; &#123;</div><div class="line">  console.log(&apos;Welcome to the Internet.&apos;);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>尽量写箭头函数使你的代码看起来简洁优雅：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// low</div><div class="line">[1, 2, 3].map(function (x) &#123;</div><div class="line">  return x * x;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// cool !</div><div class="line">[1, 2, 3].map(x =&gt; x * x);</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="别再用arguments（类数组）了！"><a href="#别再用arguments（类数组）了！" class="headerlink" title="别再用arguments（类数组）了！"></a>别再用arguments（类数组）了！</h3><p>使用 rest 运算符（…）代替，rest 运算符可以提供一个真正的数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// low</div><div class="line">function concatenateAll() &#123;</div><div class="line">  const args = Array.prototype.slice.call(arguments);</div><div class="line">  return args.join(&apos;&apos;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// good</div><div class="line">function concatenateAll(...args) &#123;</div><div class="line">  return args.join(&apos;&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="传参时试试设置默认值"><a href="#传参时试试设置默认值" class="headerlink" title="传参时试试设置默认值"></a>传参时试试设置默认值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// low</div><div class="line">function handleThings(opts) &#123;</div><div class="line">  opts = opts || &#123;&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// good</div><div class="line">function handleThings(opts = &#123;&#125;) &#123;</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Object？Map！"><a href="#Object？Map！" class="headerlink" title="Object？Map！"></a>Object？Map！</h2><h3 id="简单的键值对优先Map"><a href="#简单的键值对优先Map" class="headerlink" title="简单的键值对优先Map"></a>简单的键值对优先Map</h3><p>如果只是简单的key: value结构，建议优先使用Map，因为Map提供方便的遍历机制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">let map = new Map(arr);</div><div class="line">// 遍历key值</div><div class="line">for (let key of map.keys()) &#123;</div><div class="line">  console.log(key);</div><div class="line">&#125;</div><div class="line">// 遍历value值</div><div class="line">for (let value of map.values()) &#123;</div><div class="line">  console.log(value);</div><div class="line">&#125;</div><div class="line">// 遍历key和value值</div><div class="line">for (let item of map.entries()) &#123;</div><div class="line">  console.log(item[0], item[1]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="class语法"><a href="#class语法" class="headerlink" title="class语法"></a>class语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// low</div><div class="line">function Queue(contents = []) &#123;</div><div class="line">  this._queue = [...contents];</div><div class="line">&#125;</div><div class="line">Queue.prototype.pop = function() &#123;</div><div class="line">  const value = this._queue[0];</div><div class="line">  this._queue.splice(0, 1);</div><div class="line">  return value;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// good</div><div class="line">class Queue &#123;</div><div class="line">  constructor(contents = []) &#123;</div><div class="line">    this._queue = [...contents];</div><div class="line">  &#125;</div><div class="line">  pop() &#123;</div><div class="line">    const value = this._queue[0];</div><div class="line">    this._queue.splice(0, 1);</div><div class="line">    return value;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><h3 id="引入模块"><a href="#引入模块" class="headerlink" title="引入模块"></a>引入模块</h3><p>使用import取代require，因为Module是Javascript模块的标准写法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// bad</div><div class="line">const moduleA = require(&apos;moduleA&apos;);</div><div class="line">const func1 = moduleA.func1;</div><div class="line">const func2 = moduleA.func2;</div><div class="line"></div><div class="line">// good</div><div class="line">import &#123; func1, func2 &#125; from &apos;moduleA&apos;;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="输出模块"><a href="#输出模块" class="headerlink" title="输出模块"></a>输出模块</h3><p>使用export输出变量，拒绝module.exports:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import React from &apos;react&apos;;</div><div class="line"></div><div class="line">class Breadcrumbs extends React.Component &#123;</div><div class="line">  render() &#123;</div><div class="line">    return &lt;nav /&gt;;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">export default Breadcrumbs;</div></pre></td></tr></table></figure>
+<ul>
+<li>输出单个值，使用export default。</li>
+<li>输出多个值，使用export。</li>
+<li>export default与普通的export不要同时使用。</li>
+</ul>
+<hr>
+<h2 id="编码规范"><a href="#编码规范" class="headerlink" title="编码规范"></a>编码规范</h2><p>模块输出一个函数，首字母应该小写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function getData() &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default getData;</div></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-11-15T12:39:23.826Z" itemprop="dateUpdated">2018-11-15 20:39:23</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/" target="_blank" rel="external">http://yoursite.com/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="wangxiaobai">
+            wangxiaobai
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/&title=《ES6-Airbnb JavaScript（ES6）代码规范》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/&title=《ES6-Airbnb JavaScript（ES6）代码规范》 — W | 个人博客 | web前端&source=导语
+本文摘自—Airbnb JavaScript（ES6）代码规范。
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6-Airbnb JavaScript（ES6）代码规范》 — W | 个人博客 | web前端&url=http://yoursite.com/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/12/ES6-ES6的几个小技巧[转]/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ES6-ES6的几个小技巧[转]</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/03/11/JS-精心收集的48个JavaScript代码片段/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">精心收集的48个JavaScript代码片段</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        👍谢谢您的赞赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>wangxiaobai &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/&title=《ES6-Airbnb JavaScript（ES6）代码规范》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/&title=《ES6-Airbnb JavaScript（ES6）代码规范》 — W | 个人博客 | web前端&source=导语
+本文摘自—Airbnb JavaScript（ES6）代码规范。
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6-Airbnb JavaScript（ES6）代码规范》 — W | 个人博客 | web前端&url=http://yoursite.com/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3aQW4jMQwEwPz/01lgT3uIJ92kFGeBmpPhcWzVHESmqY+P+Pr8ez2/zr/h1ff8ez2/f/jCw8PDGy391ZUv7hmcf+YZma8ZDw8P7zbv7IJeLeu5JCQPPV8zHh4e3m/g5VvzBvz8i3h4eHj/Fy//T/8Zc6rJxsPDw3svb7bQfENvA4423j2QteDh4eHFvFMDsJ98/Yb5Hh4eHl4ZKLQbcf5+st3PVouHh4d3g5dEBs/7bR7+JqHw/m69XDw8PLySl4+4Zl3rLJadlZwvPoOHh4d3gbePJNpysilLm1YeDw8P7xSv3b7bu3kM0T6I6KHg4eHhXeDNxv/tgYB8ccndulDh4eHhXeBtIoNZ4Lvp+hN8kVvj4eHhlbw2mdhEvcda5LwM4OHh4V3jbVrnhJofpWpLFB4eHt57eZtAIW+79/FugcTDw8O7xkuC0c0BrPzuLBB5+Q4eHh7eZV4b0SZb9qyVz9v3b1aOh4eHd423iRjykX9+dGAWEH/xeTw8PLwLvDyeaLf7TZg7O261Sl/w8PDwYt5s058Vj4SRF4CoPODh4eFd4G3GWs9jqraZ3gzAvlkVHh4e3lFe/gftEouAoCwJRcONh4eHd4HXLispBqcC4k18jIeHh3eb1/5734YObSCbH8aKDofh4eHhXeDtx1ctcnNUa9i44+Hh4R3lbY5MzZrpWUudRCHRAAwPDw/vEG+z+e4PWg0D2aSE4OHh4R3lfZZXO3Z6Hq3l4UL+/kdb0/Dw8PBK3qkRfnukIP/F5AEdQOLh4eGVvKQYzBrfUwVmFVLg4eHhXeMlxSAvFfvmuy0weHh4eL+ZlxeSvNjMHm70nXh4eHhv5eWtdh5P5N88a/fx8PDw7vHaMX9+dODGIxvmwXh4eHiHeLMBWDu4alvw5DElMTEeHh7eUd4fgf7kKUshVqUAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '😤去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '😊欢迎回来!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</body>
+</html>
