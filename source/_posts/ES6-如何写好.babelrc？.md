@@ -1,5 +1,5 @@
 ---
-title: Babel-如何写好.babelrc?
+title: ES6-如何写好.babelrc?
 date: 2017-3-14 14:06:52
 tags: [ES6]
 categories: 前端
