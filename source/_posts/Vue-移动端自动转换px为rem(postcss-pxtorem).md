@@ -1,5 +1,5 @@
 ---
-title: Vue移动端自动转换px为rem(postcss-pxtorem)
+title: Vue-移动端自动转换px为rem(postcss-pxtorem)
 date: 2018-10-25 17:41:00
 tags: [Vue, 移动端]
 categories: 前端
