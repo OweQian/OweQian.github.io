@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9fac2674-4fd5-4b24-b4f5-bc88c1e8d2b1" name="Default" comment="add article">
-      <change afterPath="$PROJECT_DIR$/source/_posts/Webpack-常用知识指北.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/JS-精心收集的48个JavaScript代码片段.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/JS-精心收集的48个JavaScript代码片段.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Vue移动端自动转换px为rem(postcss-pxtorem).md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Vue-移动端自动转换px为rem(postcss-pxtorem).md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Webpack-常用知识指北.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Webpack-基础使用.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,20 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Webpack-常用知识指北.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/source/_posts/Webpack-常用知识指北.md">
+      <file leaf-file-name="Webpack-基础使用.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/_posts/Webpack-基础使用.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="225" column="18" lean-forward="true" selection-start-line="225" selection-start-column="18" selection-end-line="225" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="小程序-全栈开发(mpvue+koa2+mysql).md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/小程序-全栈开发(mpvue+koa2+mysql).md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="28" column="47" lean-forward="true" selection-start-line="28" selection-end-line="28" selection-end-column="47" />
+            <state relative-caret-position="254">
+              <caret line="202" column="50" selection-start-line="202" selection-start-column="50" selection-end-line="202" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -147,11 +137,11 @@
       <path value="$PROJECT_DIR$/themes/dark/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="1920" />
-    <option name="y" value="159" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="x" value="1984" />
+    <option name="y" value="231" />
     <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="height" value="1001" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -244,7 +234,8 @@
       <workItem from="1538839848649" duration="7625000" />
       <workItem from="1540294139383" duration="3826000" />
       <workItem from="1542261025166" duration="9679000" />
-      <workItem from="1542789311157" duration="5727000" />
+      <workItem from="1542789311157" duration="6642000" />
+      <workItem from="1542873776073" duration="1145000" />
     </task>
     <task id="LOCAL-00001" summary="标签页">
       <created>1523435605747</created>
@@ -271,7 +262,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70823000" />
+    <option name="totallyTimeSpent" value="72883000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -283,24 +274,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="159" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <frame x="1920" y="159" width="1920" height="1080" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12954186" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12901527" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32891566" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32891566" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.29452735" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3273632" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
@@ -464,13 +454,6 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/format.html" />
     <entry file="file://$PROJECT_DIR$/source/_posts/Vue-从头到尾撸官方文档系列(Vue模板语法篇).md" />
     <entry file="file://$PROJECT_DIR$/source/_posts/Vue-从头到尾撸官方文档系列(Vue计算属性与侦听器篇).md" />
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/Vue-从头到尾撸官方文档系列(基础篇).md" />
     <entry file="file://$PROJECT_DIR$/source/_posts/Vue-Chrome 插件开发实录[转].md" />
     <entry file="file://$PROJECT_DIR$/source/_posts/Other-摘录前端业界大牛及业界平台.md" />
@@ -526,15 +509,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/小程序-全栈开发(mpvue+koa2+mysql).md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="28" column="47" lean-forward="true" selection-start-line="28" selection-end-line="28" selection-end-column="47" />
+        <state relative-caret-position="532">
+          <caret line="28" column="47" selection-start-line="28" selection-end-line="28" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/Webpack-常用知识指北.md">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="225" column="18" lean-forward="true" selection-start-line="225" selection-start-column="18" selection-end-line="225" selection-end-column="18" />
+        <state relative-caret-position="247">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/Webpack-基础使用.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="202" column="50" selection-start-line="202" selection-start-column="50" selection-end-line="202" selection-end-column="50" />
         </state>
       </provider>
     </entry>
