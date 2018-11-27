@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    
+    
+    
+    <title>JS-深拷贝与浅拷贝 | W | 个人博客 | web前端</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="导语 当我们在JS中复制一个数据，在复制如string，number等基本数据类型时，看似没有出现问题。但是当复制如array，object类型时。出现了意想不到的结果。">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS-深拷贝与浅拷贝">
+<meta property="og:url" content="http://yoursite.com/2018/10/11/JS-深拷贝与浅拷贝/index.html">
+<meta property="og:site_name" content="W | 个人博客 | web前端">
+<meta property="og:description" content="导语 当我们在JS中复制一个数据，在复制如string，number等基本数据类型时，看似没有出现问题。但是当复制如array，object类型时。出现了意想不到的结果。">
+<meta property="og:updated_time" content="2018-11-27T13:49:56.107Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS-深拷贝与浅拷贝">
+<meta name="twitter:description" content="导语 当我们在JS中复制一个数据，在复制如string，number等基本数据类型时，看似没有出现问题。但是当复制如array，object类型时。出现了意想不到的结果。">
+    
+        <link rel="alternate" type="application/atom+xml" title="W | 个人博客 | web前端" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">wangxiaobai</h5>
+          <a href="mailto:1510106069@qq.com" title="1510106069@qq.com" class="mail">1510106069@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://wangqian2017.github.io/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JS-深拷贝与浅拷贝</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JS-深拷贝与浅拷贝</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-11T10:11:52.000Z" itemprop="datePublished" class="page-time">
+  2018-10-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实例"><span class="post-toc-number"></span> <span class="post-toc-text">实例</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#值类型-vs-引用类型"><span class="post-toc-number"></span> <span class="post-toc-text">值类型 vs 引用类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#浅拷贝的实现方式"><span class="post-toc-number"></span> <span class="post-toc-text">浅拷贝的实现方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#直接赋值"><span class="post-toc-number">1.</span> <span class="post-toc-text">直接赋值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-assign"><span class="post-toc-number">2.</span> <span class="post-toc-text">Object.assign</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Array-prototype-concat"><span class="post-toc-number">3.</span> <span class="post-toc-text">Array.prototype.concat</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Array-prototype-slice"><span class="post-toc-number">4.</span> <span class="post-toc-text">Array.prototype.slice</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Array-prototype-concat-vs-Array-prototype-slice"><span class="post-toc-number">5.</span> <span class="post-toc-text">Array.prototype.concat vs Array.prototype.slice</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#深拷贝的实现方式"><span class="post-toc-number"></span> <span class="post-toc-text">深拷贝的实现方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Object-assign-1"><span class="post-toc-number">1.</span> <span class="post-toc-text">Object.assign</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#JSON-parse-JSON-stringfy-obj"><span class="post-toc-number">2.</span> <span class="post-toc-text">JSON.parse(JSON.stringfy(obj))</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#手写递归方法"><span class="post-toc-number">3.</span> <span class="post-toc-text">手写递归方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#jQuery实现"><span class="post-toc-number">4.</span> <span class="post-toc-text">jQuery实现</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#lodash实现"><span class="post-toc-number">5.</span> <span class="post-toc-text">lodash实现</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-JS-深拷贝与浅拷贝"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JS-深拷贝与浅拷贝</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-11 18:11:52" datetime="2018-10-11T10:11:52.000Z"  itemprop="datePublished">2018-10-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>当我们在JS中复制一个数据，在复制如string，number等基本数据类型时，看似没有出现问题。但是当复制如array，object类型时。出现了意想不到的结果。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a = &#123;x: 10, y: 10&#125;</div><div class="line">var b = a</div><div class="line">b.x = 100</div><div class="line">b.y = 100</div></pre></td></tr></table></figure>
+<p>打印一下a和b的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">console.log(a) // &#123;x: 100, y: 200&#125;</div><div class="line">console.log(b) // &#123;x: 100, y: 200&#125;</div></pre></td></tr></table></figure>
+<p>发现改变b的值，同时也改了a的值。</p>
+<p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = 10</div><div class="line">var b = a</div><div class="line">b = 20</div></pre></td></tr></table></figure>
+<p>打印一下a和b的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">console.log(a) // 10</div><div class="line">console.log(b) // 20</div></pre></td></tr></table></figure>
+<p>??? b的值改变并没有引起a的值改变。</p>
+<hr>
+<h3 id="值类型-vs-引用类型"><a href="#值类型-vs-引用类型" class="headerlink" title="值类型 vs 引用类型"></a>值类型 vs 引用类型</h3><p>在JS中，变量传递方式分为值类型和引用类型。值类型包括String，Number，Null，Boolean，Undefined。引用类型包括Object类的所有，如Date，Array，Function。</p>
+<p>在参数传递方式上，值类型是按值传递。引用类型是按共享传递(指向同一个内存地址，两者引用同一个值，当一者改变值，另一者也改变)。</p>
+<p>JS这样设计的原因在于：按值传递的类型，复制一份存入栈内存，这类类型一般不会占用太多内存，而且按值传递保证了其访问速度。按共享传递的类型，是复制其引用，而不是整个复制其值，保证过大的对象等不会因为不停复制内容而造成内存的浪费。</p>
+<p>深拷贝和浅拷贝最根本的区别在于是否真正获取了一个对象的拷贝实体，而不只是引用。</p>
+<hr>
+<h3 id="浅拷贝的实现方式"><a href="#浅拷贝的实现方式" class="headerlink" title="浅拷贝的实现方式"></a>浅拷贝的实现方式</h3><h4 id="直接赋值"><a href="#直接赋值" class="headerlink" title="直接赋值"></a>直接赋值</h4><p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let obj = &#123;username: &apos;kobe&apos;, age: 39, sex: &#123;option1: &apos;男&apos;, option2: &apos;女&apos;&#125;&#125;</div><div class="line">let obj1 = obj</div><div class="line">obj1.sex.option1 = &apos;不男不女&apos; // 修改复制的对象会影响原对象</div></pre></td></tr></table></figure>
+<p>打印obj1的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(obj1) // &#123;username: &apos;kobe&apos;, age: 39, sex: &#123;option1: &apos;不男不女&apos;, option2: &apos;女&apos;&#125;&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign"></a>Object.assign</h4><p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let obj = &#123;</div><div class="line">  username: &apos;kobe&apos;</div><div class="line">&#125;;</div><div class="line">let obj1 = Object.assign(obj)</div><div class="line">obj1.username = &apos;wang&apos;</div></pre></td></tr></table></figure>
+<p>打印obj的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(obj) // &#123; username: &quot;wang&quot; &#125;</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="Array-prototype-concat"><a href="#Array-prototype-concat" class="headerlink" title="Array.prototype.concat"></a>Array.prototype.concat</h4><p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let arr = [1, 3, &#123;</div><div class="line">    username: &apos;kobe&apos;</div><div class="line">&#125;]</div><div class="line">let arr2=arr.concat()</div><div class="line">arr2[2].username = &apos;wang&apos;</div></pre></td></tr></table></figure>
+<p>打印arr的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(arr) // [1, 3, &#123; username: &quot;wade&quot; &#125;]</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="Array-prototype-slice"><a href="#Array-prototype-slice" class="headerlink" title="Array.prototype.slice"></a>Array.prototype.slice</h4><p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let arr = [1, 3, &#123;</div><div class="line">    username: &apos;kobe&apos;</div><div class="line">&#125;]</div><div class="line">let arr2=arr.slice()</div><div class="line">arr2[2].username = &apos;wang&apos;</div></pre></td></tr></table></figure>
+<p>打印arr的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(arr) // [1, 3, &#123; username: &quot;wade&quot; &#125;]</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="Array-prototype-concat-vs-Array-prototype-slice"><a href="#Array-prototype-concat-vs-Array-prototype-slice" class="headerlink" title="Array.prototype.concat vs Array.prototype.slice"></a>Array.prototype.concat vs Array.prototype.slice</h4><p>关于Array的concat和slice补充说明：Array的concat和slice方法不改变原始数组，只是返回了一个浅复制原数组中的元素的一个新数组。</p>
+<p>原数组中的元素会按照下述规则拷贝：</p>
+<ul>
+<li><p>如果该元素是个引用类型，slice或者concat会拷贝这个引用到新的数组里，两个对象引用都引用了同一个对象。如果被引用的对象发生改变，则新数组和原数组中的这个元素都会发生改变。</p>
+</li>
+<li><p>如果该元素是个值类型，slice或者concat会复制一份这些值到新数组里。在别的数组里修改这些值，并不会影响另一个数组。</p>
+</li>
+</ul>
+<p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let arr = [1, 3, &#123;</div><div class="line">    username: &apos;kobe&apos;</div><div class="line">&#125;];</div><div class="line">let arr3 = arr.slice();</div><div class="line">arr3[1] = 2</div><div class="line">console.log(arr, arr3)</div></pre></td></tr></table></figure>
+<p>打印arr和arr3的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log(arr, arr3)</div><div class="line">// ---result</div><div class="line">// [1, 3, &#123; username: &quot;kobe&quot; &#125;]</div><div class="line">// [1, 2, &#123; username: &quot;kobe&quot; &#125;]</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="深拷贝的实现方式"><a href="#深拷贝的实现方式" class="headerlink" title="深拷贝的实现方式"></a>深拷贝的实现方式</h3><h4 id="Object-assign-1"><a href="#Object-assign-1" class="headerlink" title="Object.assign"></a>Object.assign</h4><p>Object.assign可以进行一层深度拷贝</p>
+<p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">        name: &apos;wang&apos;,</div><div class="line">        test1: null,</div><div class="line">        test2: undefined,</div><div class="line">        test3: function()&#123;alert(1)&#125;,</div><div class="line">		test4: &#123;&#125;</div><div class="line">    &#125;;</div><div class="line">var obj1 = Object.assign(&#123;&#125;, obj1)</div><div class="line">obj1.age = 24</div><div class="line">console.log(obj, obj1)</div></pre></td></tr></table></figure>
+<p>打印obj和obj1的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log(obj, obj1)</div><div class="line">// ----result</div><div class="line">// &#123; name: &quot;wang&quot;, test1: null, test2: undefined, test3: function()&#123;alert(1)&#125;, test4: &#123;  &#125; &#125;</div><div class="line">// &#123; name: &quot;wang&quot;, test1: null, test2: undefined, test3: function()&#123;alert(1)&#125;, test4: &#123;  &#125;, age: 24 &#125;</div></pre></td></tr></table></figure>
+<p>然而。。。。。</p>
+<p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">        name: &apos;wang&apos;,</div><div class="line">        test1: null,</div><div class="line">        test2: undefined,</div><div class="line">        test3: function()&#123;alert(1)&#125;,</div><div class="line">		test4: &#123;&#125;</div><div class="line">    &#125;;</div><div class="line">var obj1 = Object.assign(&#123;&#125;, obj1)</div><div class="line">obj1.test4.age = 24</div></pre></td></tr></table></figure>
+<p>打印obj和obj1的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log(obj, obj1)</div><div class="line">// ----result</div><div class="line">// &#123; name: &quot;wang&quot;, test1: null, test2: undefined, test3: function()&#123;alert(1)&#125;, test4: &#123; age: 24 &#125; &#125;</div><div class="line">// &#123; name: &quot;wang&quot;, test1: null, test2: undefined, test3: function()&#123;alert(1)&#125;, test4: &#123; age: 24 &#125; &#125;</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="JSON-parse-JSON-stringfy-obj"><a href="#JSON-parse-JSON-stringfy-obj" class="headerlink" title="JSON.parse(JSON.stringfy(obj))"></a>JSON.parse(JSON.stringfy(obj))</h4><p>说到深拷贝，你肯定会想到JSON.parse(JSON.stringfy(obj))。</p>
+<p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">        name: &apos;wang&apos;,</div><div class="line">        test: &#123;</div><div class="line">            name: &apos;test&apos;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">var obj1 = JSON.parse(JSON.stringify(obj))</div><div class="line">obj1.test.name = 24</div></pre></td></tr></table></figure>
+<p>打印obj和obj1的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log(obj, obj1)</div><div class="line">// ----result</div><div class="line">// &#123; name: &quot;wang&quot;, test: &#123; name: &quot;test&quot; &#125; &#125;</div><div class="line">// &#123; name: &quot;wang&quot;, test: &#123; name: 24 &#125; &#125;</div></pre></td></tr></table></figure>
+<p>然而。。。。</p>
+<p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">        name: &apos;wang&apos;,</div><div class="line">        test1: null,</div><div class="line">        test2: undefined,</div><div class="line">        test3: function()&#123;alert(1)&#125;,</div><div class="line">        test4: &#123;&#125;</div><div class="line">    &#125;;</div><div class="line">var obj1 = JSON.parse(JSON.stringify(obj))</div></pre></td></tr></table></figure>
+<p>打印obj和obj1的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">console.log(obj, obj1)</div><div class="line">// ---result</div><div class="line">// &#123; name: &quot;wang&quot;, test1: null, test2: undefined, test3: function()&#123;alert(1)&#125;, test4: &#123;  &#125; &#125;</div><div class="line">// &#123; name: &quot;wang&quot;, test1: null, test4: &#123;  &#125; &#125;</div></pre></td></tr></table></figure>
+<p>???test2和test3不见了。。。。。</p>
+<p>JSON.stringify()方法是将一个JavaScript值(对象或者数组)转换为一个JSON字符串，不能接受函数。</p>
+<hr>
+<h4 id="手写递归方法"><a href="#手写递归方法" class="headerlink" title="手写递归方法"></a>手写递归方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">function deepClone(obj) &#123;</div><div class="line">	let result</div><div class="line">    let toString = Object.prototype.toString</div><div class="line">    if (toString.call(obj) === &apos;[Object Array]&apos;) &#123;</div><div class="line">    	result = []</div><div class="line">      	for (var i =0; i&lt;obj.length; i++) &#123;</div><div class="line">        	result[i] = deepClone(obj[i])</div><div class="line">        &#125;</div><div class="line">    &#125; else if (toString.call(obj) === &apos;[Object Object]&apos;) &#123;</div><div class="line">    	result = &#123;&#125;</div><div class="line">      	for (var key in obj) &#123;</div><div class="line">        	if (obj.hasOwnProperty(key)) &#123;</div><div class="line">            	result[key] = deepClone(obj[key])</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125; else &#123;</div><div class="line">    	return obj</div><div class="line">    &#125;</div><div class="line">  return result</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>🌰：调用函数并打印结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">        name: &apos;wang&apos;,</div><div class="line">        test1: null,</div><div class="line">        test2: undefined,</div><div class="line">        test3: function()&#123;alert(1)&#125;,</div><div class="line">        test4: &#123;&#125;</div><div class="line">    &#125;;</div><div class="line">var obj1 = deepClone(obj)</div><div class="line">console.log(obj, obj21)</div><div class="line">// &#123; name: &quot;wang&quot;, test1: null, test2: undefined, test3: function()&#123;alert(1)&#125;, test4: Object &#123;  &#125; &#125;</div><div class="line">// &#123; name: &quot;wang&quot;, test1: null, test2: undefined, test3: function()&#123;alert(1)&#125;, test4: Object &#123;  &#125; &#125;</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="jQuery实现"><a href="#jQuery实现" class="headerlink" title="jQuery实现"></a>jQuery实现</h4><p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var obj1 = &#123;</div><div class="line">        name: &apos;wang&apos;,</div><div class="line">        test1: null,</div><div class="line">        test2: undefined,</div><div class="line">        test3: function()&#123;alert(1)&#125;,</div><div class="line">        test4: &#123;&#125;</div><div class="line">    &#125;;</div><div class="line">var obj2 = $.extend(true, &#123;&#125;, obj1)</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="lodash实现"><a href="#lodash实现" class="headerlink" title="lodash实现"></a>lodash实现</h4><p>🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var obj1 = &#123;</div><div class="line">        name: &apos;wclimb&apos;,</div><div class="line">        test1: null,</div><div class="line">        test2: undefined,</div><div class="line">        test3: function()&#123;alert(1)&#125;,</div><div class="line">        test4: &#123;&#125;</div><div class="line">    &#125;;</div><div class="line">var obj2 = _.cloneDeep(obj1)</div></pre></td></tr></table></figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-11-27T13:49:56.107Z" itemprop="dateUpdated">2018-11-27 21:49:56</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/10/11/JS-深拷贝与浅拷贝/" target="_blank" rel="external">http://yoursite.com/2018/10/11/JS-深拷贝与浅拷贝/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="wangxiaobai">
+            wangxiaobai
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/11/JS-深拷贝与浅拷贝/&title=《JS-深拷贝与浅拷贝》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/11/JS-深拷贝与浅拷贝/&title=《JS-深拷贝与浅拷贝》 — W | 个人博客 | web前端&source=导语
+当我们在JS中复制一个数据，在复制如string，number等基本数据类型时，看似没有出现问题。但是当复制如array，object类型时。出现了..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/11/JS-深拷贝与浅拷贝/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS-深拷贝与浅拷贝》 — W | 个人博客 | web前端&url=http://yoursite.com/2018/10/11/JS-深拷贝与浅拷贝/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/11/JS-深拷贝与浅拷贝/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/27/Node-阿里云ECS部署/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Node-阿里云ECS部署</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/26/Webpack-webpack-dev-server/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Webpack-webpack-dev-server</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        👍谢谢您的赞赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>wangxiaobai &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/11/JS-深拷贝与浅拷贝/&title=《JS-深拷贝与浅拷贝》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/11/JS-深拷贝与浅拷贝/&title=《JS-深拷贝与浅拷贝》 — W | 个人博客 | web前端&source=导语
+当我们在JS中复制一个数据，在复制如string，number等基本数据类型时，看似没有出现问题。但是当复制如array，object类型时。出现了..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/11/JS-深拷贝与浅拷贝/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS-深拷贝与浅拷贝》 — W | 个人博客 | web前端&url=http://yoursite.com/2018/10/11/JS-深拷贝与浅拷贝/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/11/JS-深拷贝与浅拷贝/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3awY7DIAyE4bz/S2elXleFmTG7EvbPKWqbwJeDi7GfRx7vZ3z75P0yvn27vuv3XMcGDBgwrmUoj9OnX9+bzStRYcCAMYCxDrJuwNWj4nouZW0wYMCAoWz+3N+sXw0MGDBg1APuegOnP0FZOgwYMGCcTSbdg7N6wgwDBow5DLcw8J/Xf1jfgAEDxiWMNxrZMyszbtYDAwaM1ox1Cppt6fTQqR/eSYEYBgwYTRlKMHV5ldeUvQIYMGD0ZtiH74WQfaoIWqpvwIAB41qGnl4qrRj1UFvavMKAAaMdI2unqCyrElI3NVgYMGAMYOjNDXp7RHY8524fYcCAMYeRhT8dpj/HDr4wYMAYw3AXl7VWZNtEuyQAAwaMRgz9p9m1EsTrbWcwYMDozahs5rLAmiW6m78HGDBgjGS4CaebiJ4qjj6GFQYMGH0YSlKaFSkrAX1TKIUBA0Zrhh5es2xYKkBGIfhxp4QBA0YLhr7cVx5Zs5dbkIABA8YEhhtA9YYwfWPnhuan/j8AAwaMyxluAdKukUYHfJtZYMCA0ZqhJIfu0b8SgrMAvVkJDBgw2jFec5xNPpUnH9sUwoAB41qGe7pe+cQN08p1WCSAAQPGhYxT7RHrpWTNFsa8MGDAGMCoJK6VzdyxXBwGDBgwzAKA23iRpbvS+4ABA8YwhtscVtl62h1tMGDAGMBwl6Kf3ul36S8OBgwY0xhZYUAPxJUXl21MYcCA0YjxA3PzqHaWi4e3AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '😤去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '😊欢迎回来!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</body>
+</html>
