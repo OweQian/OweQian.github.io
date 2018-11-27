@@ -1,6 +1,6 @@
 ---
 title: JS-精心收集的48个JavaScript代码片段
-date: 2017-3-11 21:06:52
+date: 2017-5-11 21:06:52
 tags: [JavaScript]
 categories: 前端
 ---

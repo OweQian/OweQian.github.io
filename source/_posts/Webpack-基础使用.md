@@ -1,6 +1,6 @@
 ---
 title: Webpack-基础使用
-date: 2018-9-25 15:15:00
+date: 2018-09-25 15:15:00
 tags: [Webpack]
 categories: 前端
 ---

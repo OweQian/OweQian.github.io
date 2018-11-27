@@ -1,6 +1,6 @@
 ---
 title: Webpack-webpack-dev-server
-date: 2018-9-26 15:15:00
+date: 2018-09-26 15:15:00
 tags: [Webpack]
 categories: 前端
 ---
