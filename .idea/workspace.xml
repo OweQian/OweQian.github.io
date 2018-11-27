@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9fac2674-4fd5-4b24-b4f5-bc88c1e8d2b1" name="Default" comment="add article">
-      <change afterPath="$PROJECT_DIR$/source/_posts/Linux-常用命令.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Node-阿里云ECS部署.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/JS-深拷贝与浅拷贝.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/HTML5-必知必会特性.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/HTML5-必知必会特性.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/JS-精心收集的48个JavaScript代码片段.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/JS-精心收集的48个JavaScript代码片段.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Node-npm常用操作指令.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Node-npm常用操作指令.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Vue-小技巧总结.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Vue-小技巧总结.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Vue-移动端自动转换px为rem(postcss-pxtorem).md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Vue-移动端自动转换px为rem(postcss-pxtorem).md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Webpack-webpack-dev-server.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Webpack-webpack-dev-server.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Webpack-基础使用.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Webpack-基础使用.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/小程序-全栈开发(mpvue+koa2+mysql).md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/小程序-全栈开发(mpvue+koa2+mysql).md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Node-阿里云ECS部署.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/source/_posts/Node-阿里云ECS部署.md">
+      <file leaf-file-name="JS-深拷贝与浅拷贝.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/_posts/JS-深拷贝与浅拷贝.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="375" column="36" selection-start-line="375" selection-start-column="36" selection-end-line="375" selection-end-column="36" />
+            <state relative-caret-position="340">
+              <caret line="301" column="2" selection-start-line="301" selection-start-column="2" selection-end-line="301" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -86,7 +77,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/themes/dark/layout/_partial/footer.ejs" />
         <option value="$PROJECT_DIR$/source/_posts/hello-world.md" />
         <option value="$PROJECT_DIR$/themes/dark/layout/_partial/archive-post.ejs" />
@@ -137,6 +127,7 @@
         <option value="$PROJECT_DIR$/source/_posts/Webpack-基础使用.md" />
         <option value="$PROJECT_DIR$/source/_posts/Linux-常用命令.md" />
         <option value="$PROJECT_DIR$/source/_posts/Node-阿里云ECS部署.md" />
+        <option value="$PROJECT_DIR$/source/_posts/JS-深拷贝与浅拷贝.md" />
       </list>
     </option>
   </component>
@@ -155,11 +146,11 @@
       <path value="$PROJECT_DIR$/themes/dark/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="x" value="1984" />
-    <option name="y" value="231" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="1920" />
+    <option name="y" value="159" />
     <option name="width" value="1920" />
-    <option name="height" value="1001" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -167,7 +158,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -190,6 +180,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -254,6 +245,7 @@
       <workItem from="1542261025166" duration="9679000" />
       <workItem from="1542789311157" duration="6642000" />
       <workItem from="1542873776073" duration="13599000" />
+      <workItem from="1543322765475" duration="3512000" />
     </task>
     <task id="LOCAL-00001" summary="标签页">
       <created>1523435605747</created>
@@ -280,7 +272,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92652000" />
+    <option name="totallyTimeSpent" value="101000000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -295,7 +287,7 @@
     <frame x="1920" y="159" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15429173" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12848867" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -306,22 +298,12 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12901527" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3273632" />
-      <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,9 +322,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="add article" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/themes/dark/layout/category.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/themes/dark/layout/categories.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11">
@@ -489,13 +468,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/JS-精心收集的48个JavaScript代码片段.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/小程序-全栈开发(mpvue+koa2+mysql).md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -556,6 +528,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="518">
           <caret line="375" column="36" selection-start-line="375" selection-start-column="36" selection-end-line="375" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/JS-精心收集的48个JavaScript代码片段.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="10" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/JS-深拷贝与浅拷贝.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="301" column="2" selection-start-line="301" selection-start-column="2" selection-end-line="301" selection-end-column="2" />
         </state>
       </provider>
     </entry>
