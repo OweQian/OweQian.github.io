@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    
+    
+    
+    <title>Node-阿里云ECS部署 | W | 个人博客 | web前端</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="Node">
+    <meta name="description" content="导语 双11抢购了一台阿里云服务器，趁工作不忙，搞了一个简单的node项目。那么问题来了，如何将node项目部署到阿里云ECS？">
+<meta name="keywords" content="Node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node-阿里云ECS部署">
+<meta property="og:url" content="http://yoursite.com/2018/11/27/Node-阿里云ECS部署/index.html">
+<meta property="og:site_name" content="W | 个人博客 | web前端">
+<meta property="og:description" content="导语 双11抢购了一台阿里云服务器，趁工作不忙，搞了一个简单的node项目。那么问题来了，如何将node项目部署到阿里云ECS？">
+<meta property="og:image" content="http://images.gitbook.cn/fb945240-f68e-11e7-b8d1-49d5de1a2fe1">
+<meta property="og:image" content="http://images.gitbook.cn/8a21b2f0-f68f-11e7-b8d1-49d5de1a2fe1">
+<meta property="og:image" content="http://images.gitbook.cn/aa87c390-f6e4-11e7-b0db-b9b8a7444865">
+<meta property="og:image" content="http://images.gitbook.cn/ef923690-f6e5-11e7-b28d-519a9998aa5b">
+<meta property="og:image" content="http://images.gitbook.cn/24e04d00-f6e6-11e7-b0db-b9b8a7444865">
+<meta property="og:image" content="http://images.gitbook.cn/4d980cc0-f6ea-11e7-9a49-93c72a04fa82">
+<meta property="og:image" content="http://images.gitbook.cn/9ab114d0-f82e-11e7-b753-f548c55dc4dd">
+<meta property="og:image" content="http://images.gitbook.cn/c4d479e0-f82f-11e7-bec2-d1185e7bb6e2">
+<meta property="og:image" content="http://images.gitbook.cn/afb6f050-f830-11e7-b753-f548c55dc4dd">
+<meta property="og:image" content="http://images.gitbook.cn/d892e470-f835-11e7-b753-f548c55dc4dd">
+<meta property="og:updated_time" content="2018-12-11T14:03:41.513Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node-阿里云ECS部署">
+<meta name="twitter:description" content="导语 双11抢购了一台阿里云服务器，趁工作不忙，搞了一个简单的node项目。那么问题来了，如何将node项目部署到阿里云ECS？">
+<meta name="twitter:image" content="http://images.gitbook.cn/fb945240-f68e-11e7-b8d1-49d5de1a2fe1">
+    
+        <link rel="alternate" type="application/atom+xml" title="W | 个人博客 | web前端" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">wangxiaobai</h5>
+          <a href="mailto:1510106069@qq.com" title="1510106069@qq.com" class="mail">1510106069@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://wangqian2017.github.io/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Node-阿里云ECS部署</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Node-阿里云ECS部署</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-27T04:19:00.000Z" itemprop="datePublished" class="page-time">
+  2018-11-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number"></span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#终端连接服务器"><span class="post-toc-number"></span> <span class="post-toc-text">终端连接服务器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Node"><span class="post-toc-number"></span> <span class="post-toc-text">安装Node</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装nrm和pm2"><span class="post-toc-number"></span> <span class="post-toc-text">安装nrm和pm2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#nrm"><span class="post-toc-number">1.</span> <span class="post-toc-text">nrm</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#pm2"><span class="post-toc-number">2.</span> <span class="post-toc-text">pm2</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装mysql"><span class="post-toc-number"></span> <span class="post-toc-text">安装mysql</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Redis"><span class="post-toc-number"></span> <span class="post-toc-text">安装Redis</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nginx"><span class="post-toc-number"></span> <span class="post-toc-text">nginx</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Git"><span class="post-toc-number"></span> <span class="post-toc-text">安装Git</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用pm2启动项目"><span class="post-toc-number"></span> <span class="post-toc-text">使用pm2启动项目</span></a>
+        </nav>
+    </aside>
+
+
+<article id="post-Node-阿里云ECS部署"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Node-阿里云ECS部署</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-27 12:19:00" datetime="2018-11-27T04:19:00.000Z"  itemprop="datePublished">2018-11-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>双11抢购了一台阿里云服务器，趁工作不忙，搞了一个简单的node项目。那么问题来了，如何将node项目部署到阿里云ECS？</p>
+</blockquote>
+<a id="more"></a>
+<p>此教程仅供新手借鉴，多少有些缺陷，有问题还望各位大佬指正。</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>一个域名</li>
+<li>阿里云ECS(实例镜像：CentOS7.4)</li>
+<li>如果使用Windows，推荐xshell。如果是Mac，推荐iTerm2</li>
+</ul>
+<p>(注：因本人使用Mac，以下均已Mac为主)</p>
+<hr>
+<h3 id="终端连接服务器"><a href="#终端连接服务器" class="headerlink" title="终端连接服务器"></a>终端连接服务器</h3><ul>
+<li>打开iTerm2，输入连接命令ssh username@ip公网地址，回车，输入你在购买服务器时设置的密码。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://images.gitbook.cn/fb945240-f68e-11e7-b8d1-49d5de1a2fe1" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>密码输入正确，进入服务器。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://images.gitbook.cn/8a21b2f0-f68f-11e7-b8d1-49d5de1a2fe1" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>cd / 进入根目录，创建一个空目录 mkdir soft，用来放我们的安装包。</p>
+<hr>
+<h3 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h3><p>下载node包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://nodejs.org/dist/v8.9.4/node-v8.9.4.tar.gz</div></pre></td></tr></table></figure>
+<p>下载完成后，进行压缩包解压。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf v8.9.4.tar.gz</div></pre></td></tr></table></figure>
+<p>进入解压好的目录并执行config配置命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd node-v8.9.4 &amp;&amp; ./configure</div></pre></td></tr></table></figure>
+<p>执行编译及安装命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
+<p>经过漫长的等待之后，一个node环境就安装好了。可以通过node -v 或者 npm -v来检查当前node/npm是否安装成功。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://images.gitbook.cn/aa87c390-f6e4-11e7-b0db-b9b8a7444865" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>如果你需要升级node和npm版本，执行以下命令即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm i -g n</div><div class="line">n stable</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="安装nrm和pm2"><a href="#安装nrm和pm2" class="headerlink" title="安装nrm和pm2"></a>安装nrm和pm2</h3><p>nrm是一个管理npm源的插件，方便切换国内外以及私人npm库。</p>
+<p>pm2是node服务器的守护进程，方便管理当前服务器上的所有服务。</p>
+<p>这里说一下cnpm，如果安装依赖包很慢或者根本没进度，输入命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure>
+<p>然后使用cnpm代替npm安装。</p>
+<p>回到我们熟悉的soft目录。</p>
+<hr>
+<h4 id="nrm"><a href="#nrm" class="headerlink" title="nrm"></a>nrm</h4><p>安装nrm。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g nrm</div></pre></td></tr></table></figure>
+<p>常用命令：</p>
+<ul>
+<li>nrm add name address 添加新的源</li>
+<li>nrm use name 切换到源</li>
+<li>nrm ls 查看所有可用的源</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://images.gitbook.cn/ef923690-f6e5-11e7-b28d-519a9998aa5b" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<hr>
+<h4 id="pm2"><a href="#pm2" class="headerlink" title="pm2"></a>pm2</h4><p>安装pm2。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g pm2</div></pre></td></tr></table></figure>
+<p>常用命令：</p>
+<ul>
+<li>pm2 list 查看pm2守护服务</li>
+<li>pm2 start index.js 启动一个pm2守护进程命令</li>
+<li>pm2 restart id/name 重启一个pm2守护进程命令</li>
+<li>pm2 delete id/name 删除一个正在使用的进程</li>
+<li>pm2 delete all 删除所有正在使用的进程</li>
+<li>pm2 monit 查看pm2的消耗</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://images.gitbook.cn/24e04d00-f6e6-11e7-b0db-b9b8a7444865" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<hr>
+<h3 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h3><p>卸载已有的mysql。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rpm -qa|grep -i mysql</div><div class="line">yum remove &apos;mysql&apos;</div></pre></td></tr></table></figure>
+<p>下载mysql源。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 5.7.24</div><div class="line">wget http://repo.mysql.com//mysql57-community-release-el7-7.noarch.rpm</div></pre></td></tr></table></figure>
+<p>安装下载的源。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -ivh mysql57-community-release-el7-7.noarch.rpm</div></pre></td></tr></table></figure>
+<p>下载安装mysql。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum install mysql-server</div><div class="line">yum install mysql-devel</div><div class="line">yum install mysql</div></pre></td></tr></table></figure>
+<p>启动mysql。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service mysqld start</div></pre></td></tr></table></figure>
+<p>常用命令：</p>
+<ul>
+<li>service mysqld status 查看mysql当前的状态</li>
+<li>service mysqld stop 停止mysql</li>
+<li>service mysqld restart 重启mysql</li>
+<li>service mysqld start 启动mysql</li>
+</ul>
+<p>如果遇到错误：ERROR 2002 (HY000): Can’t connect to local MySQL server through socket /var/lib/mysql/mysql.sock’，请在tmp下创建一个软连接：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s /tmp/mysql.sock /var/lib/mysql</div></pre></td></tr></table></figure>
+<p>打开my.cnf并修改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/my.cnf</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://images.gitbook.cn/4d980cc0-f6ea-11e7-9a49-93c72a04fa82" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>重启数据库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service mysqld restart</div></pre></td></tr></table></figure>
+<p>登录(默认root是没有密码的)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u root</div></pre></td></tr></table></figure>
+<p>这时出现ERROR 1045 (28000): Access denied for user ‘root’@’localhost’ (using password: NO)，登录root帐号需要密码，现在我们没有设置密码，哪来的密码。</p>
+<p>于是我们开始忘记密码的操作</p>
+<p>第一步，在/etc/my.cnf文件中添加skip-grant-tables<br>第二步，重启mysql，service mysqld restart<br>第三步，登录mysql，mysql -u root<br>第四步，修改密码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt;use mysql;</div><div class="line">mysql&gt;update mysql.user set authentication_string=password(&apos;your password&apos;) where user=&apos;root&apos;;</div><div class="line">mysql&gt;flush privileges;</div><div class="line">mysql&gt;exit;</div></pre></td></tr></table></figure>
+<p>第五步，恢复/etc/my.cnf，将skip-grant-tables删除或者注释掉<br>第六步，重启mysql，service mysqld restart</p>
+<p>分配用户</p>
+<p>host指定该用户在哪个主机上可以登陆，此处的”localhost”，是指该用户只能在本地登录，不能在另外一台机器上远程登录，如果想远程登录的话，将”localhost”改为”%”，表示在任何一台电脑上都可以登录;也可以指定某台机器可以远程登录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CREATE USER &apos;username&apos;@&apos;host&apos; IDENTIFIED BY &apos;password&apos;;</div><div class="line">CREATE USER &apos;test&apos;@&apos;%&apos; IDENTIFIED BY &apos;password&apos;;</div></pre></td></tr></table></figure>
+<p>给创建的用户权限</p>
+<ul>
+<li>privileges 用户的操作权限,如SELECT，INSERT，UPDATE等.如果要授予所的权限则使用ALL</li>
+<li>databasename 数据库名</li>
+<li>tablename 表名,如果要授予该用户对所有数据库和表的相应操作权限则可用表示, 如.*.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GRANT privileges ON databasename.tablename TO &apos;username&apos;@&apos;host&apos;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h3><p>Redis是一个非常好用的数据仓库，既可以做nosql数据库，也可以做缓存数据库。</p>
+<p>下载安装包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://download.redis.io/releases/redis-4.0.6.tar.gz</div></pre></td></tr></table></figure>
+<p>解压并进入解压之后的文件夹。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf redis-4.0.6.tar.gz &amp;&amp;cd redis-4.0.6</div></pre></td></tr></table></figure>
+<p>编译并安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
+<p>启动redis服务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server redis.conf</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://images.gitbook.cn/9ab114d0-f82e-11e7-b753-f548c55dc4dd" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>此时我们发现，不能再输入任何命令，因为redis-server已经占用了这个命令行客户端。我们需要再打开一个命令行工具并连接服务器。</p>
+<p>使用redis客户端连接Redis服务，执行Redis文件夹下的redis-cli文件redis-cli，输入几个命令测试一下简单的set/get：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://images.gitbook.cn/c4d479e0-f82f-11e7-bec2-d1185e7bb6e2" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>关掉客户端，redis服务也会停止。这时，我们就需要修改redis.conf文件，将daemonizede的值改为yes。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://images.gitbook.cn/afb6f050-f830-11e7-b753-f548c55dc4dd" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>再次运行Redis的启动命令redis-server redis.conf，这次就不会占用命令行了，可以继续操作其他的，Redis服务也不会停止。</p>
+<hr>
+<h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>nginx在转发请求，负载均衡等方面非常有用。它可以将几个不同的服务集中在一个80端口下，根据域名或者请求路径来区分。</p>
+<p>在安装nginx之前，先要安装几个依赖插件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install -y pcre pcre-devel</div><div class="line">yum install -y zlib zlib-devel</div></pre></td></tr></table></figure>
+<p>安装openssl。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y openssl openssl-devel</div></pre></td></tr></table></figure>
+<p>下载nginx包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://nginx.org/download/nginx-1.15.6.tar.gz</div></pre></td></tr></table></figure>
+<p>解压并进入解压好的目录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf nginx-1.15.6.tar.gz &amp;&amp; cd nginx-1.15.6</div></pre></td></tr></table></figure>
+<p>执行配置命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure</div></pre></td></tr></table></figure>
+<p>编译并安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
+<p>查看安装结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">whereis nginx</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://images.gitbook.cn/d892e470-f835-11e7-b753-f548c55dc4dd" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>跳转到安装好的nginx目录下，进入sbin目录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/nginx/sbin</div></pre></td></tr></table></figure>
+<p>启动nginx。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./nginx</div></pre></td></tr></table></figure>
+<p>常用命令：</p>
+<ul>
+<li>./nginx 启动nginx</li>
+<li>./nginx -s stop 停止nginx</li>
+<li>./nginx -s quit 退出nginx</li>
+<li>./nginx -s reload 重启nginx</li>
+</ul>
+<hr>
+<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p>centOS上没有安装git，有需要的话，我们可以自己手动安装一下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install git</div><div class="line">git --version</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="使用pm2启动项目"><a href="#使用pm2启动项目" class="headerlink" title="使用pm2启动项目"></a>使用pm2启动项目</h3><p>在本地搭建并测试好node项目，上传到GitHub。然后git clone一下。</p>
+<p>配置ECS安全组规则，暴露3000接口。</p>
+<p>如果项目中使用数据库，运行之前要先建立好数据库，然后再运行项目，登录数据库执行create database dabasename;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/***</div><div class="line">cd ***</div><div class="line">cnpm i</div><div class="line">pm2 start index.js</div></pre></td></tr></table></figure>
+<p>注：项目监听3000端口，如果顺利的话，项目已经运行起来了。<br>   可以使用pm2 list查看进程列表，使用pm2 log打印日志。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-11T14:03:41.513Z" itemprop="dateUpdated">2018-12-11 22:03:41</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/11/27/Node-阿里云ECS部署/" target="_blank" rel="external">http://yoursite.com/2018/11/27/Node-阿里云ECS部署/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="wangxiaobai">
+            wangxiaobai
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/11/27/Node-阿里云ECS部署/&title=《Node-阿里云ECS部署》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/11/27/Node-阿里云ECS部署/&title=《Node-阿里云ECS部署》 — W | 个人博客 | web前端&source=导语
+双11抢购了一台阿里云服务器，趁工作不忙，搞了一个简单的node项目。那么问题来了，如何将node项目部署到阿里云ECS？
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/11/27/Node-阿里云ECS部署/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node-阿里云ECS部署》 — W | 个人博客 | web前端&url=http://yoursite.com/2018/11/27/Node-阿里云ECS部署/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/11/27/Node-阿里云ECS部署/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/10/11/JS-深拷贝与浅拷贝/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JS-深拷贝与浅拷贝</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        👍谢谢您的赞赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>wangxiaobai &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/11/27/Node-阿里云ECS部署/&title=《Node-阿里云ECS部署》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/11/27/Node-阿里云ECS部署/&title=《Node-阿里云ECS部署》 — W | 个人博客 | web前端&source=导语
+双11抢购了一台阿里云服务器，趁工作不忙，搞了一个简单的node项目。那么问题来了，如何将node项目部署到阿里云ECS？
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/11/27/Node-阿里云ECS部署/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node-阿里云ECS部署》 — W | 个人博客 | web前端&url=http://yoursite.com/2018/11/27/Node-阿里云ECS部署/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/11/27/Node-阿里云ECS部署/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3aQY6DMAwF0N7/0sy2UgV8O2Ekksdq1KHBj4Ubx/584uv4ur4/+b0nuf/3u2ffmnxhYGC8lnFcXmf35KFXV66ugIGBsQ/jLINdp9cqKU/WeWwYGBgY1yHmoV8/K18BAwMDI0+4efE5NzVjYGDszEiKyTyN3hScwbnZg7U4BgbGCxm9pf/n70f6GxgYGK9iHMXribCSZH0TFQYGxtKMPMHl27KkoC0XqMlTMDAwlmbkoxL5Id14yr4O95SKgYGxHKMX6EjFnDcPCsd8GBgYmzGGRkiLAxMj7GaOx8DAeCEjf3CSCmcdseXPxcDA2IFRHdgaSdZVUrOFiYGBsShjpGTtHfRPTscYGBhLM5KwqhvHXgHc21xiYGDswEgemReu1RSctzlvOpUYGBhbMvJPemFVy+Zo2AIDA2NpRt6YvEl8xXGKWUNjGBgYOzDyQ65qfZy/pmq1ffO7gYGBsRCj2gboFbS90Y3eq8TAwNiHkY9KJJvFfOV8naHBVgwMjBcy8mIyGf/qFcbT9rkYGBhLM6rtgaQxkG8EJ/xWYGBgbMDoFYp54drbRBbixMDAWJRxFK/8EK1a0I5UoxgYGGszxpPdrAZn3iRonh1iYGC8nFEdP83fR++/1RgwMDD2YSTHcL3ydTxZR68GAwMDI75n1lBsOcVjYGBgDA+YVlsI5e9iYGBswKgOfuVlZzIolp8Inq6DgYGxNKNaOjaPw1pNgt62EgMDYyHGH+/KX12B7r7hAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '😤去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '😊欢迎回来!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</body>
+</html>
