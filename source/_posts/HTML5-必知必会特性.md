@@ -1,6 +1,10 @@
 ---
 title: HTML5-必知必会特性
+<<<<<<< HEAD
 date: 2017-3-17 17:41:00
+=======
+date: 2017-4-17 17:41:00
+>>>>>>> aff06a6f51e3129ed0ace59ece2572a51f4c43df
 tags: [HTML5]
 categories: 前端
 ---
