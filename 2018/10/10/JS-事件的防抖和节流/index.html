@@ -14,28 +14,24 @@
     
     
     
-    <title>Node-npm常用操作指令 | W | 个人博客 | web前端</title>
+    <title>JS-事件的防抖和节流 | W | 个人博客 | web前端</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#000000">
     
     
-    <meta name="keywords" content="Node,NPM">
-    <meta name="description" content="导语 NPM，全程Node Package Manager，即Node.js模块管理工具。">
-<meta name="keywords" content="Node,NPM">
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="导语 窗口的resize、scroll、mousemove、mouseover等事件被频繁触发时，其对应的回调函数也会被频繁触发而导致页面抖动甚至卡顿。">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node-npm常用操作指令">
-<meta property="og:url" content="http://yoursite.com/2017/06/15/Node-npm常用操作指令/index.html">
+<meta property="og:title" content="JS-事件的防抖和节流">
+<meta property="og:url" content="http://yoursite.com/2018/10/10/JS-事件的防抖和节流/index.html">
 <meta property="og:site_name" content="W | 个人博客 | web前端">
-<meta property="og:description" content="导语 NPM，全程Node Package Manager，即Node.js模块管理工具。">
-<<<<<<< HEAD:2017/06/15/Node-npm常用操作指令/index.html
-<meta property="og:updated_time" content="2018-11-27T04:17:05.326Z">
-=======
-<meta property="og:updated_time" content="2018-12-11T14:03:41.512Z">
->>>>>>> 47275d326d6e1de1fdb683a794ba30a2e53cea8a:2017/06/15/Node-npm常用操作指令/index.html
+<meta property="og:description" content="导语 窗口的resize、scroll、mousemove、mouseover等事件被频繁触发时，其对应的回调函数也会被频繁触发而导致页面抖动甚至卡顿。">
+<meta property="og:updated_time" content="2018-12-11T14:03:41.509Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node-npm常用操作指令">
-<meta name="twitter:description" content="导语 NPM，全程Node Package Manager，即Node.js模块管理工具。">
+<meta name="twitter:title" content="JS-事件的防抖和节流">
+<meta name="twitter:description" content="导语 窗口的resize、scroll、mousemove、mouseover等事件被频繁触发时，其对应的回调函数也会被频繁触发而导致页面抖动甚至卡顿。">
     
         <link rel="alternate" type="application/atom+xml" title="W | 个人博客 | web前端" href="/atom.xml">
     
@@ -130,7 +126,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Node-npm常用操作指令</div>
+        <div class="flex-col header-title ellipsis">JS-事件的防抖和节流</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -152,11 +148,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">Node-npm常用操作指令</h1>
+        <h1 class="title">JS-事件的防抖和节流</h1>
         <h5 class="subtitle">
             
-                <time datetime="2017-06-15T08:06:52.000Z" itemprop="datePublished" class="page-time">
-  2017-06-15
+                <time datetime="2018-10-10T10:11:52.000Z" itemprop="datePublished" class="page-time">
+  2018-10-10
 </time>
 
 
@@ -177,18 +173,18 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#NPM常用操作指令列表"><span class="post-toc-number"></span> <span class="post-toc-text">NPM常用操作指令列表</span></a>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#“节流”与”防抖”的本质"><span class="post-toc-number"></span> <span class="post-toc-text">“节流”与”防抖”的本质</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Throttle：”节流”"><span class="post-toc-number"></span> <span class="post-toc-text">Throttle：”节流”</span></a>
         </nav>
     </aside>
 
 
-<article id="post-Node-npm常用操作指令"
+<article id="post-JS-事件的防抖和节流"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">Node-npm常用操作指令</h1>
+        <h1 class="post-card-title">JS-事件的防抖和节流</h1>
         <div class="post-meta">
-            <time class="post-time" title="2017-06-15 16:06:52" datetime="2017-06-15T08:06:52.000Z"  itemprop="datePublished">2017-06-15</time>
+            <time class="post-time" title="2018-10-10 18:11:52" datetime="2018-10-10T10:11:52.000Z"  itemprop="datePublished">2018-10-10</time>
 
             
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
@@ -204,95 +200,15 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
-<p>NPM，全程Node Package Manager，即Node.js模块管理工具。</p>
+<p>窗口的resize、scroll、mousemove、mouseover等事件被频繁触发时，其对应的回调函数也会被频繁触发而导致页面抖动甚至卡顿。</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="NPM常用操作指令列表"><a href="#NPM常用操作指令列表" class="headerlink" title="NPM常用操作指令列表"></a>NPM常用操作指令列表</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>npm install</td>
-<td>安装模块</td>
-</tr>
-<tr>
-<td>npm uninstall</td>
-<td>卸载模块</td>
-</tr>
-<tr>
-<td>npm update</td>
-<td>更新模块</td>
-</tr>
-<tr>
-<td>npm outdated</td>
-<td>检查模块是否已经过时</td>
-</tr>
-<tr>
-<td>npm ls</td>
-<td>查看安装的模块</td>
-</tr>
-<tr>
-<td>npm init</td>
-<td>初始化项目的package.json</td>
-</tr>
-<tr>
-<td>npm help</td>
-<td>查看命令的详细帮助</td>
-</tr>
-<tr>
-<td>npm root</td>
-<td>查看包的安装路径</td>
-</tr>
-<tr>
-<td>npm config</td>
-<td>查看npm的配置路径</td>
-</tr>
-<tr>
-<td>npm cache</td>
-<td>管理模块的缓存</td>
-</tr>
-<tr>
-<td>npm start</td>
-<td>启动模块</td>
-</tr>
-<tr>
-<td>npm stop</td>
-<td>停止模块</td>
-</tr>
-<tr>
-<td>npm restart</td>
-<td>重启模块</td>
-</tr>
-<tr>
-<td>npm view</td>
-<td>查看模块的注册信息</td>
-</tr>
-<tr>
-<td>npm version</td>
-<td>查看模块版本</td>
-</tr>
-<tr>
-<td>npm test</td>
-<td>测试模块</td>
-</tr>
-<tr>
-<td>npm adduser</td>
-<td>添加用户</td>
-</tr>
-<tr>
-<td>npm publish</td>
-<td>发布模块</td>
-</tr>
-<tr>
-<td>npm access</td>
-<td>在发布的包上设置访问级别</td>
-</tr>
-</tbody>
-</table>
+<p>为了规避这种情况，我们需要一些手段来控制事件被触发的频率。此时，事件节流(throttle)和事件防抖(debounce)出现了。</p>
+<h3 id="“节流”与”防抖”的本质"><a href="#“节流”与”防抖”的本质" class="headerlink" title="“节流”与”防抖”的本质"></a>“节流”与”防抖”的本质</h3><p>这两个东西都以闭包的形式存在。</p>
+<p>它们通过对事件对应的回调函数进行包裹，以自由变量的形式缓存事件信息，然后用setTimeout来控制事件的触发频率。</p>
+<hr>
+<h3 id="Throttle：”节流”"><a href="#Throttle：”节流”" class="headerlink" title="Throttle：”节流”"></a>Throttle：”节流”</h3><p>持续触发事件时，throttle会合并一定时间内的事件，并在该事件结束时真正去触发一次事件。</p>
+<p><img src="" alt=""></p>
 
         </div>
 
@@ -301,16 +217,12 @@
     <div class="content">
         
 <span class="post-time">
-<<<<<<< HEAD:2017/06/15/Node-npm常用操作指令/index.html
-    最后更新时间：<time datetime="2018-11-27T04:17:05.326Z" itemprop="dateUpdated">2018-11-27 12:17:05</time>
-=======
-    最后更新时间：<time datetime="2018-12-11T14:03:41.512Z" itemprop="dateUpdated">2018-12-11 22:03:41</time>
->>>>>>> 47275d326d6e1de1fdb683a794ba30a2e53cea8a:2017/06/15/Node-npm常用操作指令/index.html
+    最后更新时间：<time datetime="2018-12-11T14:03:41.509Z" itemprop="dateUpdated">2018-12-11 22:03:41</time>
 </span><br>
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/06/15/Node-npm常用操作指令/" target="_blank" rel="external">http://yoursite.com/2017/06/15/Node-npm常用操作指令/</a>
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/10/10/JS-事件的防抖和节流/" target="_blank" rel="external">http://yoursite.com/2018/10/10/JS-事件的防抖和节流/</a>
         
     </div>
     
@@ -331,7 +243,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NPM/">NPM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
 
 
             
@@ -341,7 +253,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/06/15/Node-npm常用操作指令/&title=《Node-npm常用操作指令》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/10/JS-事件的防抖和节流/&title=《JS-事件的防抖和节流》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -351,24 +263,24 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/06/15/Node-npm常用操作指令/&title=《Node-npm常用操作指令》 — W | 个人博客 | web前端&source=导语
-NPM，全程Node Package Manager，即Node.js模块管理工具。
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/10/JS-事件的防抖和节流/&title=《JS-事件的防抖和节流》 — W | 个人博客 | web前端&source=导语
+窗口的resize、scroll、mousemove、mouseover等事件被频繁触发时，其对应的回调函数也会被频繁触发而导致页面抖动甚至卡顿。
 " data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/06/15/Node-npm常用操作指令/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/10/JS-事件的防抖和节流/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node-npm常用操作指令》 — W | 个人博客 | web前端&url=http://yoursite.com/2017/06/15/Node-npm常用操作指令/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS-事件的防抖和节流》 — W | 个人博客 | web前端&url=http://yoursite.com/2018/10/10/JS-事件的防抖和节流/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/06/15/Node-npm常用操作指令/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/10/JS-事件的防抖和节流/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -391,18 +303,18 @@ NPM，全程Node Package Manager，即Node.js模块管理工具。
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2017/07/03/Vue-小技巧总结/" id="post-prev" class="post-nav-link">
+      <a href="/2018/10/11/JS-深拷贝与浅拷贝/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Vue-小技巧总结[转]</h4>
+        <h4 class="title">JS-深拷贝与浅拷贝</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2017/05/11/JS-精心收集的48个JavaScript代码片段/" id="post-next" class="post-nav-link">
+      <a href="/2018/09/26/Webpack-webpack-dev-server/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">JS-精心收集的48个JavaScript代码片段</h4>
+        <h4 class="title">Webpack-webpack-dev-server</h4>
       </a>
     </div>
   
@@ -499,7 +411,7 @@ NPM，全程Node Package Manager，即Node.js模块管理工具。
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/06/15/Node-npm常用操作指令/&title=《Node-npm常用操作指令》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/10/JS-事件的防抖和节流/&title=《JS-事件的防抖和节流》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -509,24 +421,24 @@ NPM，全程Node Package Manager，即Node.js模块管理工具。
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/06/15/Node-npm常用操作指令/&title=《Node-npm常用操作指令》 — W | 个人博客 | web前端&source=导语
-NPM，全程Node Package Manager，即Node.js模块管理工具。
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/10/JS-事件的防抖和节流/&title=《JS-事件的防抖和节流》 — W | 个人博客 | web前端&source=导语
+窗口的resize、scroll、mousemove、mouseover等事件被频繁触发时，其对应的回调函数也会被频繁触发而导致页面抖动甚至卡顿。
 " data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/06/15/Node-npm常用操作指令/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/10/JS-事件的防抖和节流/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node-npm常用操作指令》 — W | 个人博客 | web前端&url=http://yoursite.com/2017/06/15/Node-npm常用操作指令/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS-事件的防抖和节流》 — W | 个人博客 | web前端&url=http://yoursite.com/2018/10/10/JS-事件的防抖和节流/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/06/15/Node-npm常用操作指令/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/10/JS-事件的防抖和节流/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -537,7 +449,7 @@ NPM，全程Node Package Manager，即Node.js模块管理工具。
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aQW7kMAwEwPz/095rgN3xdotOAEulUzCe2CwHYERSX1/xur6tvz/5/vn99z9dvf/8sYWBgfFaxnW7krDW7j+5+o+nY2BgHMD49Pg8Xd7/VgvLY8PAwMBoA0ru89SLwMDAwMiTYLuhTO6GgYGBsVbEJs2y5JH3BfCP1+IYGBgvZOQts9//+UfmGxgYGK9iXOVqC84kOV7jhYGBsTcjT3D5tqzd9q0lXAwMjHMY7XGupDRdK4nblP2fvwMGBsZ2jLbFlh/qyl9QEu7HqxgYGAcwkofdB9oOJpMStxgAYGBgbM2YF5ZPbQfzoD9+BwMD4wDGZDAwacDlyMcGmRgYGC9ktG39teSbPCXfehb/QzAwMF7OmLTAknJ3Mv4sBgYYGBhbM+ZbsfmGMil6o9eBgYGxKaMdHN4n0yTQtZK1OGyBgYGxKWM+UMyb/vmWsRiLYmBgHMBoD0nkiTgHT14cBgbG3ow29HkhmoS79loxMDBOYLSHw9pEPG+xRQkXAwPjAEbeIGuHlGtpvTj9hYGBcQDj2W3fpK22dvwCAwPjBEY7OGzHkHnoedmMgYFxAuMq19rwssXU21MMDIytGWvJLtlEzkcOoyEBBgbGdoxJu23toGoyWqgHohgYGAcw8sTXbuDaxFoMAzAwMDCWgpu0+9uoMDAwMJ5No+3hjHzIioGBcQ4jKUfbsrMNuoVhYGCcw5iUjmupMzkCmyRZDAyMAxh/AKajLLqNZdsDAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aQW7jMAwF0Nz/0ikwqwKB7U/SKcbS0ypIXIfPAVhK5OsVr/e/9fv10fq85vwOn9/y+f5tCwMD47GMPKzzr+xdf3RlHhsGBsY+jEmSPQ/l6A7Jp0lsGBgYGHlYeYHYKygxMDAw7t245gVfXm5iYGBg9ELsFYU98G17cQwMjAcyeo2Bv3n99f4GBgbGf894F1dyh3mHsRwVBgbG0oy8vMs3n70Bi7zNefiwMDAwlmb02gNJuPOiMG+RYmBgrMrIU1v1KL/atkxCP/wUAwNjaUaeWHNk9UFU0ysGBgZGslHsDWfkQxV5Or6YHMHAwFiC0Tua75WS+QBHftCGgYGxAyM6h4vnHOZtyCTQwv8NDAyMJRj5OEWyWa0m3+rjwMDA2JORD2wlCbHaEphvmDEwMHZg9MKaDEYkKb5ZGmJgYCzN6BWI1QHW+UBYdGqIgYGxAaMX3Plf5Q2GajwYGBg7ML631awm7vwg71V9fhgYGEswqrBq6szTcT6gdsPvg4GB8RBGr4CrhnXXlvViFAwDA2NpxqQxUB3RyA/9CxtpDAyMpRnV1NZLpskR3mRkFgMDY23Gu7gmaTFP3Pk2GAMDYwdGNc1VD/cnKfUr98fAwHgso3dYn2ws8zJxPuSBgYGxAyM/MutdPy/yLh4TBgYGRnF2o9cwqG6km1+JgYGxAWMyltFrD0QjHRgYGBsw8uDmBV8Pf/E+BgbG0ozeBrI6TlFtYVaLRQwMjEUZPwIl3HoFSQgQAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
