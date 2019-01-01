@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-<<<<<<< HEAD
+
   <updated>2018-11-27T09:46:46.402Z</updated>
 =======
   <updated>2018-12-11T14:03:41.513Z</updated>
@@ -25,7 +25,7 @@
     <link href="http://yoursite.com/2018/11/27/Node-%E9%98%BF%E9%87%8C%E4%BA%91ECS%E9%83%A8%E7%BD%B2/"/>
     <id>http://yoursite.com/2018/11/27/Node-阿里云ECS部署/</id>
     <published>2018-11-27T04:19:00.000Z</published>
-<<<<<<< HEAD
+
     <updated>2018-11-27T09:46:46.402Z</updated>
     
     <content type="html"><![CDATA[<h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote><p>双11抢购了一台阿里云服务器，趁工作不忙，搞了一个简单的node项目。那么问题来了，如何将node项目部署到阿里云ECS？</p></blockquote><a id="more"></a><p>此教程仅供新手借鉴，多少有些缺陷，有问题还望各位大佬指正。</p><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul><li>一个域名</li><li>阿里云ECS(实例镜像：CentOS7.4)</li><li>如果使用Windows，推荐xshell。如果是Mac，推荐iTerm2</li></ul><p>(注：因本人使用Mac，以下均已Mac为主)</p><hr><h3 id="终端连接服务器"><a href="#终端连接服务器" class="headerlink" title="终端连接服务器"></a>终端连接服务器</h3><ul><li>打开iTerm2，输入连接命令ssh username@ip公网地址，回车，输入你在购买服务器时设置的密码。</li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://images.gitbook.cn/fb945240-f68e-11e7-b8d1-49d5de1a2fe1" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><ul><li>密码输入正确，进入服务器。</li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://images.gitbook.cn/8a21b2f0-f68f-11e7-b8d1-49d5de1a2fe1" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>cd / 进入根目录，创建一个空目录 mkdir soft，用来放我们的安装包。</p><hr><h3 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h3><p>下载node包。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://nodejs.org/dist/v8.9.4/node-v8.9.4.tar.gz</div></pre></td></tr></table></figure><p>下载完成后，进行压缩包解压。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf v8.9.4.tar.gz</div></pre></td></tr></table></figure><p>进入解压好的目录并执行config配置命令。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd node-v8.9.4 &amp;&amp; ./configure</div></pre></td></tr></table></figure><p>执行编译及安装命令。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure><p>经过漫长的等待之后，一个node环境就安装好了。可以通过node -v 或者 npm -v来检查当前node/npm是否安装成功。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://images.gitbook.cn/aa87c390-f6e4-11e7-b0db-b9b8a7444865" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>如果你需要升级node和npm版本，执行以下命令即可。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm i -g n</div><div class="line">n stable</div></pre></td></tr></table></figure><hr><h3 id="安装nrm和pm2"><a href="#安装nrm和pm2" class="headerlink" title="安装nrm和pm2"></a>安装nrm和pm2</h3><p>nrm是一个管理npm源的插件，方便切换国内外以及私人npm库。</p><p>pm2是node服务器的守护进程，方便管理当前服务器上的所有服务。</p><p>这里说一下cnpm，如果安装依赖包很慢或者根本没进度，输入命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure><p>然后使用cnpm代替npm安装。</p><p>回到我们熟悉的soft目录。</p><hr><h4 id="nrm"><a href="#nrm" class="headerlink" title="nrm"></a>nrm</h4><p>安装nrm。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g nrm</div></pre></td></tr></table></figure><p>常用命令：</p><ul><li>nrm add name address 添加新的源</li><li>nrm use name 切换到源</li><li>nrm ls 查看所有可用的源</li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://images.gitbook.cn/ef923690-f6e5-11e7-b28d-519a9998aa5b" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><hr><h4 id="pm2"><a href="#pm2" class="headerlink" title="pm2"></a>pm2</h4><p>安装pm2。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g pm2</div></pre></td></tr></table></figure><p>常用命令：</p><ul><li>pm2 list 查看pm2守护服务</li><li>pm2 start index.js 启动一个pm2守护进程命令</li><li>pm2 restart id/name 重启一个pm2守护进程命令</li><li>pm2 delete id/name 删除一个正在使用的进程</li><li>pm2 delete all 删除所有正在使用的进程</li><li>pm2 monit 查看pm2的消耗</li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://images.gitbook.cn/24e04d00-f6e6-11e7-b0db-b9b8a7444865" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><hr><h3 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h3><p>卸载已有的mysql。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rpm -qa|grep -i mysql</div><div class="line">yum remove &apos;mysql&apos;</div></pre></td></tr></table></figure><p>下载mysql源。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 5.7.24</div><div class="line">wget http://repo.mysql.com//mysql57-community-release-el7-7.noarch.rpm</div></pre></td></tr></table></figure><p>安装下载的源。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -ivh mysql57-community-release-el7-7.noarch.rpm</div></pre></td></tr></table></figure><p>下载安装mysql。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum install mysql-server</div><div class="line">yum install mysql-devel</div><div class="line">yum install mysql</div></pre></td></tr></table></figure><p>启动mysql。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service mysqld start</div></pre></td></tr></table></figure><p>常用命令：</p><ul><li>service mysqld status 查看mysql当前的状态</li><li>service mysqld stop 停止mysql</li><li>service mysqld restart 重启mysql</li><li>service mysqld start 启动mysql</li></ul><p>如果遇到错误：ERROR 2002 (HY000): Can’t connect to local MySQL server through socket /var/lib/mysql/mysql.sock’，请在tmp下创建一个软连接：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s /tmp/mysql.sock /var/lib/mysql</div></pre></td></tr></table></figure><p>打开my.cnf并修改。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/my.cnf</div></pre></td></tr></table></figure><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://images.gitbook.cn/4d980cc0-f6ea-11e7-9a49-93c72a04fa82" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>重启数据库。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service mysqld restart</div></pre></td></tr></table></figure><p>登录(默认root是没有密码的)。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u root</div></pre></td></tr></table></figure><p>这时出现ERROR 1045 (28000): Access denied for user ‘root’@’localhost’ (using password: NO)，登录root帐号需要密码，现在我们没有设置密码，哪来的密码。</p><p>于是我们开始忘记密码的操作</p><p>第一步，在/etc/my.cnf文件中添加skip-grant-tables<br>第二步，重启mysql，service mysqld restart<br>第三步，登录mysql，mysql -u root<br>第四步，修改密码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt;use mysql;</div><div class="line">mysql&gt;update mysql.user set authentication_string=password(&apos;your password&apos;) where user=&apos;root&apos;;</div><div class="line">mysql&gt;flush privileges;</div><div class="line">mysql&gt;exit;</div></pre></td></tr></table></figure><p>第五步，恢复/etc/my.cnf，将skip-grant-tables删除或者注释掉<br>第六步，重启mysql，service mysqld restart</p><p>分配用户</p><p>host指定该用户在哪个主机上可以登陆，此处的”localhost”，是指该用户只能在本地登录，不能在另外一台机器上远程登录，如果想远程登录的话，将”localhost”改为”%”，表示在任何一台电脑上都可以登录;也可以指定某台机器可以远程登录。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CREATE USER &apos;username&apos;@&apos;host&apos; IDENTIFIED BY &apos;password&apos;;</div><div class="line">CREATE USER &apos;test&apos;@&apos;%&apos; IDENTIFIED BY &apos;password&apos;;</div></pre></td></tr></table></figure><p>给创建的用户权限</p><ul><li>privileges 用户的操作权限,如SELECT，INSERT，UPDATE等.如果要授予所的权限则使用ALL</li><li>databasename 数据库名</li><li>tablename 表名,如果要授予该用户对所有数据库和表的相应操作权限则可用表示, 如.*.</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GRANT privileges ON databasename.tablename TO &apos;username&apos;@&apos;host&apos;</div></pre></td></tr></table></figure><hr><h3 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h3><p>Redis是一个非常好用的数据仓库，既可以做nosql数据库，也可以做缓存数据库。</p><p>下载安装包。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://download.redis.io/releases/redis-4.0.6.tar.gz</div></pre></td></tr></table></figure><p>解压并进入解压之后的文件夹。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf redis-4.0.6.tar.gz &amp;&amp;cd redis-4.0.6</div></pre></td></tr></table></figure><p>编译并安装。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure><p>启动redis服务。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server redis.conf</div></pre></td></tr></table></figure><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://images.gitbook.cn/9ab114d0-f82e-11e7-b753-f548c55dc4dd" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>此时我们发现，不能再输入任何命令，因为redis-server已经占用了这个命令行客户端。我们需要再打开一个命令行工具并连接服务器。</p><p>使用redis客户端连接Redis服务，执行Redis文件夹下的redis-cli文件redis-cli，输入几个命令测试一下简单的set/get：</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://images.gitbook.cn/c4d479e0-f82f-11e7-bec2-d1185e7bb6e2" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>关掉客户端，redis服务也会停止。这时，我们就需要修改redis.conf文件，将daemonizede的值改为yes。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://images.gitbook.cn/afb6f050-f830-11e7-b753-f548c55dc4dd" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>再次运行Redis的启动命令redis-server redis.conf，这次就不会占用命令行了，可以继续操作其他的，Redis服务也不会停止。</p><hr><h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>nginx在转发请求，负载均衡等方面非常有用。它可以将几个不同的服务集中在一个80端口下，根据域名或者请求路径来区分。</p><p>在安装nginx之前，先要安装几个依赖插件。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install -y pcre pcre-devel</div><div class="line">yum install -y zlib zlib-devel</div></pre></td></tr></table></figure><p>安装openssl。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y openssl openssl-devel</div></pre></td></tr></table></figure><p>下载nginx包。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://nginx.org/download/nginx-1.15.6.tar.gz</div></pre></td></tr></table></figure><p>解压并进入解压好的目录。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf nginx-1.15.6.tar.gz &amp;&amp; cd nginx-1.15.6</div></pre></td></tr></table></figure><p>执行配置命令。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure</div></pre></td></tr></table></figure><p>编译并安装。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure><p>查看安装结果。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">whereis nginx</div></pre></td></tr></table></figure><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://images.gitbook.cn/d892e470-f835-11e7-b753-f548c55dc4dd" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>跳转到安装好的nginx目录下，进入sbin目录。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/nginx/sbin</div></pre></td></tr></table></figure><p>启动nginx。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./nginx</div></pre></td></tr></table></figure><p>常用命令：</p><ul><li>./nginx 启动nginx</li><li>./nginx -s stop 停止nginx</li><li>./nginx -s quit 退出nginx</li><li>./nginx -s reload 重启nginx</li></ul><hr><h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p>centOS上没有安装git，有需要的话，我们可以自己手动安装一下。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install git</div><div class="line">git --version</div></pre></td></tr></table></figure><hr><h3 id="使用pm2启动项目"><a href="#使用pm2启动项目" class="headerlink" title="使用pm2启动项目"></a>使用pm2启动项目</h3><p>在本地搭建并测试好node项目，上传到GitHub。然后git clone一下。</p><p>配置ECS安全组规则，暴露3000接口。</p><p>如果项目中使用数据库，运行之前要先建立好数据库，然后再运行项目，登录数据库执行create database dabasename;</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/***</div><div class="line">cd ***</div><div class="line">cnpm i</div><div class="line">pm2 start index.js</div></pre></td></tr></table></figure><p>注：项目监听3000端口，如果顺利的话，项目已经运行起来了。<br>   可以使用pm2 list查看进程列表，使用pm2 log打印日志。</p>]]></content>
@@ -241,7 +241,7 @@
   </entry>
   
   <entry>
-<<<<<<< HEAD
+
     <title>Vue-小技巧总结[转]</title>
     <link href="http://yoursite.com/2017/07/03/Vue-%E5%B0%8F%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/"/>
     <id>http://yoursite.com/2017/07/03/Vue-小技巧总结/</id>
@@ -262,7 +262,7 @@
     <summary type="html">
     
       &lt;h4 id=&quot;导语&quot;&gt;&lt;a href=&quot;#导语&quot; class=&quot;headerlink&quot; title=&quot;导语&quot;&gt;&lt;/a&gt;导语&lt;/h4&gt;&lt;blockquote&gt;
-<<<<<<< HEAD
+
 &lt;p&gt;这篇文章主要是为了将开发过程中知道的一些小技巧进行总结，帮助使用Vue开发的小伙伴们愉快地采坑。&lt;/p&gt;
 =======
 &lt;p&gt;webpack是一个现代JavaScript应用程序的静态模块打包器，在webpack处理应用程序时，它会在内部创建一个依赖图，用于映射到项目需要的每个模块，然后将所有这些依赖生成到一个或多个bundle。&lt;/p&gt;
@@ -274,7 +274,7 @@
       <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-<<<<<<< HEAD
+
       <category term="Vue" scheme="http://yoursite.com/tags/Vue/"/>
 =======
       <category term="Webpack" scheme="http://yoursite.com/tags/Webpack/"/>
@@ -307,7 +307,7 @@
   </entry>
   
   <entry>
-<<<<<<< HEAD
+
     <title>Node-npm常用操作指令</title>
     <link href="http://yoursite.com/2017/06/15/Node-npm%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4/"/>
     <id>http://yoursite.com/2017/06/15/Node-npm常用操作指令/</id>
@@ -328,7 +328,7 @@
     <summary type="html">
     
       &lt;h4 id=&quot;导语&quot;&gt;&lt;a href=&quot;#导语&quot; class=&quot;headerlink&quot; title=&quot;导语&quot;&gt;&lt;/a&gt;导语&lt;/h4&gt;&lt;blockquote&gt;
-<<<<<<< HEAD
+
 &lt;p&gt;NPM，全程Node Package Manager，即Node.js模块管理工具。&lt;/p&gt;
 =======
 &lt;p&gt;这篇文章主要是为了使用Linux系统服务器做开发，总结的一些常用命令。&lt;/p&gt;
@@ -364,7 +364,7 @@
       <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-<<<<<<< HEAD
+
       <category term="Node" scheme="http://yoursite.com/tags/Node/"/>
     
       <category term="NPM" scheme="http://yoursite.com/tags/NPM/"/>
@@ -375,7 +375,7 @@
   </entry>
   
   <entry>
-<<<<<<< HEAD
+
     <title>JS-精心收集的48个JavaScript代码片段</title>
     <link href="http://yoursite.com/2017/05/11/JS-%E7%B2%BE%E5%BF%83%E6%94%B6%E9%9B%86%E7%9A%8448%E4%B8%AAJavaScript%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/"/>
     <id>http://yoursite.com/2017/05/11/JS-精心收集的48个JavaScript代码片段/</id>
@@ -409,7 +409,7 @@
   </entry>
   
   <entry>
-<<<<<<< HEAD
+
     <title>HTML5-必知必会特性</title>
     <link href="http://yoursite.com/2017/04/17/HTML5-%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%E7%89%B9%E6%80%A7/"/>
     <id>http://yoursite.com/2017/04/17/HTML5-必知必会特性/</id>
@@ -441,7 +441,7 @@
   </entry>
   
   <entry>
-<<<<<<< HEAD
+
     <title>ES6-Airbnb JavaScript（ES6）代码规范</title>
     <link href="http://yoursite.com/2017/03/12/ES6-Airbnb%20JavaScript%EF%BC%88ES6%EF%BC%89%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
     <id>http://yoursite.com/2017/03/12/ES6-Airbnb JavaScript（ES6）代码规范/</id>
@@ -462,7 +462,7 @@
     <summary type="html">
     
       &lt;h4 id=&quot;导语&quot;&gt;&lt;a href=&quot;#导语&quot; class=&quot;headerlink&quot; title=&quot;导语&quot;&gt;&lt;/a&gt;导语&lt;/h4&gt;&lt;blockquote&gt;
-<<<<<<< HEAD
+
 &lt;p&gt;本文摘自—Airbnb JavaScript（ES6）代码规范。&lt;/p&gt;
 =======
 &lt;p&gt;NPM，全程Node Package Manager，即Node.js模块管理工具。&lt;/p&gt;
@@ -474,7 +474,7 @@
       <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-<<<<<<< HEAD
+
 =======
       <category term="Node" scheme="http://yoursite.com/tags/Node/"/>
     
