@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    
+    
+    
+    <title>Vue-源码系列随读笔记之认识Flow | W | 个人博客 | web前端</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="Vue">
+    <meta name="description" content="导语 Flow是facebook出品的javascript静态类型检查工具。Vue.js源码利用了Flow做了静态类型检查。优先了解Flow有助于我们阅读源码。">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-源码系列随读笔记之认识Flow">
+<meta property="og:url" content="http://yoursite.com/2019/03/01/Vue-源码系列之认识Flow/index.html">
+<meta property="og:site_name" content="W | 个人博客 | web前端">
+<meta property="og:description" content="导语 Flow是facebook出品的javascript静态类型检查工具。Vue.js源码利用了Flow做了静态类型检查。优先了解Flow有助于我们阅读源码。">
+<meta property="og:updated_time" content="2019-03-13T02:19:12.857Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue-源码系列随读笔记之认识Flow">
+<meta name="twitter:description" content="导语 Flow是facebook出品的javascript静态类型检查工具。Vue.js源码利用了Flow做了静态类型检查。优先了解Flow有助于我们阅读源码。">
+    
+        <link rel="alternate" type="application/atom+xml" title="W | 个人博客 | web前端" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">wangxiaobai</h5>
+          <a href="mailto:1510106069@qq.com" title="1510106069@qq.com" class="mail">1510106069@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://wangqian2017.github.io/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vue-源码系列随读笔记之认识Flow</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Vue-源码系列随读笔记之认识Flow</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-01T09:02:00.000Z" itemprop="datePublished" class="page-time">
+  2019-03-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#为什么要使用Flow"><span class="post-toc-number"></span> <span class="post-toc-text">为什么要使用Flow</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Flow的工作方式"><span class="post-toc-number"></span> <span class="post-toc-text">Flow的工作方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#类型推断"><span class="post-toc-number">1.</span> <span class="post-toc-text">类型推断</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#类型注释"><span class="post-toc-number">2.</span> <span class="post-toc-text">类型注释</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#数组"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">数组</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#类和对象"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">类和对象</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Null"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Null</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Flow在Vue-js源码中的应用"><span class="post-toc-number"></span> <span class="post-toc-text">Flow在Vue.js源码中的应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number"></span> <span class="post-toc-text">总结</span></a>
+        </nav>
+    </aside>
+
+
+<article id="post-Vue-源码系列之认识Flow"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Vue-源码系列随读笔记之认识Flow</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-01 17:02:00" datetime="2019-03-01T09:02:00.000Z"  itemprop="datePublished">2019-03-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>Flow是facebook出品的javascript静态类型检查工具。Vue.js源码利用了Flow做了静态类型检查。优先了解Flow有助于我们阅读源码。</p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h3 id="为什么要使用Flow"><a href="#为什么要使用Flow" class="headerlink" title="为什么要使用Flow"></a>为什么要使用Flow</h3><p>javascript是动态类型语言，它的灵活性有目共睹。但过于灵活的副作用就是容易写出非常隐蔽的隐患代码，在编译期看上去不会报错，但在运行阶段就可能出现各种奇怪的bug。</p>
+<p>类型检查是当前动态类型语言的发展趋势。所谓类型检查，就是在编译期尽早发现bug，又不影响代码运行，使编写javascript具有和编写java等强类型语言相近的体验。</p>
+<hr>
+<h3 id="Flow的工作方式"><a href="#Flow的工作方式" class="headerlink" title="Flow的工作方式"></a>Flow的工作方式</h3><p>通常类型检查分为2中方式：</p>
+<ul>
+<li><p>类型推断：通过变量使用的上下文来推断出变量类型，然后根据这些推断来检查类型。</p>
+</li>
+<li><p>类型注释：事先注释好我们期待的类型，Flow会基于这些注释来判断。</p>
+</li>
+</ul>
+<h4 id="类型推断"><a href="#类型推断" class="headerlink" title="类型推断"></a>类型推断</h4><p>无需任何代码修改即可进行类型检查，最小化开发者的工作量。不会强制你改变开发习惯，因为它会自动推断出变量的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/*@flow*/</div><div class="line"></div><div class="line">function split(str) &#123;</div><div class="line">    return str.split(&apos; &apos;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">split(11)</div></pre></td></tr></table></figure>
+<h4 id="类型注释"><a href="#类型注释" class="headerlink" title="类型注释"></a>类型注释</h4><p>在某些特定的场景下，添加类型注释可以提供更好更明确的检查依据。</p>
+<p>考虑如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/*@flow*/</div><div class="line">function add(x, y) &#123;</div><div class="line">    return x + y</div><div class="line">&#125;</div><div class="line">add(&apos;hello&apos;, 11)</div></pre></td></tr></table></figure>
+<p>Flow检查上述代码时检查不出任何错误，因为从语法层面考虑， + 既可以用在字符串上，也可以用在数字上，我们并没有明确指出 add() 的参数必须为数字。</p>
+<p>在这种情况下，我们可以借助类型注释来指明期望的类型。类型注释是以 : 开头，可以在函数参数、返回值、变量声明中使用。</p>
+<p>如果我们在上段代码中添加类型注释，就会变成如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/*@flow*/</div><div class="line">function add(x: number, y: number) : number &#123;</div><div class="line">    return x + y</div><div class="line">&#125;</div><div class="line">add(&apos;hello&apos;, 11)</div></pre></td></tr></table></figure>
+<p>现在Flow就能检查出错误，因为函数参数的期待类型为数字，而我们提供了字符串。</p>
+<p>上面的例子是针对函数的类型注释。接下来我们来看看Flow能支持的一些常见的类型注释。</p>
+<h5 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/*@flow*/</div><div class="line">var arr: Array&lt;number&gt; = [1, 2, 3]</div><div class="line">arr.push(&apos;hello)</div></pre></td></tr></table></figure>
+<p>数组类型注释的格式为Array<t>，T表示数组中每项的数据类型。在上述代码中，arr是每项均为数字的数组。如果我们给这个数组添加了一个字符串，Flow就能检查出错误。</t></p>
+<h5 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">/*@flow*/</div><div class="line">class Bar &#123;</div><div class="line">    x: string</div><div class="line">    y: string | number</div><div class="line">    z: boolean</div><div class="line">    constructor(x: string, y: string | number) &#123;</div><div class="line">        this.x = x</div><div class="line">        this.y = y</div><div class="line">        this.z = z</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var bar: Bar = new Bar(&apos;hello&apos;, 11)</div><div class="line"></div><div class="line">var obj: &#123; a: string, b: number, c: Array&lt;string&gt;, d: Bar&#125; = &#123;</div><div class="line">    a: &apos;hello&apos;,</div><div class="line">    b: 11,</div><div class="line">    c: [&apos;hello&apos;, &apos;world&apos;],</div><div class="line">    d: new Bar(&apos;hello&apos;, 11)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>类的类型注释可以对类自身的属性做类型检查，也可以对构造函数的参数做类型检查。</p>
+<p>对象的类型注释类似于类，需要指定对象属性的类型。</p>
+<h5 id="Null"><a href="#Null" class="headerlink" title="Null"></a>Null</h5><p>若想任意类型 T 可以为 null 或 undefined ，只需类似如下写成 ?T 的格式即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/*@flow*/</div><div class="line"></div><div class="line">var foo ?string = null</div></pre></td></tr></table></figure>
+<p>此时，foo 可以为字符串，也可以为 null 。</p>
+<hr>
+<h3 id="Flow在Vue-js源码中的应用"><a href="#Flow在Vue-js源码中的应用" class="headerlink" title="Flow在Vue.js源码中的应用"></a>Flow在Vue.js源码中的应用</h3><p>有时我们想引用第三方库，或者自定义一些类型，但 Flow 并不认识，检查时就会报错。为了解决这类问题，Flow 提出了一个 libdef 的概念，可以用来识别这些第三方库或者自定义类型。而 Vue.js 也利用了这一特性。</p>
+<p>在 Vue.js 的主目录下有 .flowconfig 文件，它是 Flow 的配置文件。这其中的 [libs] 部分用来描述包含指定库定义的目录，默认是名为 flow-typed 的目录。</p>
+<p>这里的 [libs] 配置的是 flow ，表示指定的库定义都在 flow 文件夹内。我们打开这个目录，就会发现文件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">flow</div><div class="line">|-- compiler.js   # 编译相关</div><div class="line">|-- component.js   # 组件数据结构</div><div class="line">|-- global.api.js   # Global API 结构</div><div class="line">|-- modules.js   # 第三方库协议</div><div class="line">|-- options.js   # 选项相关</div><div class="line">|-- ssr.js   # 服务端渲染相关</div><div class="line">|-- vnode.js   # 虚拟node相关</div><div class="line">|-- weex.js   # weex相关</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>通过对Flow的认识，有助于阅读Vue源码，并且这种静态类型检查的方式非常有利于大型项目源码的开发和维护。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-03-13T02:19:12.857Z" itemprop="dateUpdated">2019-03-13 10:19:12</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/03/01/Vue-源码系列之认识Flow/" target="_blank" rel="external">http://yoursite.com/2019/03/01/Vue-源码系列之认识Flow/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="wangxiaobai">
+            wangxiaobai
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/03/01/Vue-源码系列之认识Flow/&title=《Vue-源码系列随读笔记之认识Flow》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/03/01/Vue-源码系列之认识Flow/&title=《Vue-源码系列随读笔记之认识Flow》 — W | 个人博客 | web前端&source=导语
+Flow是facebook出品的javascript静态类型检查工具。Vue.js源码利用了Flow做了静态类型检查。优先了解Flow有助于我们阅读..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/03/01/Vue-源码系列之认识Flow/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue-源码系列随读笔记之认识Flow》 — W | 个人博客 | web前端&url=http://yoursite.com/2019/03/01/Vue-源码系列之认识Flow/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/03/01/Vue-源码系列之认识Flow/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/27/Node-阿里云ECS部署/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Node-阿里云ECS部署</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        👍谢谢您的赞赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>wangxiaobai &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/03/01/Vue-源码系列之认识Flow/&title=《Vue-源码系列随读笔记之认识Flow》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/03/01/Vue-源码系列之认识Flow/&title=《Vue-源码系列随读笔记之认识Flow》 — W | 个人博客 | web前端&source=导语
+Flow是facebook出品的javascript静态类型检查工具。Vue.js源码利用了Flow做了静态类型检查。优先了解Flow有助于我们阅读..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/03/01/Vue-源码系列之认识Flow/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue-源码系列随读笔记之认识Flow》 — W | 个人博客 | web前端&url=http://yoursite.com/2019/03/01/Vue-源码系列之认识Flow/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/03/01/Vue-源码系列之认识Flow/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3aS47CQAxFUfa/6SAxRSnusxOkuG6NUEOHnAyMf68XPsfnrN/9PmefSf/3siNDhozHMo7l+WacvUvO2aNZfy+iypAhYwPGOsiSr7wvKqIfABkyZMjAofDsmuQzMmTIkHFVwE2Dci0Ey5AhQ0YtXePJ4prBy91banEZMmQ8kJEOBv75+sb5hgwZMh7COBqHl6a89K3dlQwZMmYz0oKzltjxFl6tPSdDhowdGOnaVgdfS0CDRy9DhoxxjHVAXP89beXztl2KlyFDxm4MvmbRT/747a5/DGTIkDGbkRaN5BZryxN8dePHo5EhQ8ZQBgmvfG2iNv68IATLkCFjKCNtyl9VsvbXLGTIkLEPg3Sr0mQxTRM7yWLQdJMhQ8ZjGfzSpKREy1vhY0LJqAwZMjZg1BpqfOjIE8Ri4ihDhozRjFoaR0YC5OZ4ahgsYciQIWMogwwO03ZYZyRQu74MGTKmMlqN+PaKBg/icRErQ4aMQYw0yKZFL1m/IGEapZUyZMjYgJGOG9PXnSUMlFDKkCFjA0Z/PSJl8yEEWkqTIUPGaEbnJjpfTAYDaNlChgwZoxn91a5+Ccobaj9+MWTIkDGUUZx5hiE4bb3x8jjGyJAh47EM3m6rhdG0cVa8jgwZMjZg8KWuWnOfXCFd+JAhQ4aM/sCSh+a0bYeyVxkyZGzJqDXC+qknSitlyJCxAePaNQuSAvJlC5RKypAhYzSjNphMW/zp2llt1UOGDBnjGG/Q8YmHEa59VQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '😤去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '😊欢迎回来!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</body>
+</html>
