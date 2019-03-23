@@ -30,7 +30,7 @@
 <meta property="og:description" content="导语 栈是和列表类似的一种数据结构，它可以用来解决计算机世界里的很多问题。">
 <meta property="og:image" content="https://www.oreilly.com/library/view/data-structures-and/9781449373931/images/dsaj_0401.png">
 <meta property="og:image" content="https://www.oreilly.com/library/view/data-structures-and/9781449373931/images/dsaj_0402.png">
-<meta property="og:updated_time" content="2019-03-16T17:01:30.418Z">
+<meta property="og:updated_time" content="2019-03-18T12:55:26.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS-数据结构与算法之栈">
 <meta name="twitter:description" content="导语 栈是和列表类似的一种数据结构，它可以用来解决计算机世界里的很多问题。">
@@ -256,6 +256,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span> (<span class="params">n</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (n === <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>使用栈模拟递归的过程</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fact</span> (<span class="params">n</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> s = <span class="keyword">new</span> Stack()</div><div class="line">  <span class="keyword">while</span> (n &gt; <span class="number">1</span>) &#123;</div><div class="line">    s.push(n--)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">var</span> product = <span class="number">1</span></div><div class="line">  <span class="built_in">console</span>.log(s.length())</div><div class="line">  <span class="keyword">while</span> (s.length() &gt; <span class="number">0</span>) &#123;</div><div class="line">    product *= s.pop()</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> product</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
         </div>
 
         <blockquote class="post-copyright">
@@ -263,7 +264,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-03-16T17:01:30.418Z" itemprop="dateUpdated">2019-03-17 01:01:30</time>
+    最后更新时间：<time datetime="2019-03-18T12:55:26.303Z" itemprop="dateUpdated">2019-03-18 20:55:26</time>
 </span><br>
 
 
@@ -346,7 +347,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/03/16/JS-数据结构与算法之队列/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JS-数据结构与算法之队列</h4>
+      </a>
+    </div>
   
 
   
