@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    
+    
+    
+    <title>Vue-源码系列随读笔记之Object变化侦测 | W | 个人博客 | web前端</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="Vue">
+    <meta name="description" content="导语 Vue最独特的特性之一是看起来并不显眼的响应式系统。数据模型仅仅是普通的JS对象。而当你修改它们时，视图会进行更新。这使得状态管理非常简单、直接。不过理解其工作原理同样重要，这样你可以回避一些常见问题 —官方文档">
+<meta name="keywords" content="Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-源码系列随读笔记之Object变化侦测">
+<meta property="og:url" content="http://yoursite.com/2019/05/16/Vue-源码系列随读笔记之Object变化侦测/index.html">
+<meta property="og:site_name" content="W | 个人博客 | web前端">
+<meta property="og:description" content="导语 Vue最独特的特性之一是看起来并不显眼的响应式系统。数据模型仅仅是普通的JS对象。而当你修改它们时，视图会进行更新。这使得状态管理非常简单、直接。不过理解其工作原理同样重要，这样你可以回避一些常见问题 —官方文档">
+<meta property="og:image" content="https://screenshot.net/zh/qv9nwto">
+<meta property="og:updated_time" content="2019-05-21T18:08:26.572Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue-源码系列随读笔记之Object变化侦测">
+<meta name="twitter:description" content="导语 Vue最独特的特性之一是看起来并不显眼的响应式系统。数据模型仅仅是普通的JS对象。而当你修改它们时，视图会进行更新。这使得状态管理非常简单、直接。不过理解其工作原理同样重要，这样你可以回避一些常见问题 —官方文档">
+<meta name="twitter:image" content="https://screenshot.net/zh/qv9nwto">
+    
+        <link rel="alternate" type="application/atom+xml" title="W | 个人博客 | web前端" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">wangxiaobai</h5>
+          <a href="mailto:1510106069@qq.com" title="1510106069@qq.com" class="mail">1510106069@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://wangqian2017.github.io/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vue-源码系列随读笔记之Object变化侦测</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Vue-源码系列随读笔记之Object变化侦测</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-16T10:34:52.000Z" itemprop="datePublished" class="page-time">
+  2019-05-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是变化侦测"><span class="post-toc-number"></span> <span class="post-toc-text">什么是变化侦测</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何追踪变化"><span class="post-toc-number"></span> <span class="post-toc-text">如何追踪变化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何收集依赖"><span class="post-toc-number"></span> <span class="post-toc-text">如何收集依赖</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#依赖收集到哪里（Dep）"><span class="post-toc-number"></span> <span class="post-toc-text">依赖收集到哪里（Dep）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是依赖-Watcher"><span class="post-toc-number"></span> <span class="post-toc-text">什么是依赖(Watcher)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#递归侦测所有Key"><span class="post-toc-number"></span> <span class="post-toc-text">递归侦测所有Key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number"></span> <span class="post-toc-text">总结</span></a>
+        </nav>
+    </aside>
+
+
+<article id="post-Vue-源码系列随读笔记之Object变化侦测"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Vue-源码系列随读笔记之Object变化侦测</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-16 18:34:52" datetime="2019-05-16T10:34:52.000Z"  itemprop="datePublished">2019-05-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>Vue最独特的特性之一是看起来并不显眼的响应式系统。数据模型仅仅是普通的JS对象。而当你修改它们时，视图会进行更新。这使得状态管理非常简单、直接。不过理解其工作原理同样重要，这样你可以回避一些常见问题 —官方文档</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="什么是变化侦测"><a href="#什么是变化侦测" class="headerlink" title="什么是变化侦测"></a>什么是变化侦测</h3><p>从状态生成DOM，再输出到用户界面显示的一整套流程叫做渲染，应用在运行时会不断地重新渲染。响应式系统赋予框架重新渲染的能力，其重要组成部分是变化侦测。</p>
+<p>简单来说，变化侦测的作用就是侦测数据的变化，当数据变化时，会通知视图进行相应的更新。</p>
+<p>Vue.js 2.0 引入了虚拟 DOM，收集每一个状态所绑定的依赖 (组件实例) ，当状态改变后，会通知到组件，组件内部再使用虚拟 DOM 进行对比。</p>
+<hr>
+<h3 id="如何追踪变化"><a href="#如何追踪变化" class="headerlink" title="如何追踪变化"></a>如何追踪变化</h3><p>首先，在 JS 中，通过 Object.defineProperty 侦测对象变化，这也是响应式最根本的依赖。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function defineReactive (data, key, val) &#123;</div><div class="line">    Object.defineProperty(data, key, &#123;</div><div class="line">        enumerable: true,</div><div class="line">        configurable: true,</div><div class="line">        get: function() &#123;</div><div class="line">            return val</div><div class="line">        &#125;,</div><div class="line">        ser: function(newVal) &#123;</div><div class="line">           if (val === newVal) &#123;</div><div class="line">               return </div><div class="line">           &#125;</div><div class="line">           val = newVal</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此处用 defineReactive 对 Object.defineProperty 进行封装，其作用是定义一个响应式数据，在函数中对对象进行变化追踪。封装好之后，每当从 data 的 key 中读取数据时，get 函数被触发；每当在 data 的 key 中设置新数据时， set 函数就会执行。</p>
+<p>由此可见，Object.defineProperty 是对已有属性进行的劫持操作，所以 Vue 才要求事先将需要用到的数据定义在 data 中，同时也无法响应对象属性的添加和删除。被劫持的属性会有相应的 get、set 方法。</p>
+<hr>
+<h3 id="如何收集依赖"><a href="#如何收集依赖" class="headerlink" title="如何收集依赖"></a>如何收集依赖</h3><p>思考以下问题：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> globalObj = &#123;</div><div class="line">    text1: <span class="string">'text1'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">let</span> o1 = <span class="keyword">new</span> Vue(&#123;</div><div class="line">    template:</div><div class="line">        <span class="string">`&lt;div&gt;</span></div><div class="line"><span class="string">            &lt;span&gt;&#123;&#123;text1&#125;&#125;&lt;/span&gt; </span></div><div class="line"><span class="string">        &lt;div&gt;`</span>,</div><div class="line">    data: globalObj</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">let</span> o2 = <span class="keyword">new</span> Vue(&#123;</div><div class="line">    template:</div><div class="line">        <span class="string">`&lt;div&gt;</span></div><div class="line"><span class="string">            &lt;span&gt;&#123;&#123;text1&#125;&#125;&lt;/span&gt; </span></div><div class="line"><span class="string">        &lt;div&gt;`</span>,</div><div class="line">    data: globalObj</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>该模板中有两个vm实例使用了text1，当它发生变化时，如果向使用了它的地方发送通知来更新视图？</p>
+<p>对于上述的问题，我的回答是，先收集依赖，即把用到了数据 text1 的地方收集起来，然后当属性发生变化时，把之前收集好的依赖循环触发更新一遍。</p>
+<p>即：在 getter 中收集依赖，在 setter 中触发依赖。</p>
+<hr>
+<h3 id="依赖收集到哪里（Dep）"><a href="#依赖收集到哪里（Dep）" class="headerlink" title="依赖收集到哪里（Dep）"></a>依赖收集到哪里（Dep）</h3><p> 每个 key 都有一个数组，用来存储当前 key 的依赖。我们把依赖收集的代码封装成一个 Dep 类，用它来专门帮助我们管理依赖。使用它，我们可以收集依赖、删除依赖、向依赖发送通知等。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> uid = <span class="number">0</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Dep</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> target: ?Watcher;</div><div class="line">  id: number;</div><div class="line">  subs: <span class="built_in">Array</span>&lt;Watcher&gt;;</div><div class="line"></div><div class="line">  <span class="keyword">constructor</span> () &#123;</div><div class="line">    <span class="keyword">this</span>.id = uid++ <span class="comment">// 唯一id</span></div><div class="line">    <span class="keyword">this</span>.subs = [] <span class="comment">// 观察者集合</span></div><div class="line">  &#125;</div><div class="line"> <span class="comment">// 添加观察者</span></div><div class="line">  addSub (sub: Watcher) &#123;</div><div class="line">    <span class="keyword">this</span>.subs.push(sub)</div><div class="line">  &#125;</div><div class="line"> <span class="comment">// 移除观察者</span></div><div class="line">  removeSub (sub: Watcher) &#123;</div><div class="line">    remove(<span class="keyword">this</span>.subs, sub)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  depend () &#123; <span class="comment">// 如果存在 Dep.target，则进行依赖收集操作</span></div><div class="line">    <span class="keyword">if</span> (Dep.target) &#123;</div><div class="line">      Dep.target.addDep(<span class="keyword">this</span>)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  notify () &#123;</div><div class="line">    <span class="keyword">const</span> subs = <span class="keyword">this</span>.subs.slice() <span class="comment">// 避免污染原来的集合</span></div><div class="line">    <span class="comment">// 如果不是异步执行，先进行排序，保证观察者执行顺序</span></div><div class="line">    <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span> &amp;&amp; !config.async) &#123;</div><div class="line">      subs.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a.id - b.id)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, l = subs.length; i &lt; l; i++) &#123;</div><div class="line">      subs[i].update() <span class="comment">// 更新</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Dep.target = <span class="literal">null</span> <span class="comment">// 用于闭包时，保存特定的值</span></div><div class="line"><span class="keyword">const</span> targetStack = []</div><div class="line"><span class="comment">// 入栈</span></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">pushTarget</span> (<span class="params">target: ?Watcher</span>) </span>&#123;</div><div class="line">  targetStack.push(target)</div><div class="line">  Dep.target = target</div><div class="line">&#125;</div><div class="line"><span class="comment">// 出栈</span></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">popTarget</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  targetStack.pop()</div><div class="line">  Dep.target = targetStack[targetStack.length - <span class="number">1</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="什么是依赖-Watcher"><a href="#什么是依赖-Watcher" class="headerlink" title="什么是依赖(Watcher)"></a>什么是依赖(Watcher)</h3><p>当属性发生变化时，我们要通知用到数据的地方，用到数据的地方有很多，有可能是模板、也可能是用户写的函数等等，这时需要抽象出一个能集中处理这些情况的类。</p>
+<p>然后，我们在依赖收集阶段只收集这个封装好的类的实例进来啊，通知也只通知它一个，然后，它在负责通知其它地方。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> uid = <span class="number">0</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Watcher</span> </span>&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  <span class="keyword">constructor</span> (</div><div class="line">    vm: Component, // 组件实例</div><div class="line">    expOrFn: string | Function, // 要观察的表达式，函数，或者字符串，只要能触发取值操作</div><div class="line">    cb: Function, // 被观察者发生变化后的回调</div><div class="line">    options?: ?Object, // 参数</div><div class="line">    isRenderWatcher?: boolean // 是否是渲染函数的观察者</div><div class="line">  ) &#123;</div><div class="line">    <span class="keyword">this</span>.vm = vm <span class="comment">// Watcher有一个 vm 属性，表明它是属于哪个组件的</span></div><div class="line">    <span class="keyword">if</span> (isRenderWatcher) &#123;</div><div class="line">      vm._watcher = <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line">    vm._watchers.push(<span class="keyword">this</span>) <span class="comment">// 给组件实例的_watchers属性添加观察者实例</span></div><div class="line">    <span class="comment">// options</span></div><div class="line">    <span class="keyword">if</span> (options) &#123;</div><div class="line">      <span class="keyword">this</span>.deep = !!options.deep <span class="comment">// 深度发现对象内部值得变化</span></div><div class="line">      <span class="keyword">this</span>.user = !!options.user</div><div class="line">      <span class="keyword">this</span>.lazy = !!options.lazy</div><div class="line">      <span class="keyword">this</span>.sync = !!options.sync <span class="comment">// 同步执行</span></div><div class="line">      <span class="keyword">this</span>.before = options.before</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">this</span>.deep = <span class="keyword">this</span>.user = <span class="keyword">this</span>.lazy = <span class="keyword">this</span>.sync = <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.cb = cb <span class="comment">// 回调</span></div><div class="line">    <span class="keyword">this</span>.id = ++uid <span class="comment">// uid for batching // 唯一标识</span></div><div class="line">    <span class="keyword">this</span>.active = <span class="literal">true</span> <span class="comment">// 观察者实例是否激活</span></div><div class="line">    <span class="keyword">this</span>.dirty = <span class="keyword">this</span>.lazy <span class="comment">// for lazy watchers</span></div><div class="line">    <span class="comment">// 避免依赖重复收集的处理</span></div><div class="line">    <span class="keyword">this</span>.deps = []</div><div class="line">    <span class="keyword">this</span>.newDeps = []</div><div class="line">    <span class="keyword">this</span>.depIds = <span class="keyword">new</span> <span class="built_in">Set</span>()</div><div class="line">    <span class="keyword">this</span>.newDepIds = <span class="keyword">new</span> <span class="built_in">Set</span>()</div><div class="line">    </div><div class="line">    <span class="keyword">this</span>.expression = process.env.NODE_ENV !== <span class="string">'production'</span></div><div class="line">      ? expOrFn.toString()</div><div class="line">      : <span class="string">''</span></div><div class="line">    <span class="comment">// parse expression for getter</span></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> expOrFn === <span class="string">'function'</span>) &#123;</div><div class="line">      <span class="keyword">this</span>.getter = expOrFn</div><div class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">// 类似于 Obj.a 的字符串</span></div><div class="line">      <span class="keyword">this</span>.getter = parsePath(expOrFn)</div><div class="line">      <span class="keyword">if</span> (!<span class="keyword">this</span>.getter) &#123;</div><div class="line">        <span class="keyword">this</span>.getter = noop <span class="comment">// 空函数</span></div><div class="line">        process.env.NODE_ENV !== <span class="string">'production'</span> &amp;&amp; warn(</div><div class="line">          <span class="string">`Failed watching path: "<span class="subst">$&#123;expOrFn&#125;</span>" `</span> +</div><div class="line">          <span class="string">'Watcher only accepts simple dot-delimited paths. '</span> +</div><div class="line">          <span class="string">'For full control, use a function instead.'</span>,</div><div class="line">          vm</div><div class="line">        )</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.value = <span class="keyword">this</span>.lazy</div><div class="line">      ? <span class="literal">undefined</span></div><div class="line">      : <span class="keyword">this</span>.get()</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  get () &#123; <span class="comment">// 触发取值操作，进而触发属性的getter</span></div><div class="line">    pushTarget(<span class="keyword">this</span>) <span class="comment">// Dep 中提到的：给 Dep.target 赋值</span></div><div class="line">    <span class="keyword">let</span> value</div><div class="line">    <span class="keyword">const</span> vm = <span class="keyword">this</span>.vm</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      <span class="comment">// 核心，运行观察者表达式，进行取值，触发getter，从而在闭包中添加watcher</span></div><div class="line">      value = <span class="keyword">this</span>.getter.call(vm, vm)</div><div class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.user) &#123;</div><div class="line">        handleError(e, vm, <span class="string">`getter for watcher "<span class="subst">$&#123;<span class="keyword">this</span>.expression&#125;</span>"`</span>)</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">throw</span> e</div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.deep) &#123; <span class="comment">// 如果要深度监测，再对 value 执行操作</span></div><div class="line">        traverse(value)</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// 清理依赖收集</span></div><div class="line">      popTarget()</div><div class="line">      <span class="keyword">this</span>.cleanupDeps()</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> value</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  addDep (dep: Dep) &#123;</div><div class="line">    <span class="keyword">const</span> id = dep.id</div><div class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.newDepIds.has(id)) &#123; <span class="comment">// 避免依赖重复收集</span></div><div class="line">      <span class="keyword">this</span>.newDepIds.add(id)</div><div class="line">      <span class="keyword">this</span>.newDeps.push(dep)</div><div class="line">      <span class="keyword">if</span> (!<span class="keyword">this</span>.depIds.has(id)) &#123;</div><div class="line">        dep.addSub(<span class="keyword">this</span>) <span class="comment">// dep 添加订阅者</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  update () &#123; <span class="comment">// 更新</span></div><div class="line">    <span class="comment">/* istanbul ignore else */</span></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.lazy) &#123;</div><div class="line">      <span class="keyword">this</span>.dirty = <span class="literal">true</span></div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.sync) &#123;</div><div class="line">      <span class="keyword">this</span>.run() <span class="comment">// 同步直接运行</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">// 否则加入异步队列等待执行</span></div><div class="line">      queueWatcher(<span class="keyword">this</span>)</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="递归侦测所有Key"><a href="#递归侦测所有Key" class="headerlink" title="递归侦测所有Key"></a>递归侦测所有Key</h3><p>前面的实例代码只能侦测数据中的一个属性，我们希望把数据中的所有属性都侦测到，所以要封装一个Observer类。Observer的作用是将一个数据内的所有属性（包括子属性）都转换成 getter/setter 的形式，然后去追踪它们的变化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">// observer/index.js</div><div class="line">// Observer 前的预处理方法</div><div class="line">export function observe (value: any, asRootData: ?boolean): Observer | void &#123;</div><div class="line">  if (!isObject(value) || value instanceof VNode) &#123; // 是否是对象或者虚拟dom</div><div class="line">    return</div><div class="line">  &#125;</div><div class="line">  let ob: Observer | void</div><div class="line">  // 判断是否有 __ob__ 属性，有的话代表有 Observer 实例，直接返回，没有就创建 Observer</div><div class="line">  if (hasOwn(value, &apos;__ob__&apos;) &amp;&amp; value.__ob__ instanceof Observer) &#123;</div><div class="line">    ob = value.__ob__</div><div class="line">  &#125; else if ( // 判断是否是单纯的对象</div><div class="line">    shouldObserve &amp;&amp;</div><div class="line">    !isServerRendering() &amp;&amp;</div><div class="line">    (Array.isArray(value) || isPlainObject(value)) &amp;&amp;</div><div class="line">    Object.isExtensible(value) &amp;&amp;</div><div class="line">    !value._isVue</div><div class="line">  ) &#123;</div><div class="line">    ob = new Observer(value) // 创建Observer</div><div class="line">  &#125;</div><div class="line">  if (asRootData &amp;&amp; ob) &#123;</div><div class="line">    ob.vmCount++</div><div class="line">  &#125;</div><div class="line">  return ob</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Observer 实例</div><div class="line">export class Observer &#123; </div><div class="line">  value: any;</div><div class="line">  dep: Dep;</div><div class="line">  vmCount: number; // number of vms that have this object as root $data</div><div class="line"></div><div class="line">  constructor (value: any) &#123;</div><div class="line">    this.value = value</div><div class="line">    this.dep = new Dep() // 给 Observer 添加 Dep 实例，用于收集依赖，辅助 vm.$set/数组方法等</div><div class="line">    this.vmCount = 0</div><div class="line">    // 为被劫持的对象添加__ob__属性，指向自身 Observer 实例。作为是否 Observer 的唯一标识。</div><div class="line">    def(value, &apos;__ob__&apos;, this)</div><div class="line">    if (Array.isArray(value)) &#123; // 判断是否是数组</div><div class="line">      if (hasProto) &#123; // 判断是否支持__proto__属性，用来处理数组方法</div><div class="line">        protoAugment(value, arrayMethods) // 继承</div><div class="line">      &#125; else &#123;</div><div class="line">        copyAugment(value, arrayMethods, arrayKeys) // 拷贝</div><div class="line">      &#125;</div><div class="line">      this.observeArray(value) // 劫持数组成员</div><div class="line">    &#125; else &#123;</div><div class="line">      this.walk(value) // 劫持对象</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  walk (obj: Object) &#123; // 只有在值是 Object 的时候，才用此方法</div><div class="line">    const keys = Object.keys(obj)</div><div class="line">    for (let i = 0; i &lt; keys.length; i++) &#123;</div><div class="line">      defineReactive(obj, keys[i]) // 数据劫持方法</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在，我们重新封装一下 defineReactive ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line">export function defineReactive (</div><div class="line">  obj: Object,</div><div class="line">  key: string,</div><div class="line">  val: any,</div><div class="line">  customSetter?: ?Function,</div><div class="line">  shallow?: boolean</div><div class="line">) &#123;</div><div class="line">  const dep = new Dep() // 实例一个 Dep 实例</div><div class="line"></div><div class="line">  const property = Object.getOwnPropertyDescriptor(obj, key) // 获取对象自身属性</div><div class="line">  if (property &amp;&amp; property.configurable === false) &#123; // 没有属性或者属性不可写就没必要劫持了</div><div class="line">    return</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // 兼容预定义的 getter/setter</div><div class="line">  const getter = property &amp;&amp; property.get</div><div class="line">  const setter = property &amp;&amp; property.set</div><div class="line">  if ((!getter || setter) &amp;&amp; arguments.length === 2) &#123; // 初始化 val</div><div class="line">    val = obj[key]</div><div class="line">  &#125;</div><div class="line">  // 默认监听子对象，从 observe 开始，返回 __ob__ 属性 即 Observer 实例</div><div class="line">  let childOb = !shallow &amp;&amp; observe(val)</div><div class="line">  Object.defineProperty(obj, key, &#123;</div><div class="line">    enumerable: true,</div><div class="line">    configurable: true,</div><div class="line">    get: function reactiveGetter () &#123;</div><div class="line">      const value = getter ? getter.call(obj) : val // 执行预设的getter获取值</div><div class="line">      if (Dep.target) &#123; // 依赖收集的关键</div><div class="line">        dep.depend() // 依赖收集，利用了函数闭包的特性</div><div class="line">        if (childOb) &#123; // 如果有子对象，则添加同样的依赖</div><div class="line">          childOb.dep.depend() // 即 Observer时的 this.dep = new Dep();</div><div class="line">          if (Array.isArray(value)) &#123; // value 是数组的话调用数组的方法</div><div class="line">            dependArray(value)</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      return value</div><div class="line">    &#125;,</div><div class="line">    set: function reactiveSetter (newVal) &#123;</div><div class="line">      const value = getter ? getter.call(obj) : val</div><div class="line">      // 原有值和新值比较，值一样则不做处理</div><div class="line">      // newVal !== newVal &amp;&amp; value !== value 这个比较有意思，但其实是为了处理 NaN</div><div class="line">      if (newVal === value || (newVal !== newVal &amp;&amp; value !== value)) &#123;</div><div class="line">        return</div><div class="line">      &#125;</div><div class="line">      if (process.env.NODE_ENV !== &apos;production&apos; &amp;&amp; customSetter) &#123;</div><div class="line">        customSetter()</div><div class="line">      &#125;</div><div class="line">      if (getter &amp;&amp; !setter) return</div><div class="line">      if (setter) &#123; // 执行预设setter</div><div class="line">        setter.call(obj, newVal)</div><div class="line">      &#125; else &#123; // 没有预设直接赋值</div><div class="line">        val = newVal</div><div class="line">      &#125;</div><div class="line">      childOb = !shallow &amp;&amp; observe(newVal) // 是否要观察新设置的值</div><div class="line">      dep.notify() // 发布，利用了函数闭包的特性</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line">// 处理数组</div><div class="line">function dependArray (value: Array&lt;any&gt;) &#123;</div><div class="line">  for (let e, i = 0, l = value.length; i &lt; l; i++) &#123;</div><div class="line">    e = value[i]</div><div class="line">    e &amp;&amp; e.__ob__ &amp;&amp; e.__ob__.dep.depend() // 如果数组成员有 __ob__，则添加依赖</div><div class="line">    if (Array.isArray(e)) &#123; // 数组成员还是数组，递归调用</div><div class="line">      dependArray(e)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>变化侦测就是侦测数据的变化。当数据发生变化时，要能侦测到并发出通知。</p>
+<p>Object 可以通过 Object.defineProperty 将属性转换成 getter/setter 的形式来追踪变化，读取数据时会触发 getter，修改数据时会触发 setter。</p>
+<p>我们需要在 getter 中收集有哪些依赖使用了数据。当 setter 被触发时，去通知 getter 中收集的依赖数据发生了变化。</p>
+<p>收集依赖需要为依赖找一个存储的地方，为此创建了 Dep，它用来收集依赖、删除依赖、向依赖发送消息等。</p>
+<p>所谓的依赖，其实就是 Watcher。把 Watcher 收集到 Dep 中。当数据发生变化时，会循环依赖列表，把所有的 Watcher 都通知一遍。</p>
+<p>Watcher 的原理是先把自己设置到全局唯一的指定位置 (Dep.target)，然后读取这个数据。因为读取了这个数据，因此会触发这个数据的 getter 。接着，在 getter 中就会从全局唯一的位置读取正在读取数据的 Watcher，并把这个 Watcher 收集到 Dep 中去。通过这样的方式，Watcher 可以主动去订阅任意一个数据的变化。</p>
+<p>由此，我们创建了 Observer 类，它的作用就是把一个 object 中的所有数据（包括子数据）都转换成响应式的，也就是它会侦测 object 中所有数据的变化。</p>
+<p>在 Vue 中，对象新增属性或删除属性都无法被侦测到。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://screenshot.net/zh/qv9nwto" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>Object 通过 Observer 转换成了 getter/setter 的形式来追踪变化。</p>
+<p>当外界通过 Watcher 读取数据时，会触发 getter 从而将 Watcher 添加到 Dep 中。</p>
+<p>当数据发生了变化时，会触发 setter，从而向 Dep 中的依赖发送通知。</p>
+<p>Watcher 接收到通知后，会像外界发送通知，变化通知到外界后可能会触发视图更新，也有可能会触发用户的某个回调函数等。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-05-21T18:08:26.572Z" itemprop="dateUpdated">2019-05-22 02:08:26</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/05/16/Vue-源码系列随读笔记之Object变化侦测/" target="_blank" rel="external">http://yoursite.com/2019/05/16/Vue-源码系列随读笔记之Object变化侦测/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="wangxiaobai">
+            wangxiaobai
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/05/16/Vue-源码系列随读笔记之Object变化侦测/&title=《Vue-源码系列随读笔记之Object变化侦测》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/05/16/Vue-源码系列随读笔记之Object变化侦测/&title=《Vue-源码系列随读笔记之Object变化侦测》 — W | 个人博客 | web前端&source=导语
+Vue最独特的特性之一是看起来并不显眼的响应式系统。数据模型仅仅是普通的JS对象。而当你修改它们时，视图会进行更新。这使得状态管理非常简单、直接。不..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/05/16/Vue-源码系列随读笔记之Object变化侦测/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue-源码系列随读笔记之Object变化侦测》 — W | 个人博客 | web前端&url=http://yoursite.com/2019/05/16/Vue-源码系列随读笔记之Object变化侦测/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/05/16/Vue-源码系列随读笔记之Object变化侦测/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/25/JS-数据结构与算法之链表/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JS-数据结构与算法之链表</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        👍谢谢您的赞赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>wangxiaobai &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/05/16/Vue-源码系列随读笔记之Object变化侦测/&title=《Vue-源码系列随读笔记之Object变化侦测》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/05/16/Vue-源码系列随读笔记之Object变化侦测/&title=《Vue-源码系列随读笔记之Object变化侦测》 — W | 个人博客 | web前端&source=导语
+Vue最独特的特性之一是看起来并不显眼的响应式系统。数据模型仅仅是普通的JS对象。而当你修改它们时，视图会进行更新。这使得状态管理非常简单、直接。不..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/05/16/Vue-源码系列随读笔记之Object变化侦测/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue-源码系列随读笔记之Object变化侦测》 — W | 个人博客 | web前端&url=http://yoursite.com/2019/05/16/Vue-源码系列随读笔记之Object变化侦测/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/05/16/Vue-源码系列随读笔记之Object变化侦测/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtUlEQVR42u3aUW4DIQwFwNz/0ukB2t19D0ObSrNfUbMBhkpg2X694uf97bn69uq3yfv3b16Nv+HBw8PDGy/9+3Dtgu4x7fj37z9sAR4eHt4x3v2Bfv95ceLyErr6/GDBw8PD+wDe/TsJI8cnVDw8PLzP5yXTtOC1EB8PDw/vb3mT4fIgeG2c+9G25Vrw8PDwpjmB0SVx+vOR+h4eHh7eOHhtj/s8DZG3I4xWi4eHh3eAlx+4bTkqbxdoT/j6TTw8PLytvLW2qkmKNm9EaC+qH8bEw8PDO8BbaxTIJ5sE5ZPxix3Fw8PDWyp95cO1WdPkIpmUvh5aB/Dw8PB+hZcPmnyb/2VtU4puMjw8PLwDvLaJqr1aJhX/xdYrPDw8vAO8SfNTG4LnF0BCKtqz8PDw8Lby2kB5MmWbOM4Lbw/1PTw8PLytvDaYnrQL5Itbu4oe/iV4eHh4W3ntAb2rJDaZPW/qwsPDw9vLa0Phd/CcDqCj/9hapI+Hh4cX8NpjvT2m14LveciOh4eH9zu8/HBfK1AliYPJdjxcUXh4eHhbee1y2xJX22Qw30o8PDy8c7w2odAe8W3hKoHliRI8PDy8E7x8uLyNYBJer6WAo3sPDw8PbxNvUrYfdXjdHvfJ9iWz4+Hh4Z3grSUjksXl6Yk2CZKH73h4eHineW2LQD1NvClr18/mDgg8PDy8gNce9GvNWEmauJ0RDw8P7xN4r6VnnlBoExnR1uDh4eFt5b3LJz91d6V386voh9/i4eHhHeC1B24Szq6lIdoEcT4+Hh4e3gleHuC2jBawltJ9wOPh4eEd462Fy20KeENBa5IjwcPDw/sjXvurNknRXjx4eHh4/4s3aQXIk7NJa9flLHh4eHjHeGuF/DxZ0FK3xc94eHh4B3jzuDQvX62F1/crmW8KHh4eXsz7AjR+P6Sz9PcRAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '😤去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '😊欢迎回来!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+</body>
+</html>
