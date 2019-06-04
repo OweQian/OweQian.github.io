@@ -38,11 +38,15 @@
 <meta property="og:image" content="http://images.gitbook.cn/c4d479e0-f82f-11e7-bec2-d1185e7bb6e2">
 <meta property="og:image" content="http://images.gitbook.cn/afb6f050-f830-11e7-b753-f548c55dc4dd">
 <meta property="og:image" content="http://images.gitbook.cn/d892e470-f835-11e7-b753-f548c55dc4dd">
+<<<<<<< HEAD
 
 <meta property="og:updated_time" content="2018-11-27T09:46:46.402Z">
 =======
 <meta property="og:updated_time" content="2018-12-11T14:03:41.513Z">
 >>>>>>> 47275d326d6e1de1fdb683a794ba30a2e53cea8a
+=======
+<meta property="og:updated_time" content="2019-06-04T02:56:38.236Z">
+>>>>>>> e7e22a3a073fe0c21c1d6f5be5ceefc69c428b45
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node-阿里云ECS部署">
 <meta name="twitter:description" content="导语 双11抢购了一台阿里云服务器，趁工作不忙，搞了一个简单的node项目。那么问题来了，如何将node项目部署到阿里云ECS？">
@@ -188,7 +192,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number"></span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#终端连接服务器"><span class="post-toc-number"></span> <span class="post-toc-text">终端连接服务器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Node"><span class="post-toc-number"></span> <span class="post-toc-text">安装Node</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装nrm和pm2"><span class="post-toc-number"></span> <span class="post-toc-text">安装nrm和pm2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#nrm"><span class="post-toc-number">1.</span> <span class="post-toc-text">nrm</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#pm2"><span class="post-toc-number">2.</span> <span class="post-toc-text">pm2</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装mysql"><span class="post-toc-number"></span> <span class="post-toc-text">安装mysql</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Redis"><span class="post-toc-number"></span> <span class="post-toc-text">安装Redis</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nginx"><span class="post-toc-number"></span> <span class="post-toc-text">nginx</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Git"><span class="post-toc-number"></span> <span class="post-toc-text">安装Git</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用pm2启动项目"><span class="post-toc-number"></span> <span class="post-toc-text">使用pm2启动项目</span></a>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number"></span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#终端连接服务器"><span class="post-toc-number"></span> <span class="post-toc-text">终端连接服务器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Node"><span class="post-toc-number"></span> <span class="post-toc-text">安装Node</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装nrm和pm2"><span class="post-toc-number"></span> <span class="post-toc-text">安装nrm和pm2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#nrm"><span class="post-toc-number">1.</span> <span class="post-toc-text">nrm</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#pm2"><span class="post-toc-number">2.</span> <span class="post-toc-text">pm2</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装mysql"><span class="post-toc-number"></span> <span class="post-toc-text">安装mysql</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Redis"><span class="post-toc-number"></span> <span class="post-toc-text">安装Redis</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nginx"><span class="post-toc-number"></span> <span class="post-toc-text">nginx</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Git"><span class="post-toc-number"></span> <span class="post-toc-text">安装Git</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用pm2启动项目"><span class="post-toc-number"></span> <span class="post-toc-text">使用pm2启动项目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux常用操作指令列表"><span class="post-toc-number"></span> <span class="post-toc-text">Linux常用操作指令列表</span></a>
         </nav>
     </aside>
 
@@ -434,6 +438,94 @@
 <p>如果项目中使用数据库，运行之前要先建立好数据库，然后再运行项目，登录数据库执行create database dabasename;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/***</div><div class="line">cd ***</div><div class="line">cnpm i</div><div class="line">pm2 start index.js</div></pre></td></tr></table></figure>
 <p>注：项目监听3000端口，如果顺利的话，项目已经运行起来了。<br>   可以使用pm2 list查看进程列表，使用pm2 log打印日志。</p>
+<hr>
+<h3 id="Linux常用操作指令列表"><a href="#Linux常用操作指令列表" class="headerlink" title="Linux常用操作指令列表"></a>Linux常用操作指令列表</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ssh username@ip</td>
+<td>连接服务器</td>
+</tr>
+<tr>
+<td>cd path</td>
+<td>跳转到路径对应的目录下</td>
+</tr>
+<tr>
+<td>rm filename</td>
+<td>删除文件</td>
+</tr>
+<tr>
+<td>rm -rf path</td>
+<td>删除目录及目录下的所有文件</td>
+</tr>
+<tr>
+<td>ls [-a]</td>
+<td>查看当前目录下的文件和目录(-a：查看所有文件，包括隐藏文件)</td>
+</tr>
+<tr>
+<td>ll</td>
+<td>查看当前目录下的文件详情(文件权限)</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>查看当前路径的完整路径</td>
+</tr>
+<tr>
+<td>which name</td>
+<td>默认位置查找该名字</td>
+</tr>
+<tr>
+<td>mkdir dirname</td>
+<td>创建空目录</td>
+</tr>
+<tr>
+<td>cat path</td>
+<td>查看文件内容</td>
+</tr>
+<tr>
+<td>cp origin target</td>
+<td>复制一个文件到另一个地方</td>
+</tr>
+<tr>
+<td>mv origin target</td>
+<td>移动一个文件到另一个地方</td>
+</tr>
+<tr>
+<td>ps -aux</td>
+<td>显示当前进程</td>
+</tr>
+<tr>
+<td>kill -9 processid</td>
+<td>结束进程</td>
+</tr>
+<tr>
+<td>tar -zxvf filename</td>
+<td>解压文件</td>
+</tr>
+<tr>
+<td>tar -zcvf filename</td>
+<td>压缩文件</td>
+</tr>
+<tr>
+<td>vi path</td>
+<td>进入文件编辑模式</td>
+</tr>
+<tr>
+<td>vi编辑文件，按下i进入编辑模式</td>
+</tr>
+<tr>
+<td>vi退出文件，esc+:wq或esc+:x保存退出</td>
+</tr>
+<tr>
+<td>vi退出文件，esc+:q或esc+:q!强制退出</td>
+</tr>
+</tbody>
+</table>
 
         </div>
 
@@ -442,11 +534,15 @@
     <div class="content">
         
 <span class="post-time">
+<<<<<<< HEAD
 
     最后更新时间：<time datetime="2018-11-27T09:46:46.402Z" itemprop="dateUpdated">2018-11-27 17:46:46</time>
 =======
     最后更新时间：<time datetime="2018-12-11T14:03:41.513Z" itemprop="dateUpdated">2018-12-11 22:03:41</time>
 >>>>>>> 47275d326d6e1de1fdb683a794ba30a2e53cea8a
+=======
+    最后更新时间：<time datetime="2019-06-04T02:56:38.236Z" itemprop="dateUpdated">2019-06-04 10:56:38</time>
+>>>>>>> e7e22a3a073fe0c21c1d6f5be5ceefc69c428b45
 </span><br>
 
 

@@ -28,8 +28,12 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/03/Vue-小技巧总结/index.html">
 <meta property="og:site_name" content="W | 个人博客 | web前端">
 <meta property="og:description" content="导语 这篇文章主要是为了将开发过程中知道的一些小技巧进行总结，帮助使用Vue开发的小伙伴们愉快地采坑。">
+<<<<<<< HEAD
 <meta property="og:updated_time" content="2018-11-27T04:17:49.470Z">
 <meta property="og:updated_time" content="2018-12-11T14:03:41.514Z">
+=======
+<meta property="og:updated_time" content="2019-06-04T02:55:37.767Z">
+>>>>>>> e7e22a3a073fe0c21c1d6f5be5ceefc69c428b45
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue-小技巧总结[转]">
 <meta name="twitter:description" content="导语 这篇文章主要是为了将开发过程中知道的一些小技巧进行总结，帮助使用Vue开发的小伙伴们愉快地采坑。">
@@ -174,7 +178,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#组件实例style的scoped"><span class="post-toc-number"></span> <span class="post-toc-text">组件实例style的scoped</span></a>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前端在开发移动端webapp还原设计稿的重要性母庸质疑，目前来说应用最多的应该是rem。然而很多前端开发依然选择要么自己去计算rem值，要么依靠编辑器安装插件转换。"><span class="post-toc-number"></span> <span class="post-toc-text">前端在开发移动端webapp还原设计稿的重要性母庸质疑，目前来说应用最多的应该是rem。然而很多前端开发依然选择要么自己去计算rem值，要么依靠编辑器安装插件转换。</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#技术栈"><span class="post-toc-number">1.</span> <span class="post-toc-text">技术栈</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#创建rem-js文件"><span class="post-toc-number">2.</span> <span class="post-toc-text">创建rem.js文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#main-js中引入rem-js"><span class="post-toc-number">3.</span> <span class="post-toc-text">main.js中引入rem.js</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装并配置postcss-pxtoren"><span class="post-toc-number">4.</span> <span class="post-toc-text">安装并配置postcss-pxtoren</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装postcss-pxtorem"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">安装postcss-pxtorem</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#修改跟目录postcss-config-js"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">修改跟目录postcss.config.js</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#组件实例style的scoped"><span class="post-toc-number"></span> <span class="post-toc-text">组件实例style的scoped</span></a>
         </nav>
     </aside>
 
@@ -205,6 +209,27 @@
 </blockquote>
 <a id="more"></a>
 <hr>
+<h3 id="前端在开发移动端webapp还原设计稿的重要性母庸质疑，目前来说应用最多的应该是rem。然而很多前端开发依然选择要么自己去计算rem值，要么依靠编辑器安装插件转换。"><a href="#前端在开发移动端webapp还原设计稿的重要性母庸质疑，目前来说应用最多的应该是rem。然而很多前端开发依然选择要么自己去计算rem值，要么依靠编辑器安装插件转换。" class="headerlink" title="前端在开发移动端webapp还原设计稿的重要性母庸质疑，目前来说应用最多的应该是rem。然而很多前端开发依然选择要么自己去计算rem值，要么依靠编辑器安装插件转换。"></a>前端在开发移动端webapp还原设计稿的重要性母庸质疑，目前来说应用最多的应该是rem。然而很多前端开发依然选择要么自己去计算rem值，要么依靠编辑器安装插件转换。</h3><p>其实，通过一系列的配置后，我们在开发中可以直接使用设计图的尺寸，它为我们自动编译，转换成rem。</p>
+<h4 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h4><hr>
+<ul>
+<li>vue-cli@3.0: 脚手架工具创建项目</li>
+<li>postcss-pxtorem: 转换px为rem的依赖包</li>
+</ul>
+<p>只需以下几步，就可以愉快地开发了😊。</p>
+<hr>
+<h4 id="创建rem-js文件"><a href="#创建rem-js文件" class="headerlink" title="创建rem.js文件"></a>创建rem.js文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// 基准大小</div><div class="line">const baseSize = 32</div><div class="line">// 设置 rem 函数</div><div class="line">function setRem() &#123;</div><div class="line">  // 当前页面宽度相对于 750 宽的缩放比例，可根据自己需要修改。</div><div class="line">  const scale = document.documentElement.clientWidth / 750</div><div class="line">  // 设置页面根节点字体大小</div><div class="line">  document.documentElement.style.fontSize = baseSize * Math.min(scale, 2) + &apos;px&apos;</div><div class="line">&#125;</div><div class="line">// 初始化</div><div class="line">setRem()</div><div class="line">// 改变窗口大小时重新设置 rem</div><div class="line">window.onresize = function() &#123;</div><div class="line">  setRem()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="main-js中引入rem-js"><a href="#main-js中引入rem-js" class="headerlink" title="main.js中引入rem.js"></a>main.js中引入rem.js</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &apos;./utils/rem&apos;</div></pre></td></tr></table></figure>
+<p>引入文件后，可以看到页面的html节点，被自动添加 font-size</p>
+<hr>
+<h4 id="安装并配置postcss-pxtoren"><a href="#安装并配置postcss-pxtoren" class="headerlink" title="安装并配置postcss-pxtoren"></a>安装并配置postcss-pxtoren</h4><h5 id="安装postcss-pxtorem"><a href="#安装postcss-pxtorem" class="headerlink" title="安装postcss-pxtorem"></a>安装postcss-pxtorem</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install postcss-pxtorem -D</div></pre></td></tr></table></figure>
+<hr>
+<h5 id="修改跟目录postcss-config-js"><a href="#修改跟目录postcss-config-js" class="headerlink" title="修改跟目录postcss.config.js"></a>修改跟目录postcss.config.js</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  plugins: &#123;</div><div class="line">    autoprefixer: &#123;</div><div class="line">      browsers: [&apos;Android &gt;= 4.0&apos;, &apos;iOS &gt;= 7&apos;]</div><div class="line">    &#125;,</div><div class="line">    &apos;postcss-pxtorem&apos;: &#123;</div><div class="line">      rootValue: 32, // The root element font size</div><div class="line">      propList: [&apos;*&apos;], // The properties that can change from px to rem.</div><div class="line">      minPixelValue: 20, // Set the minimum pixel value to replace.</div><div class="line">      selectorBlackList: [</div><div class="line">        &apos;.weui-&apos;,</div><div class="line">        &apos;.ig-&apos;,</div><div class="line">        &apos;.vux-&apos;,</div><div class="line">        &apos;.scroller-&apos;,</div><div class="line">        &apos;.dp-&apos;,</div><div class="line">        &apos;.mt-&apos;,</div><div class="line">        &apos;.mint-&apos;,</div><div class="line">        &apos;.range&apos;</div><div class="line">      ] //  The selectors to ignore and leave as px.</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>按上述完成配置后，即可在开发中直接使用px单位开发。</p>
+<p>举个🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">body &#123;</div><div class="line"> width: 750px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>转换后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">body &#123;</div><div class="line"> width: 23.4375rem;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="组件实例style的scoped"><a href="#组件实例style的scoped" class="headerlink" title="组件实例style的scoped"></a>组件实例style的scoped</h3><p>场景：在组件中用js动态创建的dom，添加样式不生效</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">    &lt;div class=&quot;test&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/template&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    let a = document.querySelector(&apos;test&apos;)</div><div class="line">    let newDom = document.createElement(&apos;div&apos;)</div><div class="line">    newDom.setAttribute(&apos;class&apos;, &apos;testAdd&apos;)</div><div class="line">    a.appendChild(newDom)</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;style scoped&gt;</div><div class="line">    .test&#123;</div><div class="line">       background:blue;</div><div class="line">       height:100px;</div><div class="line">       width:100px;</div><div class="line">    &#125;</div><div class="line">    .testAdd&#123;</div><div class="line">        background:red;</div><div class="line">        height:100px;</div><div class="line">        width:100px;</div><div class="line">    &#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
 <p>结果：</p>
@@ -234,9 +259,13 @@
     <div class="content">
         
 <span class="post-time">
+<<<<<<< HEAD
     最后更新时间：<time datetime="2018-11-27T04:17:49.470Z" itemprop="dateUpdated">2018-11-27 12:17:49</time>
 =======
     最后更新时间：<time datetime="2018-12-11T14:03:41.514Z" itemprop="dateUpdated">2018-12-11 22:03:41</time>
+=======
+    最后更新时间：<time datetime="2019-06-04T02:55:37.767Z" itemprop="dateUpdated">2019-06-04 10:55:37</time>
+>>>>>>> e7e22a3a073fe0c21c1d6f5be5ceefc69c428b45
 </span><br>
 
 
@@ -322,18 +351,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2017/08/25/Vue-移动端自动转换px为rem(postcss-pxtorem)/" id="post-prev" class="post-nav-link">
+      <a href="/2017/09/02/小程序-全栈开发(mpvue+koa2+mysql)/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Vue-移动端自动转换px为rem(postcss-pxtorem)</h4>
+        <h4 class="title">小程序-全栈开发(mpvue+koa2+mysql)</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2017/06/15/Node-npm常用操作指令/" id="post-next" class="post-nav-link">
+      <a href="/2017/05/11/JS-精心收集的48个JavaScript代码片段/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Node-npm常用操作指令</h4>
+        <h4 class="title">JS-精心收集的48个JavaScript代码片段</h4>
       </a>
     </div>
   
@@ -527,7 +556,24 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
         }
     });
 })();
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
