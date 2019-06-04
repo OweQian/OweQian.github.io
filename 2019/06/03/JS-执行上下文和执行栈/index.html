@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    
+    
+    
+    <title>JS-执行上下文和执行栈 | W | 个人博客 | web前端</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="导语 执行上下文是当前 JavaScript 被解析和执行时所在环境的抽象概念。执行栈用于存储在代码执行期间创建的所有执行上下文。">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS-执行上下文和执行栈">
+<meta property="og:url" content="http://yoursite.com/2019/06/03/JS-执行上下文和执行栈/index.html">
+<meta property="og:site_name" content="W | 个人博客 | web前端">
+<meta property="og:description" content="导语 执行上下文是当前 JavaScript 被解析和执行时所在环境的抽象概念。执行栈用于存储在代码执行期间创建的所有执行上下文。">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/5/166e258e1d0281a6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:updated_time" content="2019-06-04T03:07:22.701Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS-执行上下文和执行栈">
+<meta name="twitter:description" content="导语 执行上下文是当前 JavaScript 被解析和执行时所在环境的抽象概念。执行栈用于存储在代码执行期间创建的所有执行上下文。">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/11/5/166e258e1d0281a6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+    
+        <link rel="alternate" type="application/atom+xml" title="W | 个人博客 | web前端" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">wangxiaobai</h5>
+          <a href="mailto:1510106069@qq.com" title="1510106069@qq.com" class="mail">1510106069@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://wangqian2017.github.io/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JS-执行上下文和执行栈</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JS-执行上下文和执行栈</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-06-03T09:08:52.000Z" itemprop="datePublished" class="page-time">
+  2019-06-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#执行上下文的类型"><span class="post-toc-number"></span> <span class="post-toc-text">执行上下文的类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#执行上下文栈"><span class="post-toc-number"></span> <span class="post-toc-text">执行上下文栈</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#执行上下文的创建"><span class="post-toc-number"></span> <span class="post-toc-text">执行上下文的创建</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#创建阶段"><span class="post-toc-number">1.</span> <span class="post-toc-text">创建阶段</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#This-Binding"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">This Binding</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#词法环境"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">词法环境</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#变量环境"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">变量环境</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#执行阶段"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">执行阶段</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考"><span class="post-toc-number"></span> <span class="post-toc-text">参考</span></a>
+        </nav>
+    </aside>
+
+
+<article id="post-JS-执行上下文和执行栈"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JS-执行上下文和执行栈</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-06-03 17:08:52" datetime="2019-06-03T09:08:52.000Z"  itemprop="datePublished">2019-06-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>执行上下文是当前 JavaScript 被解析和执行时所在环境的抽象概念。执行栈用于存储在代码执行期间创建的所有执行上下文。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="执行上下文的类型"><a href="#执行上下文的类型" class="headerlink" title="执行上下文的类型"></a>执行上下文的类型</h3><p>执行上下文总共有三种类型：</p>
+<ul>
+<li><p>全局执行上下文：只有一个，浏览器中的全局对象就是 window 对象，this 会指向这个全局对象。</p>
+</li>
+<li><p>函数执行上下文：存在无数个，只有在函数被调用的时候才会被创建，每次调用函数都会创建一个新的执行上下文。</p>
+</li>
+<li><p>Eval 函数执行上下文：运行在 Eval 函数中的代码。</p>
+</li>
+</ul>
+<hr>
+<h3 id="执行上下文栈"><a href="#执行上下文栈" class="headerlink" title="执行上下文栈"></a>执行上下文栈</h3><p>接下来问题来了，我们写了那么多函数，如何管理创建的那么多执行上下文呢？</p>
+<p>Javascript 创建了执行上下文栈，也叫调用栈，来管理在代码执行期间创建的所有执行上下文。</p>
+<p>首次运行 Javascript 代码时，会创建一个全局执行上下文并 Push 到当前的执行栈中。每当发生函数调用，引擎都会为该函数创建一个新的函数执行上下文并 Push 到当前执行栈的栈顶。</p>
+<p>根据执行栈 LIFO 规则，当栈顶函数运行完成后，其对应的函数执行上下文将会从栈中 Pop 出，上下文控制权将会移到当前执行栈的下一个执行上下文。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="string">'Hello World!'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">first</span>(<span class="params"></span>) </span>&#123;  </div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Inside first function'</span>);  </div><div class="line">  second();  </div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Again inside first function'</span>);  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">second</span>(<span class="params"></span>) </span>&#123;  </div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Inside second function'</span>);  </div><div class="line">&#125;</div><div class="line"></div><div class="line">first();  </div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Inside Global Execution Context'</span>);</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/11/5/166e258e1d0281a6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<hr>
+<h3 id="执行上下文的创建"><a href="#执行上下文的创建" class="headerlink" title="执行上下文的创建"></a>执行上下文的创建</h3><p>执行上下文分为两个阶段创建：1） 创建阶段 2）执行阶段</p>
+<h4 id="创建阶段"><a href="#创建阶段" class="headerlink" title="创建阶段"></a>创建阶段</h4><ul>
+<li><p>确定 this 的值，也被称为 This Binding</p>
+</li>
+<li><p>LexicalEnvironment-词法环境被创建</p>
+</li>
+<li><p>VariableEnvironment-变量环境被创建</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ExecutionContext = &#123;</div><div class="line">    ThisBinding: &lt;this value&gt;,</div><div class="line">    LexicalEnvironment: &#123;...&#125;,</div><div class="line">    VariableEnvironment: &#123;...&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="This-Binding"><a href="#This-Binding" class="headerlink" title="This Binding"></a>This Binding</h5><ul>
+<li><p>全局执行上下文中，this 指向全局对象，在浏览器中 this 的值指向 window 对象，而在 nodejs 中指向这个文件的 module 对象。</p>
+</li>
+<li><p>函数执行上下文中，this 的值取决于函数的调用方式。具体有：默认绑定、隐式绑定、显示绑定、new 绑定等。</p>
+</li>
+</ul>
+<h5 id="词法环境"><a href="#词法环境" class="headerlink" title="词法环境"></a>词法环境</h5><p>词法环境有两个组成部分：</p>
+<ul>
+<li><p>环境记录：存储变量和函数声明的实际位置</p>
+</li>
+<li><p>对外部环境的引用：可以访问其外部词法环境</p>
+</li>
+</ul>
+<p>词法环境有两种类型：</p>
+<ul>
+<li><p>全局环境：是一个没有外部环境的词法环境，其外部环境引用为 null。拥有一个全局对象（window）及其关联的方法和属性以及任何用户自定义的全局变量， this 的值指向这个全局对象。</p>
+</li>
+<li><p>函数环境：用户在函数中定义的变量被存储在环境记录中，包含了 arguments 对象。对外部环境的引用可以是全局环境，也可以是包含内部函数的外部函数环境，</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">GlobalExectionContext = &#123;  <span class="comment">// 全局执行上下文</span></div><div class="line">  LexicalEnvironment: &#123;          <span class="comment">// 词法环境</span></div><div class="line">    EnvironmentRecord: &#123;          <span class="comment">// 环境记录</span></div><div class="line">      Type: <span class="string">"Object"</span>,                <span class="comment">// 全局环境</span></div><div class="line">      <span class="comment">// 标识符绑定在这里 </span></div><div class="line">      outer: &lt;null&gt;                 // 对外部环境的引用</div><div class="line">  &#125;  </div><div class="line">&#125;</div><div class="line"></div><div class="line">FunctionExectionContext = &#123; // 函数执行上下文</div><div class="line">  LexicalEnvironment: &#123;     // 词法环境</div><div class="line">      EnvironmentRecord: &#123;      // 环境记录</div><div class="line">        Type: "Declarative",        // 函数环境</div><div class="line">        // 标识符绑定在这里          // 对外部环境的引用</div><div class="line">        outer: &lt;Global or outer function environment reference&gt;  </div><div class="line">    &#125;  </div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h5 id="变量环境"><a href="#变量环境" class="headerlink" title="变量环境"></a>变量环境</h5><p>  变量环境也是一个词法环境，因此它具有上面定义的词法环境的所有属性。</p>
+<p>  在ES6中，词法环境和变量环境的区别在于前者用于存储函数声明和变量(let const)绑定，后者仅用于存储变量(var)绑定。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">GlobalExectionContext = &#123;</div><div class="line"></div><div class="line">  ThisBinding: &lt;Global Object&gt;,</div><div class="line"></div><div class="line">  LexicalEnvironment: &#123;  </div><div class="line">    EnvironmentRecord: &#123;  </div><div class="line">      Type: "Object",  </div><div class="line">      // 标识符绑定在这里  </div><div class="line">      a: &lt; uninitialized &gt;,  </div><div class="line">      b: &lt; uninitialized &gt;,  </div><div class="line">      multiply: &lt; func &gt;  </div><div class="line">    &#125;  </div><div class="line">    outer: &lt;null&gt;  </div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  VariableEnvironment: &#123;  </div><div class="line">    EnvironmentRecord: &#123;  </div><div class="line">      Type: "Object",  </div><div class="line">      // 标识符绑定在这里  </div><div class="line">      c: undefined,  </div><div class="line">    &#125;  </div><div class="line">    outer: &lt;null&gt;  </div><div class="line">  &#125;  </div><div class="line">&#125;</div><div class="line"></div><div class="line">FunctionExectionContext = &#123;  </div><div class="line">   </div><div class="line">  ThisBinding: &lt;Global Object&gt;,</div><div class="line"></div><div class="line">  LexicalEnvironment: &#123;  </div><div class="line">    EnvironmentRecord: &#123;  </div><div class="line">      Type: "Declarative",  </div><div class="line">      // 标识符绑定在这里  </div><div class="line">      Arguments: &#123;0: 20, 1: 30, length: 2&#125;,  </div><div class="line">    &#125;,  </div><div class="line">    outer: &lt;GlobalLexicalEnvironment&gt;  </div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  VariableEnvironment: &#123;  </div><div class="line">    EnvironmentRecord: &#123;  </div><div class="line">      Type: "Declarative",  </div><div class="line">      // 标识符绑定在这里  </div><div class="line">      g: undefined  </div><div class="line">    &#125;,  </div><div class="line">    outer: &lt;GlobalLexicalEnvironment&gt;  </div><div class="line">  &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="执行阶段"><a href="#执行阶段" class="headerlink" title="执行阶段"></a>执行阶段</h5><p>  此阶段，完成对所有变量的分配，然后执行代码。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://juejin.im/post/5bf3d20ff265da61776b95da" target="_blank" rel="external">理解JavaScript 中的执行上下文和执行栈</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-06-04T03:07:22.701Z" itemprop="dateUpdated">2019-06-04 11:07:22</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/06/03/JS-执行上下文和执行栈/" target="_blank" rel="external">http://yoursite.com/2019/06/03/JS-执行上下文和执行栈/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="wangxiaobai">
+            wangxiaobai
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/06/03/JS-执行上下文和执行栈/&title=《JS-执行上下文和执行栈》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/06/03/JS-执行上下文和执行栈/&title=《JS-执行上下文和执行栈》 — W | 个人博客 | web前端&source=导语
+执行上下文是当前 JavaScript 被解析和执行时所在环境的抽象概念。执行栈用于存储在代码执行期间创建的所有执行上下文。
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/06/03/JS-执行上下文和执行栈/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS-执行上下文和执行栈》 — W | 个人博客 | web前端&url=http://yoursite.com/2019/06/03/JS-执行上下文和执行栈/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/06/03/JS-执行上下文和执行栈/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/05/31/JS-事件的节流(throttle)和防抖(debounce)/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JS-事件的节流(throttle)和防抖(debounce)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        👍谢谢您的赞赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>wangxiaobai &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/06/03/JS-执行上下文和执行栈/&title=《JS-执行上下文和执行栈》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/06/03/JS-执行上下文和执行栈/&title=《JS-执行上下文和执行栈》 — W | 个人博客 | web前端&source=导语
+执行上下文是当前 JavaScript 被解析和执行时所在环境的抽象概念。执行栈用于存储在代码执行期间创建的所有执行上下文。
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/06/03/JS-执行上下文和执行栈/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS-执行上下文和执行栈》 — W | 个人博客 | web前端&url=http://yoursite.com/2019/06/03/JS-执行上下文和执行栈/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/06/03/JS-执行上下文和执行栈/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3au3bEIAwFwPz/T2/aLWJyJXBheahyNn4wFLIE+vmJx+drXP3y/fv63qvr11ceGBgYGI9lfJbj6mXrqeTU5L/ruWFgYLyHkYfCJPhWg2a+ZJe/Y2BgYCyDXTVM50uAgYGBUWX0AuV+WYuBgYGRF7HVsHsqZB+uxTEwMB7IOFVk3vH3LecbGBgYj2J8NsYdyWVvVhgYGLMZvU2xJEXbabBoHj9gYGC8gLFfdu4Uw9XlixJEDAyMcYxqMdl7cXW7rdDMgYGBMZpRTdqSFHCn5aL3AcDAwJjNqE43D6PVXf2td2FgYLyMkU+u2jaRhPX1k6O2MAwMjHGM5LbelclzqgVtoSsEAwNjNCMvNe+bejUEY2BgTGXk6VreNlEN1vstYhgYGO9hnCpEe4eRCQ8DA+OdjF7yV23tSpYm2Vxrnr5iYGA8nJEH1uq2V54m5rzo8BIDA2Mco7dZ1it6dxrODvS4YWBgPJZRLTiTV+aT7jVYFL4bGBgYIxj5a862YvSOHDAwMN7JyANc3gaxX+5u7RdiYGCMY5xK3fKWizxwl0M5BgbGUManOO4L1nki+McyYWBgjGZUE7g8UTt7hNCcNAYGxiBG3uZVXZv8mdWAG51yYGBgjGP0gubOBlnvm3B5FwYGBkaxnSIBV8vdf6IrBgYGRvFIYL+qXmMwMDDeyeglfMld+8E9CrsYGBijGb1Gh2QJqu0aydbb1ikHBgbG8xi/W2KtY4zXMpMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '😤去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '😊欢迎回来!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</body>
+</html>
