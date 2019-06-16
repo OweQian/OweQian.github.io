@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JS-this、call、apply - W | 个人博客 | web前端</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="OweQian,"> 
+    <meta name="description" content="前端,导语
+在 Javascript 编程中，this、Function.prototype.call、Function.prototype.apply 有着广泛的运用，理解它们的用法至关重要。
+
+
+th,"> 
+    <meta name="author" content="wangxiaobai"> 
+    <link rel="alternative" href="atom.xml" title="W | 个人博客 | web前端" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.ico"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">W | 个人博客 | web前端</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">JS-this、call、apply</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">JS-this、call、apply</h1>
+        <div class="stuff">
+            <span>六月 13, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>在 Javascript 编程中，this、Function.prototype.call、Function.prototype.apply 有着广泛的运用，理解它们的用法至关重要。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>Javascript 中的 this 总是指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的。</p>
+<h4 id="this-的指向"><a href="#this-的指向" class="headerlink" title="this 的指向"></a>this 的指向</h4><p>在具体实际应用中，this 的指向通常可分为以下4种:</p>
+<ul>
+<li><p>作为对象的方法调用</p>
+</li>
+<li><p>作为普通函数调用</p>
+</li>
+<li><p>作为构造器调用</p>
+</li>
+<li><p>Function.prototype.call、Function.prototype.apply</p>
+</li>
+</ul>
+<h5 id="作为对象的方法调用"><a href="#作为对象的方法调用" class="headerlink" title="作为对象的方法调用"></a>作为对象的方法调用</h5><p>当函数作为对象的方法调用时，this 指向该对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  a: <span class="number">1</span>,</div><div class="line">  getA: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">obj.getA()</div><div class="line"></div><div class="line"><span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<h5 id="作为普通函数调用"><a href="#作为普通函数调用" class="headerlink" title="作为普通函数调用"></a>作为普通函数调用</h5><p>函数作为普通函数调用，此时的 this 总是指向全局对象。在浏览器中，这个全局对象是 window 对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">&#125;</div><div class="line"></div><div class="line">getName()</div><div class="line"><span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<h5 id="作为构造器调用"><a href="#作为构造器调用" class="headerlink" title="作为构造器调用"></a>作为构造器调用</h5><p>当用 new 运算符调用函数时，该函数会返回一个对象。通常情况下，构造器里的 this 就指向返回的这个对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> MyClass = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">'sven'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> MyClass()</div><div class="line"><span class="built_in">console</span>.log(obj.name)</div><div class="line"><span class="comment">// 'sven'</span></div></pre></td></tr></table></figure>
+<p>如果构造器显式地返回了一个对象，那么此次运算结果最终会返回这个对象，而不是我们之前期待的 this。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> MyClass = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">'sven'</span></div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    name: <span class="string">'wang'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> MyClass()</div><div class="line"><span class="built_in">console</span>.log(obj.name)</div><div class="line"><span class="comment">// wang</span></div></pre></td></tr></table></figure>
+<p>如果构造器不显式地返回任何数据，或者返回一个非对象类型的数据，就不会造成上述问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> MyClass = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">'sven'</span></div><div class="line">  <span class="keyword">return</span> <span class="string">'wang'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = n</div><div class="line"><span class="built_in">console</span>.log(obj.name)</div><div class="line"><span class="comment">// 'sven'</span></div></pre></td></tr></table></figure>
+<h5 id="Function-prototype-call、Function-prototype-apply"><a href="#Function-prototype-call、Function-prototype-apply" class="headerlink" title="Function.prototype.call、Function.prototype.apply"></a>Function.prototype.call、Function.prototype.apply</h5><p>用 Function.prototype.call、Function.prototype.apply 可以动态改变传入函数的 this。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1 = &#123;</div><div class="line">  name: <span class="string">'wang'</span>,</div><div class="line">  getName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj2 = &#123;</div><div class="line">  name: <span class="string">'zhang'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">obj1.getName()</div><div class="line">obj1.getName.call(obj2)</div><div class="line"></div><div class="line"><span class="comment">// 'wang'</span></div><div class="line"><span class="comment">// 'zhang'</span></div></pre></td></tr></table></figure>
+<hr>
+<h4 id="丢失的-this"><a href="#丢失的-this" class="headerlink" title="丢失的 this"></a>丢失的 this</h4><p>举个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  name: <span class="string">'wang'</span>,</div><div class="line">  getName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">obj.getName()</div><div class="line">getName = obj.getName</div><div class="line">getName()</div><div class="line"></div><div class="line"><span class="comment">// 'wang'</span></div><div class="line"><span class="comment">// undefined</span></div></pre></td></tr></table></figure>
+<p>当调用 obj.getName 时，此时 this 指向 obj 对象，所以输出 ‘wang’。</p>
+<p>当用另外一个变量 getName 来引用 obj.getName，并且调用时，它是被当作普通函数来调用，此时 this 指向 window 对象，所以输出 undefined。</p>
+<hr>
+<h4 id="call-和-apply"><a href="#call-和-apply" class="headerlink" title="call 和 apply"></a>call 和 apply</h4><p>在实际开发中，特别是在一些函数式风格的代码编写中，call 和 apply 方法尤为重要。</p>
+<h5 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h5><p>call 和 apply 作用一模一样，区别在于传入参数形式的不同。</p>
+<p>apply 接受两个参数，第一个参数指定了函数体内的 this 对象的指向，第二个参数为一个带下标的集合，可以为数组，也可以为类数组。</p>
+<p>call 传入的参数数量不固定，跟 apply 不同的是，第一个参数也是代表函数体内 this 对象的指向，从第二个参数开始，每个参数依此传入函数。</p>
+<p>当使用 call 或者 apply 时，如果我们传入的第一个参数为 null，则函数体内的 this 会指向默认的宿主对象。</p>
+<p>但如果在严格模式下，函数体内的 this 还是为 null。</p>
+<h5 id="call-和-apply-的用途"><a href="#call-和-apply-的用途" class="headerlink" title="call 和 apply 的用途"></a>call 和 apply 的用途</h5><p>下面将详细介绍 call 和 apply 在实际开发中的用途。</p>
+<h6 id="改变-this-指向"><a href="#改变-this-指向" class="headerlink" title="改变 this 指向"></a>改变 this 指向</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1 = &#123;</div><div class="line">  name: <span class="string">'wang'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj2 = &#123;</div><div class="line">  name: <span class="string">'zhang'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> name = <span class="string">'qian'</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">&#125;</div><div class="line"></div><div class="line">getName () <span class="comment">// 'qian'</span></div><div class="line">getName.call(obj1)  <span class="comment">// 'wang'</span></div><div class="line">getName.call(obj2) <span class="comment">// 'zhang'</span></div></pre></td></tr></table></figure>
+<h6 id="Function-prototype-bind"><a href="#Function-prototype-bind" class="headerlink" title="Function.prototype.bind"></a>Function.prototype.bind</h6><p>大部分高级浏览器都实现了内置的 Function.prototype.bind，用来指定函数内部的 this 指向。即使没有原生的 Function.prototype.bind ，我们也可以自己来模拟：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> self = <span class="keyword">this</span> <span class="comment">// 保存原函数</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>)</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// 返回一个新的函数</span></div><div class="line">    <span class="keyword">return</span> self.apply(context, <span class="built_in">arguments</span>) <span class="comment">// 执行新的函数时，会把之前传入的 context 当作新函数体内的 this</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  name: <span class="string">'seven'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">&#125;.bind(obj)</div><div class="line"></div><div class="line">func()</div></pre></td></tr></table></figure>
+<p>上述为一个简化版的 Function.prototype.bind 实现，通常我们还会把它实现得稍微复杂一些，使得可以在 func 函数中预先填入一些参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</div><div class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span>, <span class="comment">// 保存原函数</span></div><div class="line">      context = [].shift.call(<span class="built_in">arguments</span>), <span class="comment">// 需要绑定的 this 上下文</span></div><div class="line">      args = [].slice.call(<span class="built_in">arguments</span>) <span class="comment">// 剩余的参数转化为数组</span></div><div class="line">  <span class="built_in">console</span>.log(context)</div><div class="line">  <span class="built_in">console</span>.log(args)</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// 返回一个新韩淑</span></div><div class="line">    <span class="keyword">return</span> self.apply(context, [].concat(args, [].slice.call(<span class="built_in">arguments</span>))) <span class="comment">// 执行新的函数时，把之前传入的 context 当作新函数体内的 this，并且组合两次分别传入的参数，作为新函数的参数</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  name: <span class="string">'seven'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span> (<span class="params">a, b, c, d</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</div><div class="line">  <span class="built_in">console</span>.log([a, b, c, d])</div><div class="line">&#125;.bind(obj, <span class="number">1</span>, <span class="number">2</span>)</div><div class="line">func(<span class="number">3</span>, <span class="number">4</span>)</div></pre></td></tr></table></figure>
+<h6 id="借用其他对象的方法"><a href="#借用其他对象的方法" class="headerlink" title="借用其他对象的方法"></a>借用其他对象的方法</h6><p>借用方法的第一种场景是”借用构造函数“，通过这种技术，可以实现一些类似继承的效果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> A = <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> B = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  A.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">B.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.name</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> B(<span class="string">'wang'</span>)</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(b.getName()) <span class="comment">// 'wang'</span></div></pre></td></tr></table></figure>
+<p>附：</p>
+<p>函数的参数列表 arguments 是一个类数组对象，并不是真正的数组。</p>
+<p>如果想在 arguments 中添加一个元素，通常会借用 Array.prototype.push</p>
+<p>如果想把 arguments 转换为真正的数组，通常会借用 Array.prototype.slice</p>
+<p>如果想截取 arguments 中的第一个元素，通常会借用 Array.prototype.shift</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                    
+                        <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
