@@ -1,206 +1,73 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="" class="loading">
 <head>
-    
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JS-数据结构与算法之队列 - W | 个人博客 | web前端</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="OweQian,"> 
+    <meta name="description" content="前端,导语
+队列是一种列表，不同的是，队列只能在队尾插入元素，在队首删除元素。队列用于存储按顺序排列的数据，先进先出。
 
-    
+               
 
-    
-
-
-
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    
-    
-    
-    
-    <title>JS-数据结构与算法之队列 | W | 个人博客 | web前端</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#000000">
-    
-    
-    <meta name="keywords" content="JavaScript">
-    <meta name="description" content="导语 队列是一种列表，不同的是，队列只能在队尾插入元素，在队首删除元素。队列用于存储按顺序排列的数据，先进先出。">
-<meta name="keywords" content="JavaScript">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JS-数据结构与算法之队列">
-<meta property="og:url" content="http://yoursite.com/2019/03/16/JS-数据结构与算法之队列/index.html">
-<meta property="og:site_name" content="W | 个人博客 | web前端">
-<meta property="og:description" content="导语 队列是一种列表，不同的是，队列只能在队尾插入元素，在队首删除元素。队列用于存储按顺序排列的数据，先进先出。">
-<meta property="og:image" content="https://www.oreilly.com/library/view/data-structures-and/9781449373931/images/dsaj_0501.png">
-<meta property="og:updated_time" content="2019-03-23T09:33:40.176Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS-数据结构与算法之队列">
-<meta name="twitter:description" content="导语 队列是一种列表，不同的是，队列只能在队尾插入元素，在队首删除元素。队列用于存储按顺序排列的数据，先进先出。">
-<meta name="twitter:image" content="https://www.oreilly.com/library/view/data-structures-and/9781449373931/images/dsaj_0501.png">
-    
-        <link rel="alternate" type="application/atom+xml" title="W | 个人博客 | web前端" href="/atom.xml">
-    
-    <link rel="shortcut icon" href="/img/favicon.ico">
-    <link rel="stylesheet" href="/css/style.css">
-    <script>window.lazyScripts=[]</script>
-
-    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-    
-
+对队列的操作队列的两种主要操作是：向队列中插入新,"> 
+    <meta name="author" content="wangxiaobai"> 
+    <link rel="alternative" href="atom.xml" title="W | 个人博客 | web前端" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.ico"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
-
-    <aside id="menu" class="hide" >
-  <div class="inner flex-row-vertical">
-    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-        <i class="icon icon-lg icon-close"></i>
-    </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
-      <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
-        </a>
-        <hgroup class="introduce">
-          <h5 class="nickname">wangxiaobai</h5>
-          <a href="mailto:1510106069@qq.com" title="1510106069@qq.com" class="mail">1510106069@qq.com</a>
-        </hgroup>
-      </div>
-    </div>
-    <div class="scroll-wrap flex-col">
-      <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                Home
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                Archives
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                Tags
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                Categories
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://wangqian2017.github.io/" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="http://www.weibo.com/ysweb" target="_blank" >
-                <i class="icon icon-lg icon-weibo"></i>
-                Weibo
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/custom"  >
-                <i class="icon icon-lg icon-link"></i>
-                测试
-              </a>
-            </li>
-        
-      </ul>
-    </div>
-  </div>
-</aside>
-
-    <main id="main">
-        <header class="top-header" id="header">
-    <div class="flex-row">
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
-          <i class="icon icon-lg icon-navicon"></i>
-        </a>
-        <div class="flex-col header-title ellipsis">JS-数据结构与算法之队列</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">W | 个人博客 | web前端</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">JS-数据结构与算法之队列</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
         </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
-        
     </div>
-</header>
-<header class="content-header post-header">
+    <div class="scrollbar"></div>
+</div>
 
-    <div class="container fade-scale">
+    <div class="section">
+        <div class="article">
+    <div class='main'>
         <h1 class="title">JS-数据结构与算法之队列</h1>
-        <h5 class="subtitle">
+        <div class="stuff">
+            <span>三月 16, 2019</span>
             
-                <time datetime="2019-03-16T12:57:52.000Z" itemprop="datePublished" class="page-time">
-  2019-03-16
-</time>
-
-
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
-
-            
-        </h5>
-    </div>
-
-    
-
-
-</header>
-
-
-<div class="container body-wrap">
-    
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导语"><span class="post-toc-number">1.</span> <span class="post-toc-text">导语</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对队列的操作"><span class="post-toc-number"></span> <span class="post-toc-text">对队列的操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用数组实现的队列"><span class="post-toc-number"></span> <span class="post-toc-text">用数组实现的队列</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用队列：方块舞的舞伴分配问题"><span class="post-toc-number"></span> <span class="post-toc-text">使用队列：方块舞的舞伴分配问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用队列对数据进行排序"><span class="post-toc-number"></span> <span class="post-toc-text">使用队列对数据进行排序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优先队列"><span class="post-toc-number"></span> <span class="post-toc-text">优先队列</span></a>
-        </nav>
-    </aside>
-
-
-<article id="post-JS-数据结构与算法之队列"
-  class="post-article article-type-post fade" itemprop="blogPost">
-
-    <div class="post-card">
-        <h1 class="post-card-title">JS-数据结构与算法之队列</h1>
-        <div class="post-meta">
-            <time class="post-time" title="2019-03-16 20:57:52" datetime="2019-03-16T12:57:52.000Z"  itemprop="datePublished">2019-03-16</time>
-
-            
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
-
-
-
-            
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
 
 
         </div>
-        <div class="post-content" id="post-content" itemprop="postContent">
+        <div class="content markdown">
             <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
 <p>队列是一种列表，不同的是，队列只能在队尾插入元素，在队首删除元素。队列用于存储按顺序排列的数据，先进先出。</p>
 </blockquote>
@@ -208,13 +75,7 @@
 <hr>
 <h3 id="对队列的操作"><a href="#对队列的操作" class="headerlink" title="对队列的操作"></a>对队列的操作</h3><p>队列的两种主要操作是：向队列中插入新元素和删除队列中的元素。插入操作也叫做入队，删除操作也叫做出队。入队操作在队尾插入新元素，出队操作删除队头的元素。</p>
 <p>队列的另一项重要操作是读取队头的元素，这个操作叫 peek() 。该操作返回队头元素，但不把它从队列中删除。除了读取队头元素，我们还可以用 length 属性来知道队列中存储了多少元素，用 clear() 方法来清空队列中的元素。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://www.oreilly.com/library/view/data-structures-and/9781449373931/images/dsaj_0501.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
+<p><img src="https://www.oreilly.com/library/view/data-structures-and/9781449373931/images/dsaj_0501.png" alt=""></p>
 <hr>
 <h3 id="用数组实现的队列"><a href="#用数组实现的队列" class="headerlink" title="用数组实现的队列"></a>用数组实现的队列</h3><p>使用数组来实现队列看起来顺理成章。数组的 push() 方法可以在数组末尾加入元素，shift() 方法则可以删除数组的第一个元素。</p>
 <p>push() 方法将它的参数插入数组中第一个开放的位置，该位置总在数组的末尾，即使是个空数组也是如此。</p>
@@ -265,307 +126,98 @@
 <p>优先队列的实现：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Queue</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.dataStore = []</div><div class="line">  <span class="keyword">this</span>.enqueue = enqueue</div><div class="line">  <span class="keyword">this</span>.dequeue = dequeue</div><div class="line">  <span class="keyword">this</span>.front = front</div><div class="line">  <span class="keyword">this</span>.back = back</div><div class="line">  <span class="keyword">this</span>.toString = toString</div><div class="line">  <span class="keyword">this</span>.count = count</div><div class="line">  <span class="keyword">this</span>.empty = empty</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">enqueue</span> (<span class="params">element</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.dataStore.push(element)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">dequeue</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> entry = <span class="number">0</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; <span class="keyword">this</span>.dataStore.length; ++i) &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.dataStore[i].code &lt; <span class="keyword">this</span>.dataStore[entry].code) &#123;</div><div class="line">      entry = i</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.dataStore.splice(entry, <span class="number">1</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">front</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.dataStore[<span class="number">0</span>]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">back</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.dataStore[<span class="keyword">this</span>.dataStore.length <span class="number">-1</span>]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toString</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> retStr = <span class="string">''</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.dataStore.length; i++) &#123;</div><div class="line">    retStr += <span class="keyword">this</span>.dataStore[i].name + <span class="string">' code:'</span> + <span class="keyword">this</span>.dataStore[i].code + <span class="string">' '</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> retStr</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.dataStore.length</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">empty</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.dataStore.length === <span class="number">0</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Patient</span> (<span class="params">name, code</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name</div><div class="line">  <span class="keyword">this</span>.code = code</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Patient(<span class="string">'smith'</span>, <span class="number">5</span>)</div><div class="line"><span class="keyword">var</span> ed = <span class="keyword">new</span> Queue()</div><div class="line">ed.enqueue(p)</div><div class="line">p = <span class="keyword">new</span> Patient(<span class="string">'Jones'</span>, <span class="number">4</span>)</div><div class="line">ed.enqueue(p)</div><div class="line">p = <span class="keyword">new</span> Patient(<span class="string">'Wang'</span>, <span class="number">6</span>)</div><div class="line">ed.enqueue(p)</div><div class="line">p = <span class="keyword">new</span> Patient(<span class="string">'Qian'</span>, <span class="number">1</span>)</div><div class="line">ed.enqueue(p)</div><div class="line">p = <span class="keyword">new</span> Patient(<span class="string">'Brown'</span>, <span class="number">1</span>)</div><div class="line">ed.enqueue(p)</div><div class="line"><span class="keyword">var</span> seen = ed.dequeue()</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Patient being treated: '</span> + seen[<span class="number">0</span>].name)</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Patients watting to be seen:'</span>)</div><div class="line"><span class="built_in">console</span>.log(ed.toString())</div><div class="line"></div><div class="line">seen = ed.dequeue()</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Patient being treated: '</span> + seen[<span class="number">0</span>].name)</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Patients watting to be seen:'</span>)</div><div class="line"><span class="built_in">console</span>.log(ed.toString())</div><div class="line"></div><div class="line">seen = ed.dequeue()</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Patient being treated: '</span> + seen[<span class="number">0</span>].name)</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Patients watting to be seen:'</span>)</div><div class="line"><span class="built_in">console</span>.log(ed.toString())</div></pre></td></tr></table></figure>
 
-        </div>
-
-        <blockquote class="post-copyright">
-    
-    <div class="content">
-        
-<span class="post-time">
-    最后更新时间：<time datetime="2019-03-23T09:33:40.176Z" itemprop="dateUpdated">2019-03-23 17:33:40</time>
-</span><br>
-
-
-        
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2019/03/16/JS-数据结构与算法之队列/" target="_blank" rel="external">http://yoursite.com/2019/03/16/JS-数据结构与算法之队列/</a>
-        
-    </div>
-    
-    <footer>
-        <a href="http://yoursite.com">
-            <img src="/img/avatar.jpg" alt="wangxiaobai">
-            wangxiaobai
-        </a>
-    </footer>
-</blockquote>
-
-        
-<div class="page-reward">
-    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
-</div>
-
-
-
-        <div class="post-footer">
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-
-
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                    
+                        <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                    
+                </ul>
             
-<div class="page-share-wrap">
-    
-
-<div class="page-share" id="pageShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/03/16/JS-数据结构与算法之队列/&title=《JS-数据结构与算法之队列》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/03/16/JS-数据结构与算法之队列/&title=《JS-数据结构与算法之队列》 — W | 个人博客 | web前端&source=导语
-队列是一种列表，不同的是，队列只能在队尾插入元素，在队首删除元素。队列用于存储按顺序排列的数据，先进先出。
-" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/03/16/JS-数据结构与算法之队列/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS-数据结构与算法之队列》 — W | 个人博客 | web前端&url=http://yoursite.com/2019/03/16/JS-数据结构与算法之队列/&via=http://yoursite.com" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/03/16/JS-数据结构与算法之队列/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-
-    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
-        <i class="icon icon-share-alt icon-lg"></i>
-    </a>
-</div>
-
-
-
-        </div>
-    </div>
-
-    
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2019/03/25/JS-数据结构与算法之链表/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">JS-数据结构与算法之链表</h4>
-      </a>
-    </div>
-  
-
-  
-    <div class="waves-block waves-effect next">
-      <a href="/2019/03/15/JS-数据结构与算法之栈/" id="post-next" class="post-nav-link">
-        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">JS-数据结构与算法之栈</h4>
-      </a>
-    </div>
-  
-</nav>
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</article>
-
-<div id="reward" class="page-modal reward-lay">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <h3 class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        👍谢谢您的赞赏~
-        <i class="icon icon-quote-right"></i>
-    </h3>
-    <div class="reward-content">
-        
-        <div class="reward-code">
-            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
         </div>
         
-        <label class="reward-toggle">
-            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
-                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
-            <div class="reward-toggle-ctrol">
-                <span class="reward-toggle-item wechat">微信</span>
-                <span class="reward-toggle-label"></span>
-                <span class="reward-toggle-item alipay">支付宝</span>
-            </div>
-        </label>
-        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
     </div>
+    
 </div>
 
 
-
-</div>
-
-        <footer class="footer">
-    <div class="top">
-        
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
-
-        <p>
-            
-                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
-        </p>
     </div>
-    <div class="bottom">
-        <p><span>wangxiaobai &copy; 2017 - 2019</span>
-            <span>
-                
-                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
-            </span>
-        </p>
-    </div>
-</footer>
-
-    </main>
-    <div class="mask" id="mask"></div>
-<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
-
-
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/03/16/JS-数据结构与算法之队列/&title=《JS-数据结构与算法之队列》 — W | 个人博客 | web前端&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/03/16/JS-数据结构与算法之队列/&title=《JS-数据结构与算法之队列》 — W | 个人博客 | web前端&source=导语
-队列是一种列表，不同的是，队列只能在队尾插入元素，在队首删除元素。队列用于存储按顺序排列的数据，先进先出。
-" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/03/16/JS-数据结构与算法之队列/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS-数据结构与算法之队列》 — W | 个人博客 | web前端&url=http://yoursite.com/2019/03/16/JS-数据结构与算法之队列/&via=http://yoursite.com" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/03/16/JS-数据结构与算法之队列/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsElEQVR42u3aQW4jMQwEwPz/0wmQW2DPpEmKtg81p8DwjlU6SNwmv77i5/v3efzk6nn8zv2/vfqt+28ee/Dw8PBaS88X+vj5/XbcA+7fk7MvtwAPDw9vjddb4uRJYFffTNaMh4eH9wm8ZClJEVwtmnsXEh4eHt6n8ZIooQer/o2Hh4f3Ll5e+FaD11NXxXrWgoeHh1d7f6EB9gl/L/b38PDw8AZd9cmxO7lIJlfOn/fg4eHhLfB6P5aXudVIIj/nC/EuHh4e3lFefhxXm1KTEKEXH0f7gYeHh7fG60US98utFtn5my8teHh4eC/kzdtX1Ux1Puz15Pt4eHh4C7xJiJAf6NVYIbkG8k/w8PDw9njVqLQ6JtVrjM0HGvDw8PDO8npl7qSpny+3V7jj4eHhvYaXHO55tNqLDKqNrmSsAQ8PD2+Dlw8Q5LFFL57IZwDKG42Hh4d3lNcbusoHBUaN/3jAK8qn8fDw8I7yegHr/GLobVzhMsPDw8Nb45UP3EPRbW+EK98gPDw8vNfwerD5/EJepidnPh4eHt4er1fI9kLY6kGfb1whpcbDw8Mb83rBQT5wUG1ozQcLnpTUeHh4eAu8ammbjBckpXmVmrfHon3Cw8PDa/Emh3XvYui1wZJWHB4eHt5rePmRXY0eThXrk9/Fw8PD2+D1mvrzTamOVeUtOjw8PLxt3vf46UUG+aLzMv3JJ3h4eHgLvN7TW2Ie+C4W03h4eHhjXu8aqCalVXD1+jl27+Hh4eHVOv6FeCIZNcg3aBIHJyvEw8PD2+DN44b3jmf9s314eHh4a7xTgUIOrhbovasLDw8P7xN4ybWRXzbV7ai+Bw8PD++9vIR9alyg1x67bIPh4eHhLfDyo78aHOTBa75Nha3Bw8PDW+BV/6s/iQ/mMXFOxcPDw1vg/QD2lHOowKHHmgAAAABJRU5ErkJggg==" alt="微信分享二维码">
-</div>
-
-
-
-
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
-
-
-</script>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
-
-
-
-
-
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-<script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '😤去哪里了！';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '😊欢迎回来!';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
-        }
-    });
-})();
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 </html>
