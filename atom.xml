@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-16T09:51:28.472Z</updated>
+  <updated>2019-06-26T15:39:36.922Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Node-NodeJS核心基础知识</title>
+    <link href="http://yoursite.com/2019/06/26/Node-NodeJS%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    <id>http://yoursite.com/2019/06/26/Node-NodeJS核心基础知识/</id>
+    <published>2019-06-26T15:11:52.000Z</published>
+    <updated>2019-06-26T15:39:36.922Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote><p>截止今天，像谷歌、亚马逊等全球 Top 10 互联网大公司，都早已入坑 Node…</p></blockquote><a id="more"></a><h3 id="关于-Node-和-Javascript"><a href="#关于-Node-和-Javascript" class="headerlink" title="关于 Node 和 Javascript"></a>关于 Node 和 Javascript</h3><ul><li><p>JavaScript 是一门编程语言，通常在浏览器的宿主环境中运行，网页是它的主战场，用户点击反馈/数据异步加载/动画控制等需要借助它和浏览器进行对话</p></li><li><p>Node 是一个基于 JavaScript 运行时，它不是一个 JavaScript 框架，也不是一门编程语言。</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;导语&quot;&gt;&lt;a href=&quot;#导语&quot; class=&quot;headerlink&quot; title=&quot;导语&quot;&gt;&lt;/a&gt;导语&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;截止今天，像谷歌、亚马逊等全球 Top 10 互联网大公司，都早已入坑 Node…&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="Node" scheme="http://yoursite.com/tags/Node/"/>
+    
+  </entry>
   
   <entry>
     <title>JS-this、call、apply</title>
