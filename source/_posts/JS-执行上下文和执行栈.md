@@ -1,14 +1,16 @@
 ---
-title: JS-执行上下文和执行栈
-date: 2019-06-03 17:08:52
+title: JS-执行上下文和执行上下文栈
+date: 2019-07-26 15:18:52
 tags: [JavaScript]
 categories: 前端
 ---
 
 #### 导语
-> 执行上下文是当前 JavaScript 被解析和执行时所在环境的抽象概念。执行栈用于存储在代码执行期间创建的所有执行上下文。
+> 执行上下文是当前 JavaScript 代码被解析和执行时所在环境的抽象概念。执行上下文栈用于存储在代码执行期间创建的所有执行上下文。
 
 <!--more-->
+
+## 理解执行上下文和执行上下文栈
 
 ### 执行上下文的类型
 
@@ -59,15 +61,15 @@ console.log('Inside Global Execution Context');
 
 * 确定 this 的值，也被称为 This Binding
 
-* LexicalEnvironment-词法环境被创建
+* LexicalEnvironment-词法环境组件被创建
 
-* VariableEnvironment-变量环境被创建
+* VariableEnvironment-变量环境组件被创建
 
 ```javascript
 ExecutionContext = {
-    ThisBinding: <this value>,
-    LexicalEnvironment: {...},
-    VariableEnvironment: {...}
+    ThisBinding: <this value>, // 确定 this
+    LexicalEnvironment: {...}, // 词法环境
+    VariableEnvironment: {...} // 变量环境
 }
 ```
 
@@ -146,7 +148,7 @@ FunctionExectionContext = { // 函数执行上下文
   FunctionExectionContext = {  
      
     ThisBinding: <Global Object>,
-  
+    
     LexicalEnvironment: {  
       EnvironmentRecord: {  
         Type: "Declarative",  
@@ -166,11 +168,144 @@ FunctionExectionContext = { // 函数执行上下文
     }  
   }
   ```
+  变量提升的原因：在创建阶段，函数声明存储在环境中，而变量会被设置为 undefined (var 情况下) 或保持未初始化 (let、const 情况下)。所以这就是为什么可以在声明之前访问 var 定义的变量，如果在声明之前访问 let 和 const 定义的变量会提示引用错误的原因。这就是所谓的变量提升。
   
   ##### 执行阶段
   
-  此阶段，完成对所有变量的分配，然后执行代码。
+  执行上下文的代码分为两个阶段进行处理：
   
-  ### 参考
+  * 进入执行上下文
+  
+  * 代码执行
+  
+  ###### 进入执行上下文
+  
+  此时的变量对象包括（如下顺序初始化）：
+  
+  * 函数所有的形参：没有实参，属性值设为 undefined。
+  
+  * 函数声明：如果变量对象已经存在相同名称的属性，则完全替换这个属性。
+  
+  * 变量声明：如果变量名称与已经声明的形参或函数相同，则变量声明不会干扰已经存在的这类属性。
+  
+  ```javascript
+function foo(a) {
+  var b = 2;
+  function c() {}
+  var d = function() {};
+
+  b = 3;
+}
+
+foo(1);
+```
+  
+  ```javascript
+    AO = {
+        arguments: {
+            0: 1,
+            length: 1
+        },
+        a: 1,
+        b: undefined,
+        c: reference to function c(){},
+        d: undefined
+    }
+  ```
+  
+  形参 arguments 已经有值了，但是变量还是 undefined，只是初始化的值。
+  
+  ###### 代码执行
+  
+  这个阶段会顺序执行代码，并修改变量的值。
+  
+  ```javascript
+AO = {
+    arguments: {
+        0: 1,
+        length: 1
+    },
+    a: 1,
+    b: 3,
+    c: reference to function c(){},
+    d: reference to FunctionExpression "d"
+}
+```
+  
+  总结如下：
+  
+  * 全局上下文的变量对象初始化是全局对象。
+  
+  * 函数上下文的变量对象初始化只包括 arguments 对象。
+  
+  * 在进入执行上下文时会给变量对象添加形参、函数声明、变量声明等初始的属性值。
+  
+  * 在代码执行阶段，会再次修改变量对象的属性值。
+  
+## 深入执行上下文和执行上下文栈
+
+JS 是单线程的语言，执行顺序是顺序执行，但是 JS 引擎并不是一行一行地分析和执行代码，而是一段一段地分析和执行，先进行编译然后才是执行。
+
+有如下两段代码，执行结果是一样的，但是两段代码究竟有什么不同？
+
+```javascript
+var scope = "global scope";
+function checkscope(){
+    var scope = "local scope";
+    function f(){
+        return scope;
+    }
+    return f();
+}
+checkscope();
+```
+
+```javascript
+var scope = "global scope";
+function checkscope(){
+    var scope = "local scope";
+    function f(){
+        return scope;
+    }
+    return f;
+}
+checkscope()();
+```
+
+答案是执行上下文栈的变化不一样。
+
+第一段代码：
+
+```javascript
+ECStack.push(<checkscope> functionContext);
+ECStack.push(<f> functionContext);
+ECStack.pop();
+ECStack.pop();
+```
+
+第二段代码：
+
+```javascript
+ECStack.push(<checkscope> functionContext);
+ECStack.pop();
+ECStack.push(<f> functionContext);
+ECStack.pop();
+```
+
+### 函数执行上下文
+
+在函数执行上下文中，用活动对象来表示变量对象。
+
+活动对象和变量对象的区别在于：
+
+* 变量对象是规范上或 JS 引擎上实现的，并不能在 JS 环境中直接访问。
+
+* 当进入到一个执行上下文后，这个变量对象会被激活，所以叫活动对象，这时活动对象上的各种属性才能被访问。
+
+调用函数时，会自动为其创建一个 arguments 对象，并初始化局部变量 arguments。所有作为参数传入的值都会成为 arguments 对象的数组元素。
+
+***
+  ## 参考
   
   * [理解JavaScript 中的执行上下文和执行栈](https://juejin.im/post/5bf3d20ff265da61776b95da)
+  * [JavaScript深入之执行上下文栈和变量对象](https://juejin.im/post/5bf3d20ff265da61776b95da)
