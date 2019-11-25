@@ -78,3 +78,54 @@ parseInt('3', 2); // NaN 不符合2进制位数取值(0-1)
 ['1', '2', '3'].map(parseInt) // [1, NaN, NaN]
 ```
 
+### 🌰 什么是节流和防抖？区别？如何实现？
+
+#### 防抖
+
+动作绑定事件，动作发生后一定时间内触发时间，在这段时间内如果该动作又发生，则重新等待一定时间再触发事件。
+
+```javascript
+/**
+ * 防抖 debounce 定时器
+ * @param fn {function} 回调函数
+ * @param wait {number} 时间间隔
+ * @author wangxiaobai
+ */
+export function debounce (fn, wait) {
+  let timer = null
+  return () => {
+    // 清除上次执行得定时器
+    if (timer) {
+      clearTimeout(timer)
+    }
+    // 设立新定时器
+    timer = setTimeout(() => {
+      fn.apply(this, arguments)
+    }, wait)
+  }
+}
+```
+
+#### 节流
+
+动作绑定事件，动作发生后一定时间内触发事件，在这段时间内如果该动作又发生，则无视该动作，直到事件执行完后，才能重新触发。
+
+```javascript
+/**
+ * 节流 throttle 定时器
+ * @param fn {function} 回调函数
+ * @param wait {number} 时间间隔
+ * @author wangxiaobai
+ */
+export function throttle (fn, wait) {
+  // 上一次函数的执行时间  
+  let activeTime = 0
+  return () => {
+      let currentTime = +new Date()
+      if (currentTime - activeTime > wait) {
+          fn.apply(this, arguments)
+          activeTime = currentTime
+      }
+  }
+}
+```
