@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>面试题-常见面试题系列之JS基础 - W | 个人博客 | web前端</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="OweQian,"> 
+    <meta name="description" content="前端,导语本系列旨在整理 JS 常见面试题，帮助梳理 JS 基础知识点。
+🌰 [‘1’, ‘2’, ‘3’].map(parseInt) 输出结果parseInt解析一个字符串参数，返回一个指定基数的整,"> 
+    <meta name="author" content="wangxiaobai"> 
+    <link rel="alternative" href="atom.xml" title="W | 个人博客 | web前端" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.ico"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body class="loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="config-title" style="display:none">W | 个人博客 | web前端</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">面试题-常见面试题系列之JS基础</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">面试题-常见面试题系列之JS基础</h1>
+        <div class="stuff">
+            <span>十一月 25, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/面试题/">面试题</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><p>本系列旨在整理 JS 常见面试题，帮助梳理 JS 基础知识点。</p>
+<h3 id="🌰-‘1’-‘2’-‘3’-map-parseInt-输出结果"><a href="#🌰-‘1’-‘2’-‘3’-map-parseInt-输出结果" class="headerlink" title="🌰 [‘1’, ‘2’, ‘3’].map(parseInt) 输出结果"></a>🌰 [‘1’, ‘2’, ‘3’].map(parseInt) 输出结果</h3><h4 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt"></a>parseInt</h4><p>解析一个字符串参数，返回一个指定基数的整数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> intValue = <span class="built_in">parseInt</span>(string[, radix]);</div></pre></td></tr></table></figure>
+<p>string 要被解析的值。如果参数不是一个字符串，则将其转换为字符串。字符串开头的空白符会被忽略。</p>
+<p>radix 一个介于 2~36之间的整数，表示上述字符串的基数，默认值为 10。</p>
+<p>parseInt 返回一个整数或 NaN。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">parseInt</span>(<span class="number">100</span>); <span class="comment">// 100</span></div><div class="line"><span class="built_in">parseInt</span>(<span class="number">100</span>, <span class="number">10</span>); <span class="comment">// 1*10*10 + 0*10*1 + 0*10*0 = 100</span></div><div class="line"><span class="built_in">parseInt</span>(<span class="number">100</span>, <span class="number">2</span>); <span class="comment">// 1*2*2 + 0*2*1 + 0*2*0 = 4</span></div></pre></td></tr></table></figure>
+<p>在 radix 为 undefined ，或 radix 为 0 或没有指定的情况下，JS 作如下处理：</p>
+<ul>
+<li><p>string 以 ‘0x’ 或 ‘0X’ 开头，则 radix 为 16。</p>
+</li>
+<li><p>string 以 ‘0’ 开头，radix 为 8 或者 10，具体哪个基数由实现环境决定。</p>
+</li>
+<li><p>string 以其它任何值开头，则 radix 为 10。</p>
+</li>
+</ul>
+<h4 id="map"><a href="#map" class="headerlink" title="map"></a>map</h4><p>创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> new_array = arr.map(<span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">currentValue[,index[, array]]</span>) </span>&#123;</div><div class="line"> <span class="comment">// Return element for new_array</span></div><div class="line"> &#125;[, thisArg])</div></pre></td></tr></table></figure>
+<p>callback 回调函数需要三个参数，分别为 currentValue(数组中当前正在处理的元素的值)、index(数组中当前正在处理的元素的索引)、array(map 方法中被调用的数组)。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line">arr.map(<span class="function"><span class="params">num</span> =&gt;</span> num * <span class="number">2</span>) <span class="comment">// [2, 4, 6]</span></div></pre></td></tr></table></figure>
+<h4 id="‘1’-‘2’-‘3’-map-parseInt-输出"><a href="#‘1’-‘2’-‘3’-map-parseInt-输出" class="headerlink" title="[‘1’, ‘2’, ‘3’].map(parseInt) 输出"></a>[‘1’, ‘2’, ‘3’].map(parseInt) 输出</h4><p>对于每个迭代 map，parseInt() 传递两个参数：字符串和基数。所以实际执行的代码为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>].map(<span class="built_in">parseInt</span>(<span class="function">(<span class="params">item, index</span>) =&gt;</span> <span class="built_in">parseInt</span>(item, index))</div></pre></td></tr></table></figure>
+<p>执行步骤为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">parseInt</span>(<span class="string">'1'</span>, <span class="number">0</span>); <span class="comment">// 1 (10 进制)</span></div><div class="line"><span class="built_in">parseInt</span>(<span class="string">'2'</span>, <span class="number">1</span>); <span class="comment">// NaN radix(2-36)</span></div><div class="line"><span class="built_in">parseInt</span>(<span class="string">'3'</span>, <span class="number">2</span>); <span class="comment">// NaN 不符合2进制位数取值(0-1)</span></div></pre></td></tr></table></figure>
+<p>所以：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>].map(<span class="built_in">parseInt</span>) <span class="comment">// [1, NaN, NaN]</span></div></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='https://link.hhtjim.com/kw/170.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
