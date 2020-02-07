@@ -1,0 +1,1196 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="Node-阿里云ECS部署, W | 个人博客 | web前端">
+    <meta name="description" content="导语
+双11抢购了一台阿里云服务器，趁工作不忙，搞了一个简单的node项目。那么问题来了，如何将node项目部署到阿里云ECS？
+
+
+此教程仅供新手借鉴，多少有些缺陷，有问题还望各位大佬指正。
+准备工作
+一个域名
+阿里云ECS(实例镜像：C">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Node-阿里云ECS部署 | W | 个人博客 | web前端</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/img/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">W | 个人博客 | web前端</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">W | 个人博客 | web前端</div>
+        <div class="logo-desc">
+            
+            前端
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #000000;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Node-阿里云ECS部署</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Node/">
+                                <span class="chip bg-color">Node</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/后端/" class="post-category">
+                                后端
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2018-11-27
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>双11抢购了一台阿里云服务器，趁工作不忙，搞了一个简单的node项目。那么问题来了，如何将node项目部署到阿里云ECS？</p>
+</blockquote>
+<a id="more"></a>
+<p>此教程仅供新手借鉴，多少有些缺陷，有问题还望各位大佬指正。</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>一个域名</li>
+<li>阿里云ECS(实例镜像：CentOS7.4)</li>
+<li>如果使用Windows，推荐xshell。如果是Mac，推荐iTerm2</li>
+</ul>
+<p>(注：因本人使用Mac，以下均已Mac为主)</p>
+<hr>
+<h3 id="终端连接服务器"><a href="#终端连接服务器" class="headerlink" title="终端连接服务器"></a>终端连接服务器</h3><ul>
+<li>打开iTerm2，输入连接命令ssh username@ip公网地址，回车，输入你在购买服务器时设置的密码。</li>
+</ul>
+<p><img src="http://images.gitbook.cn/fb945240-f68e-11e7-b8d1-49d5de1a2fe1" alt=""></p>
+<ul>
+<li>密码输入正确，进入服务器。</li>
+</ul>
+<p><img src="http://images.gitbook.cn/8a21b2f0-f68f-11e7-b8d1-49d5de1a2fe1" alt=""></p>
+<p>cd / 进入根目录，创建一个空目录 mkdir soft，用来放我们的安装包。</p>
+<hr>
+<h3 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h3><p>下载node包。</p>
+<pre><code>wget https://nodejs.org/dist/v8.9.4/node-v8.9.4.tar.gz
+</code></pre><p>下载完成后，进行压缩包解压。</p>
+<pre><code>tar -zxvf v8.9.4.tar.gz
+</code></pre><p>进入解压好的目录并执行config配置命令。</p>
+<pre><code>cd node-v8.9.4 &amp;&amp; ./configure
+</code></pre><p>执行编译及安装命令。</p>
+<pre><code>make &amp;&amp; make install
+</code></pre><p>经过漫长的等待之后，一个node环境就安装好了。可以通过node -v 或者 npm -v来检查当前node/npm是否安装成功。</p>
+<p><img src="http://images.gitbook.cn/aa87c390-f6e4-11e7-b0db-b9b8a7444865" alt=""></p>
+<p>如果你需要升级node和npm版本，执行以下命令即可。</p>
+<pre><code>npm i -g n
+n stable
+</code></pre><hr>
+<h3 id="安装nrm和pm2"><a href="#安装nrm和pm2" class="headerlink" title="安装nrm和pm2"></a>安装nrm和pm2</h3><p>nrm是一个管理npm源的插件，方便切换国内外以及私人npm库。</p>
+<p>pm2是node服务器的守护进程，方便管理当前服务器上的所有服务。</p>
+<p>这里说一下cnpm，如果安装依赖包很慢或者根本没进度，输入命令</p>
+<pre><code>npm install -g cnpm --registry=https://registry.npm.taobao.org
+</code></pre><p>然后使用cnpm代替npm安装。</p>
+<p>回到我们熟悉的soft目录。</p>
+<hr>
+<h4 id="nrm"><a href="#nrm" class="headerlink" title="nrm"></a>nrm</h4><p>安装nrm。</p>
+<pre><code>npm install -g nrm
+</code></pre><p>常用命令：</p>
+<ul>
+<li>nrm add name address 添加新的源</li>
+<li>nrm use name 切换到源</li>
+<li>nrm ls 查看所有可用的源</li>
+</ul>
+<p><img src="http://images.gitbook.cn/ef923690-f6e5-11e7-b28d-519a9998aa5b" alt=""></p>
+<hr>
+<h4 id="pm2"><a href="#pm2" class="headerlink" title="pm2"></a>pm2</h4><p>安装pm2。</p>
+<pre><code>npm install -g pm2
+</code></pre><p>常用命令：</p>
+<ul>
+<li>pm2 list 查看pm2守护服务</li>
+<li>pm2 start index.js 启动一个pm2守护进程命令</li>
+<li>pm2 restart id/name 重启一个pm2守护进程命令</li>
+<li>pm2 delete id/name 删除一个正在使用的进程</li>
+<li>pm2 delete all 删除所有正在使用的进程</li>
+<li>pm2 monit 查看pm2的消耗</li>
+</ul>
+<p><img src="http://images.gitbook.cn/24e04d00-f6e6-11e7-b0db-b9b8a7444865" alt=""></p>
+<hr>
+<h3 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h3><p>卸载已有的mysql。</p>
+<pre><code>rpm -qa|grep -i mysql
+yum remove &#39;mysql&#39;
+</code></pre><p>下载mysql源。</p>
+<pre><code>// 5.7.24
+wget http://repo.mysql.com//mysql57-community-release-el7-7.noarch.rpm
+</code></pre><p>安装下载的源。</p>
+<pre><code>rpm -ivh mysql57-community-release-el7-7.noarch.rpm
+</code></pre><p>下载安装mysql。</p>
+<pre><code>yum install mysql-server
+yum install mysql-devel
+yum install mysql
+</code></pre><p>启动mysql。</p>
+<pre><code>service mysqld start
+</code></pre><p>常用命令：</p>
+<ul>
+<li>service mysqld status 查看mysql当前的状态</li>
+<li>service mysqld stop 停止mysql</li>
+<li>service mysqld restart 重启mysql</li>
+<li>service mysqld start 启动mysql</li>
+</ul>
+<p>如果遇到错误：ERROR 2002 (HY000): Can’t connect to local MySQL server through socket /var/lib/mysql/mysql.sock’，请在tmp下创建一个软连接：</p>
+<pre><code>ln -s /tmp/mysql.sock /var/lib/mysql
+</code></pre><p>打开my.cnf并修改。</p>
+<pre><code>vi /etc/my.cnf
+</code></pre><p><img src="http://images.gitbook.cn/4d980cc0-f6ea-11e7-9a49-93c72a04fa82" alt=""></p>
+<p>重启数据库。</p>
+<pre><code>service mysqld restart
+</code></pre><p>登录(默认root是没有密码的)。</p>
+<pre><code>mysql -u root
+</code></pre><p>这时出现ERROR 1045 (28000): Access denied for user ‘root’@’localhost’ (using password: NO)，登录root帐号需要密码，现在我们没有设置密码，哪来的密码。</p>
+<p>于是我们开始忘记密码的操作</p>
+<p>第一步，在/etc/my.cnf文件中添加skip-grant-tables<br>第二步，重启mysql，service mysqld restart<br>第三步，登录mysql，mysql -u root<br>第四步，修改密码：</p>
+<pre><code>mysql&gt;use mysql;
+mysql&gt;update mysql.user set authentication_string=password(&#39;your password&#39;) where user=&#39;root&#39;;
+mysql&gt;flush privileges;
+mysql&gt;exit;
+</code></pre><p>第五步，恢复/etc/my.cnf，将skip-grant-tables删除或者注释掉<br>第六步，重启mysql，service mysqld restart</p>
+<p>分配用户</p>
+<p>host指定该用户在哪个主机上可以登陆，此处的”localhost”，是指该用户只能在本地登录，不能在另外一台机器上远程登录，如果想远程登录的话，将”localhost”改为”%”，表示在任何一台电脑上都可以登录;也可以指定某台机器可以远程登录。</p>
+<pre><code>CREATE USER &#39;username&#39;@&#39;host&#39; IDENTIFIED BY &#39;password&#39;;
+CREATE USER &#39;test&#39;@&#39;%&#39; IDENTIFIED BY &#39;password&#39;;
+</code></pre><p>给创建的用户权限</p>
+<ul>
+<li>privileges 用户的操作权限,如SELECT，INSERT，UPDATE等.如果要授予所的权限则使用ALL</li>
+<li>databasename 数据库名</li>
+<li>tablename 表名,如果要授予该用户对所有数据库和表的相应操作权限则可用表示, 如.*.</li>
+</ul>
+<pre><code>GRANT privileges ON databasename.tablename TO &#39;username&#39;@&#39;host&#39;
+</code></pre><hr>
+<h3 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h3><p>Redis是一个非常好用的数据仓库，既可以做nosql数据库，也可以做缓存数据库。</p>
+<p>下载安装包。</p>
+<pre><code>wget http://download.redis.io/releases/redis-4.0.6.tar.gz
+</code></pre><p>解压并进入解压之后的文件夹。</p>
+<pre><code>tar -zxvf redis-4.0.6.tar.gz &amp;&amp;cd redis-4.0.6
+</code></pre><p>编译并安装。</p>
+<pre><code>make &amp;&amp; make install
+</code></pre><p>启动redis服务。</p>
+<pre><code>redis-server redis.conf
+</code></pre><p><img src="http://images.gitbook.cn/9ab114d0-f82e-11e7-b753-f548c55dc4dd" alt=""></p>
+<p>此时我们发现，不能再输入任何命令，因为redis-server已经占用了这个命令行客户端。我们需要再打开一个命令行工具并连接服务器。</p>
+<p>使用redis客户端连接Redis服务，执行Redis文件夹下的redis-cli文件redis-cli，输入几个命令测试一下简单的set/get：</p>
+<p><img src="http://images.gitbook.cn/c4d479e0-f82f-11e7-bec2-d1185e7bb6e2" alt=""></p>
+<p>关掉客户端，redis服务也会停止。这时，我们就需要修改redis.conf文件，将daemonizede的值改为yes。</p>
+<p><img src="http://images.gitbook.cn/afb6f050-f830-11e7-b753-f548c55dc4dd" alt=""></p>
+<p>再次运行Redis的启动命令redis-server redis.conf，这次就不会占用命令行了，可以继续操作其他的，Redis服务也不会停止。</p>
+<hr>
+<h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>nginx在转发请求，负载均衡等方面非常有用。它可以将几个不同的服务集中在一个80端口下，根据域名或者请求路径来区分。</p>
+<p>在安装nginx之前，先要安装几个依赖插件。</p>
+<pre><code>yum install -y pcre pcre-devel
+yum install -y zlib zlib-devel
+</code></pre><p>安装openssl。</p>
+<pre><code>yum install -y openssl openssl-devel
+</code></pre><p>下载nginx包。</p>
+<pre><code>wget https://nginx.org/download/nginx-1.15.6.tar.gz
+</code></pre><p>解压并进入解压好的目录。</p>
+<pre><code>tar -zxvf nginx-1.15.6.tar.gz &amp;&amp; cd nginx-1.15.6
+</code></pre><p>执行配置命令。</p>
+<pre><code>./configure
+</code></pre><p>编译并安装。</p>
+<pre><code>make &amp;&amp; make install
+</code></pre><p>查看安装结果。</p>
+<pre><code>whereis nginx
+</code></pre><p><img src="http://images.gitbook.cn/d892e470-f835-11e7-b753-f548c55dc4dd" alt=""></p>
+<p>跳转到安装好的nginx目录下，进入sbin目录。</p>
+<pre><code>cd /usr/local/nginx/sbin
+</code></pre><p>启动nginx。</p>
+<pre><code>./nginx
+</code></pre><p>常用命令：</p>
+<ul>
+<li>./nginx 启动nginx</li>
+<li>./nginx -s stop 停止nginx</li>
+<li>./nginx -s quit 退出nginx</li>
+<li>./nginx -s reload 重启nginx</li>
+</ul>
+<hr>
+<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p>centOS上没有安装git，有需要的话，我们可以自己手动安装一下。</p>
+<pre><code>yum install git
+git --version
+</code></pre><hr>
+<h3 id="使用pm2启动项目"><a href="#使用pm2启动项目" class="headerlink" title="使用pm2启动项目"></a>使用pm2启动项目</h3><p>在本地搭建并测试好node项目，上传到GitHub。然后git clone一下。</p>
+<p>配置ECS安全组规则，暴露3000接口。</p>
+<p>如果项目中使用数据库，运行之前要先建立好数据库，然后再运行项目，登录数据库执行create database dabasename;</p>
+<pre><code>git clone https://github.com/***
+cd ***
+cnpm i
+pm2 start index.js
+</code></pre><p>注：项目监听3000端口，如果顺利的话，项目已经运行起来了。<br>   可以使用pm2 list查看进程列表，使用pm2 log打印日志。</p>
+<hr>
+<h3 id="Linux常用操作指令列表"><a href="#Linux常用操作指令列表" class="headerlink" title="Linux常用操作指令列表"></a>Linux常用操作指令列表</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ssh username@ip</td>
+<td>连接服务器</td>
+</tr>
+<tr>
+<td>cd path</td>
+<td>跳转到路径对应的目录下</td>
+</tr>
+<tr>
+<td>rm filename</td>
+<td>删除文件</td>
+</tr>
+<tr>
+<td>rm -rf path</td>
+<td>删除目录及目录下的所有文件</td>
+</tr>
+<tr>
+<td>ls [-a]</td>
+<td>查看当前目录下的文件和目录(-a：查看所有文件，包括隐藏文件)</td>
+</tr>
+<tr>
+<td>ll</td>
+<td>查看当前目录下的文件详情(文件权限)</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>查看当前路径的完整路径</td>
+</tr>
+<tr>
+<td>which name</td>
+<td>默认位置查找该名字</td>
+</tr>
+<tr>
+<td>mkdir dirname</td>
+<td>创建空目录</td>
+</tr>
+<tr>
+<td>cat path</td>
+<td>查看文件内容</td>
+</tr>
+<tr>
+<td>cp origin target</td>
+<td>复制一个文件到另一个地方</td>
+</tr>
+<tr>
+<td>mv origin target</td>
+<td>移动一个文件到另一个地方</td>
+</tr>
+<tr>
+<td>ps -aux</td>
+<td>显示当前进程</td>
+</tr>
+<tr>
+<td>kill -9 processid</td>
+<td>结束进程</td>
+</tr>
+<tr>
+<td>tar -zxvf filename</td>
+<td>解压文件</td>
+</tr>
+<tr>
+<td>tar -zcvf filename</td>
+<td>压缩文件</td>
+</tr>
+<tr>
+<td>vi path</td>
+<td>进入文件编辑模式</td>
+</tr>
+<tr>
+<td>vi编辑文件，按下i进入编辑模式</td>
+</tr>
+<tr>
+<td>vi退出文件，esc+:wq或esc+:x保存退出</td>
+</tr>
+<tr>
+<td>vi退出文件，esc+:q或esc+:q!强制退出</td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://qiandream.cn" rel="external nofollow noreferrer">wangxiaobai</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://qiandream.cn/2018/11/27/node-a-li-yun-ecs-bu-shu/">http://qiandream.cn/2018/11/27/node-a-li-yun-ecs-bu-shu/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="http://qiandream.cn" target="_blank">wangxiaobai</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Node/">
+                                    <span class="chip bg-color">Node</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/03/15/js-shu-ju-jie-gou-yu-suan-fa-zhi-zhan/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="JS-数据结构与算法之栈">
+                        
+                        <span class="card-title">JS-数据结构与算法之栈</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            导语
+栈是和列表类似的一种数据结构，它可以用来解决计算机世界里的很多问题。
+
+
+
+对栈的操作栈是一种特殊的列表，栈内的元素只能通过列表的一端访问，这一端称为栈顶。栈被称为一种后入先出 (LIFO，last-in-first-out) 的数据
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-03-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/前端/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/JavaScript/">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/10/11/js-shen-kao-bei-yu-qian-kao-bei/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="JS-深拷贝与浅拷贝">
+                        
+                        <span class="card-title">JS-深拷贝与浅拷贝</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            导语
+当我们在JS中复制一个数据，在复制如string，number等基本数据类型时，看似没有出现问题。但是当复制如array，object类型时。出现了意想不到的结果。
+
+
+实例🌰：
+var a = {x: 10, y: 10}
+var
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2018-10-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/前端/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/JavaScript/">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="http://qiandream.cn" target="_blank">wangxiaobai</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OweQian" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1510106069@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1510106069" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1510106069" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>
