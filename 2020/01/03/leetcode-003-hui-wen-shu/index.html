@@ -4,12 +4,17 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Node-NodeJS核心基础知识, W | 个人博客 | web前端">
+    <meta name="keywords" content="LeetCode-003-回文数, W | 个人博客 | web前端">
     <meta name="description" content="导语
-截止今天，像谷歌、亚马逊等全球 Top 10 互联网大公司，都早已入坑 Node…
+本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
 
 
-Nodejs 概述Nodejs 是基于 Chrome V8 引擎构建的，由事件循环分布 I/O 任务，最终工作线程会将任务放到线程池中执行，而事件">
+前言
+难度：简单
+
+设计知识：字符串、数组、数学
+
+题目地址：https://leetcode-cn.com/problems/rever">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +22,7 @@ Nodejs 概述Nodejs 是基于 Chrome V8 引擎构建的，由事件循环分布 
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Node-NodeJS核心基础知识 | W | 个人博客 | web前端</title>
+    <title>LeetCode-003-回文数 | W | 个人博客 | web前端</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -260,12 +265,12 @@ Nodejs 概述Nodejs 是基于 Chrome V8 引擎构建的，由事件循环分布 
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Node-NodeJS核心基础知识</h1>
+                    <h1 class="description center-align post-title">LeetCode-003-回文数</h1>
                 </div>
             </div>
         </div>
@@ -382,8 +387,8 @@ Nodejs 概述Nodejs 是基于 Chrome V8 引擎构建的，由事件循环分布 
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Node/">
-                                <span class="chip bg-color">Node</span>
+                            <a href="/tags/LeetCode/">
+                                <span class="chip bg-color">LeetCode</span>
                             </a>
                         
                     </div>
@@ -394,8 +399,8 @@ Nodejs 概述Nodejs 是基于 Chrome V8 引擎构建的，由事件循环分布 
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/前端/" class="post-category">
-                                前端
+                            <a href="/categories/数据结构与算法/" class="post-category">
+                                数据结构与算法
                             </a>
                         
                     </div>
@@ -407,7 +412,7 @@ Nodejs 概述Nodejs 是基于 Chrome V8 引擎构建的，由事件循环分布 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-06-26
+                    2020-01-03
                 </div>
                 
 
@@ -425,103 +430,96 @@ Nodejs 概述Nodejs 是基于 Chrome V8 引擎构建的，由事件循环分布 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
-<p>截止今天，像谷歌、亚马逊等全球 Top 10 互联网大公司，都早已入坑 Node…</p>
+<p>本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 </p>
 </blockquote>
 <a id="more"></a>
-<h3 id="Nodejs-概述"><a href="#Nodejs-概述" class="headerlink" title="Nodejs 概述"></a>Nodejs 概述</h3><p>Nodejs 是基于 Chrome V8 引擎构建的，由事件循环分布 I/O 任务，最终工作线程会将任务放到线程池中执行，而事件循环等待执行结果就可以了。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
+<li><p>难度：简单</p>
+</li>
+<li><p>设计知识：字符串、数组、数学</p>
+</li>
+<li><p>题目地址：<a href="https://leetcode-cn.com/problems/reverse-integer/" target="_blank" rel="external">https://leetcode-cn.com/problems/reverse-integer/</a></p>
+</li>
+<li><p>题目内容：</p>
+</li>
+</ul>
+<pre><code>判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+
+示例 1:
+输入: 121
+输出: true
+
+示例 2:
+输入: -121
+输出: false
+解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。
+
+示例 3:
+输入: 10
+输出: false
+解释: 从右向左读, 为 01 。因此它不是一个回文数。
+
+进阶:
+你能不将整数转为字符串来解决这个问题吗？
+</code></pre><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解法-转字符串、数组反转"><a href="#解法-转字符串、数组反转" class="headerlink" title="解法 - 转字符串、数组反转"></a>解法 - 转字符串、数组反转</h2><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
+ * @param {number} x
+ * @return {boolean}
+ */</span>
+<span class="token keyword">var</span> isPalindrome <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> string <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> reverseString <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>string <span class="token operator">===</span> reverseString<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
 <ul>
-<li><p>Nodejs 是 Javascript 的运行时环境。</p>
-</li>
-<li><p>Nodejs 构建在 Chrome V8 这个著名的 Javascript 引擎上。</p>
-</li>
-<li><p>Nodejs 每个函数都是同步的，而 I/O 操作是异步的。</p>
-</li>
-<li><p>Nodejs 使用 npm 作为包管理器。</p>
-</li>
+<li>执行测试</li>
 </ul>
-<h3 id="Nodejs-安装"><a href="#Nodejs-安装" class="headerlink" title="Nodejs 安装"></a>Nodejs 安装</h3><p>Nodejs 支持 macOS、Linux 以及 Windows 等多个主流操作系统。</p>
-<h4 id="3m-安装法"><a href="#3m-安装法" class="headerlink" title="3m 安装法"></a>3m 安装法</h4><ul>
-<li><p>nvm 开源的 Nodejs 版本管理器</p>
-</li>
-<li><p>npm Nodejs 包管理端</p>
-</li>
-<li><p>nrm 解决 npm 镜像访问慢的问题。</p>
-</li>
-</ul>
-<h5 id="nvm"><a href="#nvm" class="headerlink" title="nvm"></a>nvm</h5><h6 id="安装-nvm"><a href="#安装-nvm" class="headerlink" title="安装 nvm"></a>安装 nvm</h6><p>首先，在终端执行如下命令：</p>
-<pre class=" language-javascript"><code class="language-javascript">$ curl <span class="token operator">-</span>o<span class="token operator">-</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>raw<span class="token punctuation">.</span>githubusercontent<span class="token punctuation">.</span>com<span class="token operator">/</span>creationix<span class="token operator">/</span>nvm<span class="token operator">/</span>v0<span class="token number">.33</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token operator">/</span>install<span class="token punctuation">.</span>sh <span class="token operator">|</span> bash
-</code></pre>
-<p>意思是通过 curl 命令下载 install.sh 脚本并执行。执行完成后，重新打开终端窗口，执行</p>
-<pre class=" language-javascript"><code class="language-javascript">vi <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>zshrc
-</code></pre>
-<p>把 nvm 命令的执行路径放到 ~/.zshrc 文件下：</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> NVM_DIR<span class="token operator">=</span><span class="token string">"$HOME/.nvm"</span>
-<span class="token punctuation">[</span> <span class="token operator">-</span>s <span class="token string">"$NVM_DIR/nvm.sh"</span> <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">.</span> <span class="token string">"$NVM_DIR/nvm.sh"</span>
-</code></pre>
-<p>执行 source 命令，使系统环境变量生效：</p>
-<pre class=" language-javascript"><code class="language-javascript">source <span class="token operator">~</span><span class="token operator">/</span><span class="token punctuation">.</span>zshrc
-</code></pre>
 <p>输入：</p>
-<pre class=" language-javascript"><code class="language-javascript">nvm <span class="token operator">--</span>version
-
-<span class="token number">0.33</span><span class="token punctuation">.</span><span class="token number">1</span>
-</code></pre>
-<h6 id="查看可安装的-Nodejs-版本"><a href="#查看可安装的-Nodejs-版本" class="headerlink" title="查看可安装的 Nodejs 版本"></a>查看可安装的 Nodejs 版本</h6><p>安装 Node 之前，需要了解通过 nvm 可以安装哪些版本的 Node。</p>
-<pre class=" language-javascript"><code class="language-javascript">nvm ls<span class="token operator">-</span>remote
-</code></pre>
-<ul>
-<li><p>LTS 版本是指长期支持版本，推荐给大部分用户使用，一般在生产环境中使用。</p>
+<pre><code>121
+</code></pre><p>输出：</p>
+<pre><code>true
+</code></pre><p>预期结果：</p>
+<pre><code>true
+</code></pre><ul>
+<li><p>解题思路：转换为字符串、数组</p>
 </li>
-<li><p>Current 版本是指当前正在开发的尝鲜版本，不完全版本，需要经过一段时间的测试、开发和修复 bug 等才能变为 LTS 版本，一般供开发者学习。</p>
+<li><p>String: 将其他值转换为字符串</p>
+</li>
+<li><p>split(): 字符串分割为数组</p>
+</li>
+<li><p>reverse(): 数组翻转</p>
+</li>
+<li><p>join(): 数组转换为字符串</p>
 </li>
 </ul>
-<h6 id="安装-Node"><a href="#安装-Node" class="headerlink" title="安装 Node"></a>安装 Node</h6><pre class=" language-javascript"><code class="language-javascript">nvm install <span class="token number">10.15</span><span class="token punctuation">.</span><span class="token number">3</span>
+<h2 id="解法-转字符串-转数组-遍历"><a href="#解法-转字符串-转数组-遍历" class="headerlink" title="解法 - 转字符串 转数组 遍历"></a>解法 - 转字符串 转数组 遍历</h2><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
+ * @param {number} x
+ * @return {boolean}
+ */</span>
+<span class="token keyword">var</span> isPalindrome <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> Arr <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> Arr<span class="token punctuation">.</span>length <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> j <span class="token operator">=</span> Arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>Arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!==</span> Arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>通过 nvm 安装的 Node 位于用户目录下，而非系统目录下。</p>
-<pre class=" language-javascript"><code class="language-javascript">which node
-<span class="token operator">/</span>Users<span class="token regex">/wangqian/</span><span class="token punctuation">.</span>nvm<span class="token operator">/</span>versions<span class="token operator">/</span>node<span class="token operator">/</span>v10<span class="token number">.15</span><span class="token punctuation">.</span><span class="token number">3</span><span class="token operator">/</span>bin<span class="token operator">/</span>node
+<ul>
+<li>执行测试</li>
+</ul>
+<p>输入：</p>
+<pre><code>121
+</code></pre><p>输出：</p>
+<pre><code>true
+</code></pre><p>预期结果：</p>
+<pre><code>true
 </code></pre>
-<p>默认使用某个 Node 版本来编译代码，需要手动指定一个 default 别名。</p>
-<pre class=" language-javascript"><code class="language-javascript">nvm alias <span class="token keyword">default</span> node
-<span class="token keyword">default</span> <span class="token operator">-</span><span class="token operator">></span> node <span class="token punctuation">(</span><span class="token operator">-</span><span class="token operator">></span> v10<span class="token number">.15</span><span class="token punctuation">.</span><span class="token number">3</span><span class="token punctuation">)</span>
-</code></pre>
-<p>此时，输入 node -v，以后在终端的任何地方使用的默认版本都会是你设置的版本。</p>
-<pre class=" language-javascript"><code class="language-javascript">node <span class="token operator">-</span>v
-v10<span class="token number">.15</span><span class="token punctuation">.</span><span class="token number">3</span>
-</code></pre>
-<p>如何使用 nvm 切换 Node 版本？首先安装 Node 8.x</p>
-<pre class=" language-javascript"><code class="language-javascript">nvm install <span class="token number">8</span>
-</code></pre>
-<p>切换到 8.x 版本：</p>
-<pre class=" language-javascript"><code class="language-javascript">nvm use <span class="token number">8</span>
-Now using node v8<span class="token number">.16</span><span class="token punctuation">.</span><span class="token number">0</span> <span class="token punctuation">(</span>npm v6<span class="token number">.4</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token punctuation">)</span>
-node <span class="token operator">-</span>v
-v8<span class="token number">.16</span><span class="token punctuation">.</span><span class="token number">0</span>
-</code></pre>
-<p>如何知道本机通过 nvm 安装了哪些 Node 版本呢？</p>
-<pre class=" language-javascript"><code class="language-javascript">nvm ls
-<span class="token operator">-</span><span class="token operator">></span>      v8<span class="token number">.16</span><span class="token punctuation">.</span><span class="token number">0</span>
-       v10<span class="token number">.15</span><span class="token punctuation">.</span><span class="token number">3</span>
-<span class="token keyword">default</span> <span class="token operator">-</span><span class="token operator">></span> node <span class="token punctuation">(</span><span class="token operator">-</span><span class="token operator">></span> v10<span class="token number">.15</span><span class="token punctuation">.</span><span class="token number">3</span><span class="token punctuation">)</span>
-node <span class="token operator">-</span><span class="token operator">></span> stable <span class="token punctuation">(</span><span class="token operator">-</span><span class="token operator">></span> v10<span class="token number">.15</span><span class="token punctuation">.</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span>
-stable <span class="token operator">-</span><span class="token operator">></span> <span class="token number">10.15</span> <span class="token punctuation">(</span><span class="token operator">-</span><span class="token operator">></span> v10<span class="token number">.15</span><span class="token punctuation">.</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span>
-iojs <span class="token operator">-</span><span class="token operator">></span> N<span class="token operator">/</span>A <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span>
-lts<span class="token operator">/</span><span class="token operator">*</span> <span class="token operator">-</span><span class="token operator">></span> lts<span class="token operator">/</span>dubnium <span class="token punctuation">(</span><span class="token operator">-</span><span class="token operator">></span> N<span class="token operator">/</span>A<span class="token punctuation">)</span>
-lts<span class="token operator">/</span>argon <span class="token operator">-</span><span class="token operator">></span> v4<span class="token number">.9</span><span class="token punctuation">.</span><span class="token number">1</span> <span class="token punctuation">(</span><span class="token operator">-</span><span class="token operator">></span> N<span class="token operator">/</span>A<span class="token punctuation">)</span>
-lts<span class="token operator">/</span>boron <span class="token operator">-</span><span class="token operator">></span> v6<span class="token number">.17</span><span class="token punctuation">.</span><span class="token number">1</span> <span class="token punctuation">(</span><span class="token operator">-</span><span class="token operator">></span> N<span class="token operator">/</span>A<span class="token punctuation">)</span>
-lts<span class="token operator">/</span>carbon <span class="token operator">-</span><span class="token operator">></span> v8<span class="token number">.16</span><span class="token punctuation">.</span><span class="token number">0</span>
-lts<span class="token operator">/</span>dubnium <span class="token operator">-</span><span class="token operator">></span> v10<span class="token number">.16</span><span class="token punctuation">.</span><span class="token number">0</span> <span class="token punctuation">(</span><span class="token operator">-</span><span class="token operator">></span> N<span class="token operator">/</span>A<span class="token punctuation">)</span>
-</code></pre>
-<p>若要经常切换 Node 版本，最痛苦的莫过于全局模块需要重新安装。针对这种情况，nvm 提供了一个很贴心的一键安装全局模块的 nvm reinstall-packages命令。</p>
-<pre class=" language-javascript"><code class="language-javascript">nvm reinstall<span class="token operator">-</span>packages <span class="token number">6</span>
-</code></pre>
-<p>nvm 默认远端下载地址是 <a href="https://nodejs.org/dist，如果想安装自定义的" target="_blank" rel="external">https://nodejs.org/dist，如果想安装自定义的</a> Node 版本，可以指定 nvm 的远端下载地址。</p>
-<pre class=" language-javascript"><code class="language-javascript">NVM_NODEJS_ORG_MIRROR<span class="token operator">=</span>https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>nodejs<span class="token punctuation">.</span>org<span class="token operator">/</span>download<span class="token operator">/</span>chakracore<span class="token operator">-</span>nightly
-</code></pre>
-<p>对于一些正在测试的尝鲜版本，可以在下面的地址下载。</p>
-<pre class=" language-javascript"><code class="language-javascript">NVM_NODEJS_ORG_MIRROR<span class="token operator">=</span>https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>nodejs<span class="token punctuation">.</span>org<span class="token operator">/</span>download<span class="token operator">/</span>test
-</code></pre>
-
             </div>
             <hr/>
 
@@ -546,7 +544,7 @@ lts<span class="token operator">/</span>dubnium <span class="token operator">-</
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://qiandream.cn/2019/06/26/node-nodejs-he-xin-ji-chu-zhi-shi/">http://qiandream.cn/2019/06/26/node-nodejs-he-xin-ji-chu-zhi-shi/</a>
+                    <a href="http://qiandream.cn/2020/01/03/leetcode-003-hui-wen-shu/">http://qiandream.cn/2020/01/03/leetcode-003-hui-wen-shu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -584,8 +582,8 @@ lts<span class="token operator">/</span>dubnium <span class="token operator">-</
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Node/">
-                                    <span class="chip bg-color">Node</span>
+                                <a href="/tags/LeetCode/">
+                                    <span class="chip bg-color">LeetCode</span>
                                 </a>
                             
                         </div>
@@ -630,30 +628,28 @@ lts<span class="token operator">/</span>dubnium <span class="token operator">-</
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/07/26/js-zhi-xing-shang-xia-wen-he-zhi-xing-zhan/">
+                <a href="/2020/01/14/webpack-webpack-xi-lie-zhi-jian-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="JS-执行上下文和执行上下文栈">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Webpack-Webpack系列之简介">
                         
-                        <span class="card-title">JS-执行上下文和执行上下文栈</span>
+                        <span class="card-title">Webpack-Webpack系列之简介</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             导语
-执行上下文是当前 JavaScript 代码被解析和执行时所在环境的抽象概念。执行上下文栈用于存储在代码执行期间创建的所有执行上下文。
+webpack是一个现代JavaScript应用程序的静态模块打包器，在webpack处理应用程序时，它会在内部创建一个依赖图，用于映射到项目需要的每个模块，然后将所有这些依赖生成到一个或多个bundle。
 
 
-理解执行上下文和执行上下文栈执行上下文的类型执行上下文总共有三种类型：
-
-全局执行上下文：只有
+Webpack 简介W
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-07-26
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
                         </span>
                         <span class="publish-author">
                             
@@ -670,8 +666,8 @@ lts<span class="token operator">/</span>dubnium <span class="token operator">-</
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaScript/">
-                        <span class="chip bg-color">JavaScript</span>
+                    <a href="/tags/Webpack/">
+                        <span class="chip bg-color">Webpack</span>
                     </a>
                     
                 </div>
@@ -685,35 +681,40 @@ lts<span class="token operator">/</span>dubnium <span class="token operator">-</
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/06/13/js-this-call-apply/">
+                <a href="/2020/01/02/leetcode-002-zheng-shu-fan-zhuan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="JS-this、call、apply">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="LeetCode-002-整数反转">
                         
-                        <span class="card-title">JS-this、call、apply</span>
+                        <span class="card-title">LeetCode-002-整数反转</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             导语
-在 Javascript 编程中，this、Function.prototype.call、Function.prototype.apply 有着广泛的运用，理解它们的用法至关重要。
+本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
 
 
-thisJavascript 中的 this 
+前言
+难度：简单
+
+设计知识：数组
+
+题目地址：https://leetcode-cn.com/problems/reverse-inte
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-06-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/前端/" class="post-category">
-                                    前端
+                            <a href="/categories/数据结构与算法/" class="post-category">
+                                    数据结构与算法
                                 </a>
                             
                             
@@ -723,8 +724,8 @@ thisJavascript 中的 this
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaScript/">
-                        <span class="chip bg-color">JavaScript</span>
+                    <a href="/tags/LeetCode/">
+                        <span class="chip bg-color">LeetCode</span>
                     </a>
                     
                 </div>
