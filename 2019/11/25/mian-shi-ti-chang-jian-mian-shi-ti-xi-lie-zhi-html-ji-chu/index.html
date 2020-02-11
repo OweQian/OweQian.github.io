@@ -4,17 +4,9 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="LeetCode-002-整数反转, W | 个人博客 | web前端">
-    <meta name="description" content="导语
-本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
-
-
-前言
-难度：简单
-
-设计知识：数组
-
-题目地址：https://leetcode-cn.com/problems/reverse-inte">
+    <meta name="keywords" content="面试题-常见面试题系列之JS基础, W | 个人博客 | web前端">
+    <meta name="description" content="导语本系列旨在整理 HTML 考点的非重难点，帮助梳理 HTML 高频面试题。
+doctype 的作用是什么？doctype 是 html5 标准的网页声明，必须声明在 html 文档的第一行。规定了浏览器的解析器以何种渲染模式来解析文档，">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>LeetCode-002-整数反转 | W | 个人博客 | web前端</title>
+    <title>面试题-常见面试题系列之JS基础 | W | 个人博客 | web前端</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -265,12 +257,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LeetCode-002-整数反转</h1>
+                    <h1 class="description center-align post-title">面试题-常见面试题系列之JS基础</h1>
                 </div>
             </div>
         </div>
@@ -387,8 +379,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/LeetCode/">
-                                <span class="chip bg-color">LeetCode</span>
+                            <a href="/tags/面试题/">
+                                <span class="chip bg-color">面试题</span>
                             </a>
                         
                     </div>
@@ -399,8 +391,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/数据结构与算法/" class="post-category">
-                                数据结构与算法
+                            <a href="/categories/前端/" class="post-category">
+                                前端
                             </a>
                         
                     </div>
@@ -412,7 +404,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-02
+                    2019-11-25
                 </div>
                 
 
@@ -429,80 +421,135 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
-<p>本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 </p>
-</blockquote>
-<a id="more"></a>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
-<li><p>难度：简单</p>
+                <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><p>本系列旨在整理 HTML 考点的非重难点，帮助梳理 HTML 高频面试题。</p>
+<h1 id="doctype-的作用是什么？"><a href="#doctype-的作用是什么？" class="headerlink" title="doctype 的作用是什么？"></a>doctype 的作用是什么？</h1><p>doctype 是 html5 标准的网页声明，必须声明在 html 文档的第一行。规定了浏览器的解析器以何种渲染模式来解析文档，不同的渲染模式会影响到浏览器对 css 甚至 js 脚本的解析。</p>
+<p>解析模式有：</p>
+<ul>
+<li><p>BackCompat: 怪异模式，浏览器使用自己的怪异模式解析文档（默认值）。</p>
 </li>
-<li><p>设计知识：数组</p>
+<li><p>CSS1Compat: 标准模式，浏览器使用 W3C 的标准解析文档。</p>
 </li>
-<li><p>题目地址：<a href="https://leetcode-cn.com/problems/reverse-integer/" target="_blank" rel="external">https://leetcode-cn.com/problems/reverse-integer/</a></p>
-</li>
-<li><p>题目内容：</p>
+<li><p>近乎标准模式：IE8 有一种介乎于上述两者之间的近乎标准的模式。</p>
 </li>
 </ul>
-<pre><code>给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
-
-示例 1:
-
-输入: 123
-输出: 321
- 示例 2:
-
-输入: -123
-输出: -321
-示例 3:
-
-输入: 120
-输出: 21
-注意:
-
-假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
-</code></pre><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解法-转字符串、数组反转"><a href="#解法-转字符串、数组反转" class="headerlink" title="解法 - 转字符串、数组反转"></a>解法 - 转字符串、数组反转</h2><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
- * @param {number} x
- * @return {number}
- */</span>
-<span class="token keyword">var</span> reverse <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 转换为整数</span>
-    <span class="token keyword">let</span> num <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">abs</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// 转换为字符串</span>
-    <span class="token keyword">let</span> string <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// 字符串反转</span>
-    <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token function">Number</span><span class="token punctuation">(</span>string<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>result <span class="token operator">&lt;</span> Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">31</span><span class="token punctuation">)</span> <span class="token operator">||</span> result <span class="token operator">></span> Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">31</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token number">0</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span>result
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> result    
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<h2 id="这三者的区别是什么？"><a href="#这三者的区别是什么？" class="headerlink" title="这三者的区别是什么？"></a>这三者的区别是什么？</h2><ul>
+<li><p>标准模式：页面会按照 HTML 与 CSS 的定义渲染。</p>
+</li>
+<li><p>怪异模式：页面会模拟更旧的浏览器的行为。</p>
+</li>
+<li><p>近乎标准模式： 会实施一种表单元格尺寸的怪异行为。</p>
+</li>
+</ul>
+<h1 id="HTML、XHTML、XML-有什么区别？"><a href="#HTML、XHTML、XML-有什么区别？" class="headerlink" title="HTML、XHTML、XML 有什么区别？"></a>HTML、XHTML、XML 有什么区别？</h1><ul>
+<li><p>HTML (超文本标记语言)：在 html4 之前，HTML 先有实现再有标准，导致 html 非常混乱。</p>
+</li>
+<li><p>XML (可扩展标记语言)：主要用于存储数据和结构，可扩展。</p>
+</li>
+<li><p>XHTML (可扩展超文本标记语言)：基于上面两者而来，W3C 为了解决 html 混乱问题而生，并基于此诞生了 HTML5。</p>
+</li>
+</ul>
+<h1 id="什么是-data-属性？"><a href="#什么是-data-属性？" class="headerlink" title="什么是 data- 属性？"></a>什么是 data- 属性？</h1><p>html 的数据属性，用于将数据存储在标准的 html 元素中作为额为信息，可以用 js 访问并操作它。</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>article</span>
+    <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>electriccars<span class="token punctuation">"</span></span>
+    <span class="token attr-name">data-columns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span>
+    <span class="token attr-name">data-index-number</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>12321<span class="token punctuation">"</span></span>
+    <span class="token attr-name">data-parent</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>cars<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>article</span><span class="token punctuation">></span></span>
+</code></pre>
+<pre><code>前端框架出现后，这种方法已经不流行了
+</code></pre><h1 id="你对-HTML-语义化的理解？"><a href="#你对-HTML-语义化的理解？" class="headerlink" title="你对 HTML 语义化的理解？"></a>你对 HTML 语义化的理解？</h1><p>语义化指运用恰当语义的 html 标签，使页面具有良好的结构与定义。</p>
+<p>语义化的好处：</p>
+<ul>
+<li><p>开发者友好：增强了可读性，开发者可以清晰地看出网页的结构。</p>
+</li>
+<li><p>机器友好：便于搜索引擎的爬虫爬取有效的信息。</p>
+</li>
+</ul>
+<h1 id="HTML4-与-HTML5-的不同之处？"><a href="#HTML4-与-HTML5-的不同之处？" class="headerlink" title="HTML4 与 HTML5 的不同之处？"></a>HTML4 与 HTML5 的不同之处？</h1><ul>
+<li><p>文档类型声明 (&lt;!DOCTYPE&gt;) 仅有一型：&lt;!DOCTYPE HTML&gt;。</p>
+</li>
+<li><p>新的解析顺序：不再基于 SGML。</p>
+</li>
+<li><p>新的元素：section、video、progress、nav、meter、time、footer、header、summary、source等。</p>
+</li>
+<li><p>input 元素的新类型：date、email、url等。</p>
+</li>
+<li><p>全域属性：id、tabindex、repeat 等。</p>
+</li>
+<li><p>新的全域属性：contenteditable, contextmenu, draggable, dropzone, hidden, spellcheck。</p>
+</li>
+<li><p>移除元素：acronym, applet, basefont, big, center, dir, font, frame, frameset, isindex, noframes, strike。</p>
+</li>
+</ul>
+<h1 id="有哪些常用的-meta-标签？"><a href="#有哪些常用的-meta-标签？" class="headerlink" title="有哪些常用的 meta 标签？"></a>有哪些常用的 meta 标签？</h1><p>meta 标签用于描述一个 html 文档的元信息，如：作者、日期和时间等。</p>
+<ul>
+<li>charset：用于描述 html 文档的编码形式。</li>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 </code></pre>
 <ul>
-<li>执行测试</li>
+<li>viewport：控制视口的大小和比例。</li>
 </ul>
-<p>输入：</p>
-<pre><code>123
-</code></pre><p>输出：</p>
-<pre><code>321
-</code></pre><p>预期结果：</p>
-<pre><code>321
-</code></pre><ul>
-<li><p>解题思路：转换为字符串、数组</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>width<span class="token punctuation">=</span>device-width, initial-scale<span class="token punctuation">=</span>1, maximum-scale<span class="token punctuation">=</span>1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+</code></pre>
+<ul>
+<li>http-equiv：相当于 http 的文件头作用。</li>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>expires<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Web, 20 Jun 2020 22:28:00 GMT<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+</code></pre>
+<ul>
+<li>app-mobile-web-app-status-bar-style：自定义苹果工具栏的颜色。</li>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app-mobile-web-app-status-bar-style<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>black-translucent<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+</code></pre>
+<h1 id="href-和-src-的区别？"><a href="#href-和-src-的区别？" class="headerlink" title="href 和 src 的区别？"></a>href 和 src 的区别？</h1><ul>
+<li><p>src：指向外部资源，指向的内容会下载并嵌入到文档中当前标签所在的位置。当浏览器解析到该元素时，会暂停其它资源的下载和处理，直到当前资源加载、编译、执行完毕。</p>
 </li>
-<li><p>String: 将其他值转换为字符串</p>
+<li><p>href：指向网络资源所在位置，用来建立和当前元素或文档之间的连接，当浏览器识别到它所指向的文件时，则会并行下载资源。</p>
 </li>
-<li><p>Number: 将其他值转换为数字值</p>
+</ul>
+<h2 id="img-的-srcset-作用是什么？"><a href="#img-的-srcset-作用是什么？" class="headerlink" title="img 的 srcset 作用是什么？"></a>img 的 srcset 作用是什么？</h2><p>使用 img 的 两个新属性 srcset 和 sizes 来提供更多额外的资源图像和提示，帮助浏览器选择一个正确的资源。</p>
+<p>srcset 定义了我们允许浏览器选择的图像集以及每个图像的大小。</p>
+<p>sizes 定义了一组媒体条件，并指明当某些媒体条件为真时，什么样的图片尺寸是最佳选择。</p>
+<p>有了这些属性，浏览器会：</p>
+<ul>
+<li><p>查看设备宽度</p>
 </li>
-<li><p>Math: JS 内置对象</p>
+<li><p>检查 sizes 哪个媒体条件为真</p>
 </li>
-<li><p>split(): 字符串分割为数组</p>
+<li><p>查看给予该媒体查询的槽大小</p>
 </li>
-<li><p>reverse(): 数组翻转</p>
+<li><p>加载 srcset 中引用的最接近所选的槽的大小的图像</p>
 </li>
-<li><p>join(): 数组转换为字符串</p>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clock-demo-thumb-200.png<span class="token punctuation">"</span></span>
+     <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Clock<span class="token punctuation">"</span></span>
+     <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clock-demo-thumb-200.png 200w,
+             clock-demo-thumb-400.png 400w<span class="token punctuation">"</span></span>
+     <span class="token attr-name">sizes</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(min-width: 600px) 200px, 50vw<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+</code></pre>
+<h2 id="还有哪一个标签能起到和-srcset-类似作用？"><a href="#还有哪一个标签能起到和-srcset-类似作用？" class="headerlink" title="还有哪一个标签能起到和 srcset 类似作用？"></a>还有哪一个标签能起到和 srcset 类似作用？</h2><p><picture> 元素通过包含零个或多个 <source> 元素和一个 <img> 元素来为不同的显示、设备场景提供图像版本。浏览器会选择最匹配的子 <source> 元素，如果没有匹配的，就会选择 <img> 元素的 src 属性中的 url。</picture></p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>picture</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/media/examples/surfer-240-200.jpg<span class="token punctuation">"</span></span>
+            <span class="token attr-name">media</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(min-width: 800px)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/media/examples/painted-hand-298-332.jpg<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>picture</span><span class="token punctuation">></span></span>
+</code></pre>
+<h1 id="script-标签中-defer-和-async-的区别？"><a href="#script-标签中-defer-和-async-的区别？" class="headerlink" title="script 标签中 defer 和 async 的区别？"></a>script 标签中 defer 和 async 的区别？</h1><ul>
+<li><p>defer：异步加载脚本，等待文档被解析完毕后执行。</p>
+</li>
+<li><p>async：异步加载脚本，加载完毕后立即执行。</p>
+</li>
+</ul>
+<h1 id="有几种前端存储方式？"><a href="#有几种前端存储方式？" class="headerlink" title="有几种前端存储方式？"></a>有几种前端存储方式？</h1><p>cookie、localStorage、sessionStorage、indexedDB</p>
+<h2 id="这些方式的区别？"><a href="#这些方式的区别？" class="headerlink" title="这些方式的区别？"></a>这些方式的区别？</h2><ul>
+<li><p>cookie：优点是兼容性好，请求头自带 cookie 方便。缺点是大小只有4k，自动请求头加入 cookie 浪费流量，每个 domain 限制20 个 cookie。</p>
+</li>
+<li><p>localStorage：优点是操作方便，永久性存储，大小为 5M，缺点是只能手动删除。</p>
+</li>
+<li><p>sessionStorage：与 localStorage 基本类似。区别是当页面关闭后会清理。不能在所有同源窗口中被共享。</p>
+</li>
+<li><p>indexedDB：标准的数据库存储方案，是 NoSQL 数据库，用键值对进行存储，可快速读取。</p>
 </li>
 </ul>
 
@@ -530,7 +577,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://qiandream.cn/2020/01/02/leetcode-002-zheng-shu-fan-zhuan/">http://qiandream.cn/2020/01/02/leetcode-002-zheng-shu-fan-zhuan/</a>
+                    <a href="http://qiandream.cn/2019/11/25/mian-shi-ti-chang-jian-mian-shi-ti-xi-lie-zhi-html-ji-chu/">http://qiandream.cn/2019/11/25/mian-shi-ti-chang-jian-mian-shi-ti-xi-lie-zhi-html-ji-chu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -568,8 +615,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/LeetCode/">
-                                    <span class="chip bg-color">LeetCode</span>
+                                <a href="/tags/面试题/">
+                                    <span class="chip bg-color">面试题</span>
                                 </a>
                             
                         </div>
@@ -614,13 +661,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/01/03/leetcode-003-hui-wen-shu/">
+                <a href="/2020/01/01/leetcode-001-liang-shu-zhi-he/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="LeetCode-003-回文数">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="LeetCode-001-两数之和">
                         
-                        <span class="card-title">LeetCode-003-回文数</span>
+                        <span class="card-title">LeetCode-001-两数之和</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -633,14 +680,14 @@
 前言
 难度：简单
 
-设计知识：字符串、数组、数学
+设计知识：数组、哈希表
 
-题目地址：https://leetcode-cn.com/problems/roman
+题目地址：https://leetcode-cn.com/problems/two-sum/
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-03
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-01
                         </span>
                         <span class="publish-author">
                             
@@ -672,40 +719,33 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/01/01/leetcode-001-liang-shu-zhi-he/">
+                <a href="/2019/11/25/mian-shi-ti-chang-jian-mian-shi-ti-xi-lie-zhi-js-ji-chu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="LeetCode-001-两数之和">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="面试题-常见面试题系列之JS基础">
                         
-                        <span class="card-title">LeetCode-001-两数之和</span>
+                        <span class="card-title">面试题-常见面试题系列之JS基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            导语
-本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
-
-
-前言
-难度：简单
-
-设计知识：数组、哈希表
-
-题目地址：https://leetcode-cn.com/problems/two-sum/
+                            导语本系列旨在整理 JS 常见面试题，帮助梳理 JS 基础知识点。
+🌰 [‘1’, ‘2’, ‘3’].map(parseInt) 输出结果parseInt解析一个字符串参数，返回一个指定基数的整数。
+const intValue = p
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/数据结构与算法/" class="post-category">
-                                    数据结构与算法
+                            <a href="/categories/前端/" class="post-category">
+                                    前端
                                 </a>
                             
                             
@@ -715,8 +755,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/LeetCode/">
-                        <span class="chip bg-color">LeetCode</span>
+                    <a href="/tags/面试题/">
+                        <span class="chip bg-color">面试题</span>
                     </a>
                     
                 </div>
