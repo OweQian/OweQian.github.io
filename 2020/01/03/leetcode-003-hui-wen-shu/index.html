@@ -14,7 +14,7 @@
 
 设计知识：字符串、数组、数学
 
-题目地址：https://leetcode-cn.com/problems/rever">
+题目地址：https://leetcode-cn.com/problems/roman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -438,88 +438,130 @@
 </li>
 <li><p>设计知识：字符串、数组、数学</p>
 </li>
-<li><p>题目地址：<a href="https://leetcode-cn.com/problems/reverse-integer/" target="_blank" rel="external">https://leetcode-cn.com/problems/reverse-integer/</a></p>
+<li><p>题目地址：<a href="https://leetcode-cn.com/problems/roman-to-integer/" target="_blank" rel="external">https://leetcode-cn.com/problems/roman-to-integer/</a></p>
 </li>
 <li><p>题目内容：</p>
 </li>
 </ul>
-<pre><code>判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+<pre><code>罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
+
+字符          数值
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。
+
+通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：
+
+I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。
+X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。 
+C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
+给定一个罗马数字，将其转换成整数。输入确保在 1 到 3999 的范围内。
 
 示例 1:
-输入: 121
-输出: true
 
+输入: &quot;III&quot;
+输出: 3
 示例 2:
-输入: -121
-输出: false
-解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。
 
+输入: &quot;IV&quot;
+输出: 4
 示例 3:
-输入: 10
-输出: false
-解释: 从右向左读, 为 01 。因此它不是一个回文数。
 
-进阶:
-你能不将整数转为字符串来解决这个问题吗？
-</code></pre><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解法-转字符串、数组反转"><a href="#解法-转字符串、数组反转" class="headerlink" title="解法 - 转字符串、数组反转"></a>解法 - 转字符串、数组反转</h2><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
- * @param {number} x
- * @return {boolean}
+输入: &quot;IX&quot;
+输出: 9
+示例 4:
+
+输入: &quot;LVIII&quot;
+输出: 58
+解释: L = 50, V= 5, III = 3.
+示例 5:
+
+输入: &quot;MCMXCIV&quot;
+输出: 1994
+解释: M = 1000, CM = 900, XC = 90, IV = 4.
+</code></pre><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解法-转字符串、数组遍历，区分正常情况与特殊情况"><a href="#解法-转字符串、数组遍历，区分正常情况与特殊情况" class="headerlink" title="解法 - 转字符串、数组遍历，区分正常情况与特殊情况"></a>解法 - 转字符串、数组遍历，区分正常情况与特殊情况</h2><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
+ * @param {string} s
+ * @return {number}
  */</span>
-<span class="token keyword">var</span> isPalindrome <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">let</span> string <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-    <span class="token keyword">let</span> reverseString <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>string <span class="token operator">===</span> reverseString<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token keyword">var</span> romanToInt <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">/**
+       * 特殊情况
+       * IV === 4
+       * IX === 9
+       * XL === 40
+       * XC === 90
+       * CD === 400
+       * CM === 900
+       * 正常情况
+       * I === 1
+       * V === 5
+       * X === 10
+       * L === 50
+       * C === 100
+       * D === 500
+       * M === 1000
+       */</span>
+    <span class="token keyword">let</span> arr <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span>
+    <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'I'</span> <span class="token operator">&amp;&amp;</span> arr<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'V'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">4</span>
+            i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'I'</span> <span class="token operator">&amp;&amp;</span> arr<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'X'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">9</span>
+            i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'X'</span> <span class="token operator">&amp;&amp;</span> arr<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'L'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">40</span>
+            i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'X'</span> <span class="token operator">&amp;&amp;</span> arr<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'C'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">90</span>
+            i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'C'</span> <span class="token operator">&amp;&amp;</span> arr<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'D'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">400</span>
+            i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'C'</span> <span class="token operator">&amp;&amp;</span> arr<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'M'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">900</span>
+            i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'I'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'V'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">5</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'X'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">10</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'L'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">50</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'C'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">100</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'D'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">500</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'M'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1000</span>
+        <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token boolean">false</span>
+    <span class="token keyword">return</span> result
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <ul>
 <li>执行测试</li>
 </ul>
 <p>输入：</p>
-<pre><code>121
+<pre><code>MCMXCIV
 </code></pre><p>输出：</p>
-<pre><code>true
+<pre><code>1994
 </code></pre><p>预期结果：</p>
-<pre><code>true
+<pre><code>1994
 </code></pre><ul>
 <li><p>解题思路：转换为字符串、数组</p>
 </li>
-<li><p>String: 将其他值转换为字符串</p>
-</li>
 <li><p>split(): 字符串分割为数组</p>
 </li>
-<li><p>reverse(): 数组翻转</p>
-</li>
-<li><p>join(): 数组转换为字符串</p>
-</li>
 </ul>
-<h2 id="解法-转字符串-转数组-遍历"><a href="#解法-转字符串-转数组-遍历" class="headerlink" title="解法 - 转字符串 转数组 遍历"></a>解法 - 转字符串 转数组 遍历</h2><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
- * @param {number} x
- * @return {boolean}
- */</span>
-<span class="token keyword">var</span> isPalindrome <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">let</span> Arr <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> Arr<span class="token punctuation">.</span>length <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">let</span> j <span class="token operator">=</span> Arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>Arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!==</span> Arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token boolean">false</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token boolean">true</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<ul>
-<li>执行测试</li>
-</ul>
-<p>输入：</p>
-<pre><code>121
-</code></pre><p>输出：</p>
-<pre><code>true
-</code></pre><p>预期结果：</p>
-<pre><code>true
-</code></pre>
+
             </div>
             <hr/>
 
@@ -628,13 +670,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/01/14/webpack-webpack-xi-lie-zhi-jian-jie/">
+                <a href="/2020/01/14/webpack-webpack-xi-lie-zhi-mo-kuai-da-bao/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Webpack-Webpack系列之简介">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Webpack-Webpack系列之模块打包">
                         
-                        <span class="card-title">Webpack-Webpack系列之简介</span>
+                        <span class="card-title">Webpack-Webpack系列之模块打包</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -644,7 +686,7 @@
 webpack是一个现代JavaScript应用程序的静态模块打包器，在webpack处理应用程序时，它会在内部创建一个依赖图，用于映射到项目需要的每个模块，然后将所有这些依赖生成到一个或多个bundle。
 
 
-Webpack 简介W
+模块打包多种不同的模块
                         
                     </div>
                     <div class="publish-info">
