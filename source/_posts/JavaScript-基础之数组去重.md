@@ -1,5 +1,5 @@
 ---
-title: JS-数组去重
+title: JavaScript-基础之数组去重
 date: 2020-01-01 20:57:52
 tags: [JavaScript]
 categories: 前端
