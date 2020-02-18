@@ -4,12 +4,15 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Webpack-Webpack系列之资源输入输出, W | 个人博客 | web前端">
+    <meta name="keywords" content="JS-数组去重, W | 个人博客 | web前端">
     <meta name="description" content="导语
-webpack是一个现代JavaScript应用程序的静态模块打包器，在webpack处理应用程序时，它会在内部创建一个依赖图，用于映射到项目需要的每个模块，然后将所有这些依赖生成到一个或多个bundle。
+数组去重方法老生常谈，本文主要总结常见的数组去重方法。
 
+               
 
-资源输入输出资源处理流">
+🌰 array = [1, ‘1’, 1, ‘1’]
+双层循环function unique(array) {
+    let result">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +20,7 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Webpack-Webpack系列之资源输入输出 | W | 个人博客 | web前端</title>
+    <title>JS-数组去重 | W | 个人博客 | web前端</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -260,12 +263,12 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Webpack-Webpack系列之资源输入输出</h1>
+                    <h1 class="description center-align post-title">JS-数组去重</h1>
                 </div>
             </div>
         </div>
@@ -382,8 +385,8 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Webpack/">
-                                <span class="chip bg-color">Webpack</span>
+                            <a href="/tags/JavaScript/">
+                                <span class="chip bg-color">JavaScript</span>
                             </a>
                         
                     </div>
@@ -407,7 +410,7 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-14
+                    2020-01-01
                 </div>
                 
 
@@ -425,113 +428,84 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
-<p>webpack是一个现代JavaScript应用程序的静态模块打包器，在webpack处理应用程序时，它会在内部创建一个依赖图，用于映射到项目需要的每个模块，然后将所有这些依赖生成到一个或多个bundle。</p>
+<p>数组去重方法老生常谈，本文主要总结常见的数组去重方法。</p>
 </blockquote>
-<a id="more"></a>
-<h1 id="资源输入输出"><a href="#资源输入输出" class="headerlink" title="资源输入输出"></a>资源输入输出</h1><h2 id="资源处理流程"><a href="#资源处理流程" class="headerlink" title="资源处理流程"></a>资源处理流程</h2><p>在一切流程的最开始，我们需要指定一个或多个入口（entry），也就是告诉Webpack具体从源码目录下的哪个文件开始打包。如果把工程中各个模块的依赖关系当作一棵树，那么入口就是这棵依赖树的根，这些存在依赖关系的模块会在打包时被封装为一个chunk。</p>
-<p>chunk字面的意思是代码块，在Webpack中可以理解成被抽象和包装过后的一些模块。它就像一个装着很多文件的文件袋，里面的文件就是各个模块，Webpack在外面加了一层包裹，从而形成了chunk。根据具体配置不同，一个工程打包时可能会产生一个或多个chunk。</p>
-<p>Webpack会从入口文件开始检索，并将具有依赖关系的模块生成一棵依赖树，最终得到一个chunk。由这个chunk得到的打包产物我们一般称之为bundle。</p>
-<h2 id="配置资源入口"><a href="#配置资源入口" class="headerlink" title="配置资源入口"></a>配置资源入口</h2><p>通过context和entry这两个配置项来共同决定入口文件的路径。在配置入口时，实际上做了两件事：</p>
-<ul>
-<li><p>确定入口模块位置，告诉Webpack从哪里开始进行打包。</p>
-</li>
-<li><p>定义chunk name。如果工程只有一个入口，那么默认其chunk name为“main”；如果工程有多个入口，我们需要为每个入口定义chunk name，来作为该chunk的唯一标识。</p>
-</li>
-</ul>
-<h3 id="context"><a href="#context" class="headerlink" title="context"></a>context</h3><p>context可以理解为资源入口的路径前缀，在配置时要求必须使用绝对路径的形式。</p>
-<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-    context<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'./src/script'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    entry<span class="token punctuation">:</span> <span class="token string">'./index.js'</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>配置context的主要目的是让entry的编写更加简洁，尤其是在多入口的情况下。context可以省略，默认值为当前工程的根目录。</p>
-<h3 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h3><p>entry的配置可以有多种形式：字符串、数组、对象、函数。可以根据不同的需求场景来选择。</p>
-<ul>
-<li>字符串类型入口</li>
-</ul>
-<p>直接传入文件路径：</p>
-<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-  entry<span class="token punctuation">:</span> <span class="token string">'./src/index'</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<ul>
-<li>数组类型入口</li>
-</ul>
-<p>传入一个数组的作用是将多个资源预先合并，在打包时Webpack会将数组中的最后一个元素作为实际的入口路径。如：</p>
-<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-  entry<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'babel-polyfill'</span><span class="token punctuation">,</span> <span class="token string">'./src/index'</span><span class="token punctuation">]</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<ul>
-<li>对象类型入口</li>
-</ul>
-<p>如果想要定义多入口，则必须使用对象的形式。</p>
-<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-  entry<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    foo<span class="token punctuation">:</span> <span class="token string">'./src/foo'</span><span class="token punctuation">,</span>
-    bar<span class="token punctuation">:</span> <span class="token string">'./src/bar'</span>
+<a id="more"></a>               
+<hr>
+<p>🌰 array = [1, ‘1’, 1, ‘1’]</p>
+<h1 id="双层循环"><a href="#双层循环" class="headerlink" title="双层循环"></a>双层循环</h1><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">unique</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> arrayLen <span class="token operator">=</span> array<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arrayLen<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> resultLen <span class="token operator">=</span> result<span class="token punctuation">.</span>length<span class="token punctuation">;</span> j <span class="token operator">&lt;</span> resultLen<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> result<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">break</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">===</span> resultLen<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      result<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> result
 <span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 </code></pre>
-<ul>
-<li>函数类型入口</li>
-</ul>
-<p>用函数定义入口时，只要返回上面介绍的任何配置形式即可。</p>
-<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-  entry<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
-                    foo<span class="token punctuation">:</span> <span class="token string">'./src/foo'</span><span class="token punctuation">,</span>
-                    bar<span class="token punctuation">:</span> <span class="token string">'./src/bar'</span>
-                  <span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h3 id="output"><a href="#output" class="headerlink" title="output"></a>output</h3><p>所有与出口相关的配置都集中在output对象里。</p>
-<h4 id="filename"><a href="#filename" class="headerlink" title="filename"></a>filename</h4><p>filename的作用是控制输出资源的文件名。</p>
-<ul>
-<li>字符串形式</li>
-</ul>
-<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-  output<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    path<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'dist'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    filename<span class="token punctuation">:</span> <span class="token string">'bundle.js'</span>
+<p>使用循环嵌套，最外层循环 array，里面循环 result，如果 array[i] 的值跟 result[j] 的值相等，就跳出循环，如果都不等于，说明元素是唯一的，这时候 j 的值就会等于 result 的长度，根据这个特点进行判断，将值添加进 result。</p>
+<h2 id="indexOf"><a href="#indexOf" class="headerlink" title="indexOf"></a>indexOf</h2><p>可以使用 indexOf 来简化内层循环：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">unique</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> arrayLen <span class="token operator">=</span> array<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arrayLen<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> current <span class="token operator">=</span> array<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>result<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>current<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      result<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>current<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> result
 <span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 </code></pre>
-<ul>
-<li>在多入口的场景中，我们需要为对应产生的每个bundle指定不同的名字，Webpack支持使用一种类似模板语言的形式动态地生成文件名。</li>
-</ul>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 多个入口生成不同的文件</span>
-module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-  output<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    path<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'dist'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    filename<span class="token punctuation">:</span> <span class="token string">'[name].js'</span>
-  <span class="token punctuation">}</span>
+<h2 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h2><p>可以使用 filter 的方法：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">unique</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> res <span class="token operator">=</span> array<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> array<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token operator">===</span> index<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> res<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<ul>
-<li>路径中使用hash，每次构建都有一个不同的hash值，避免发布新版本使用浏览器缓存。</li>
-</ul>
-<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-  output<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    path<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'dist/[hash]'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    filename<span class="token punctuation">:</span> <span class="token string">'[name].js'</span>
-  <span class="token punctuation">}</span>
+<h2 id="Object-键值对"><a href="#Object-键值对" class="headerlink" title="Object 键值对"></a>Object 键值对</h2><p>这种方法是利用一个空的 Object 对象，我们把数组的值存成 Object 的 key 值，比如 Object[value1] = true，在判断另一个值的时候，如果 Object[value2]存在的话，就说明该值是重复的。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">unique</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> array<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> obj<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token boolean">false</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>obj<span class="token punctuation">[</span>item<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [1, 2]</span>
 </code></pre>
-<h4 id="path"><a href="#path" class="headerlink" title="path"></a>path</h4><p>path可以指定资源输出的位置，要求值必须为绝对路径。如：</p>
-<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-  output<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    path<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'dist'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    filename<span class="token punctuation">:</span> <span class="token string">'bundle.js'</span>
-  <span class="token punctuation">}</span>
+<p>我们可以发现，是有问题的，因为 1 和 ‘1’ 是不同的，但是这种方法会判断为同一个值，这是因为对象的键值只能是字符串，所以我们可以使用 typeof item + item 拼成字符串作为 key 值来避免这个问题：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">unique</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> array<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> obj<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> item <span class="token operator">+</span> item<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token boolean">false</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>obj<span class="token punctuation">[</span><span class="token keyword">typeof</span> item <span class="token operator">+</span> item<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [1, 2, "1"]</span>
 </code></pre>
-<h4 id="publicPath"><a href="#publicPath" class="headerlink" title="publicPath"></a>publicPath</h4><p>publicPath是一个非常重要的配置项，并且容易与path相混淆。从功能上来说，path用来指定资源的输出位置，而publicPath则用来指定资源的请求位置。让我们详细解释这两个定义。</p>
-<ul>
-<li><p>输出位置：打包完成后资源产生的目录，一般将其指定为工程中的dist目录。</p>
-</li>
-<li><p>请求位置：由JS或CSS所请求的间接资源路径。页面中的资源分为两种，一种是由HTML页面直接请求的，比如通过script标签加载的JS；另一种是由JS或CSS请求的，如异步加载的JS、从CSS请求的图片字体等。publicPath的作用就是指定这部分间接资源的请求位置。</p>
-</li>
-</ul>
+<h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">unique</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Array<span class="token punctuation">.</span><span class="token keyword">from</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [1, 2, "1"]</span>
+</code></pre>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">unique</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 
             </div>
             <hr/>
@@ -557,7 +531,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://qiandream.cn/2020/01/14/webpack-webpack-xi-lie-zhi-zi-yuan-shu-ru-shu-chu/">http://qiandream.cn/2020/01/14/webpack-webpack-xi-lie-zhi-zi-yuan-shu-ru-shu-chu/</a>
+                    <a href="http://qiandream.cn/2020/01/01/js-shu-zu-qu-chong/">http://qiandream.cn/2020/01/01/js-shu-zu-qu-chong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -595,8 +569,8 @@ module<span class="token punctuation">.</span>exports <span class="token operato
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Webpack/">
-                                    <span class="chip bg-color">Webpack</span>
+                                <a href="/tags/JavaScript/">
+                                    <span class="chip bg-color">JavaScript</span>
                                 </a>
                             
                         </div>
@@ -641,28 +615,26 @@ module<span class="token punctuation">.</span>exports <span class="token operato
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/01/14/webpack-webpack-xi-lie-zhi-yu-chu-li-qi/">
+                <a href="/2020/01/02/mian-shi-ti-chang-jian-mian-shi-ti-xi-lie-zhi-css-ji-chu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Webpack-Webpack系列之预处理器">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="面试题-常见面试题系列之CSS基础">
                         
-                        <span class="card-title">Webpack-Webpack系列之预处理器</span>
+                        <span class="card-title">面试题-常见面试题系列之CSS基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            导语
-webpack是一个现代JavaScript应用程序的静态模块打包器，在webpack处理应用程序时，它会在内部创建一个依赖图，用于映射到项目需要的每个模块，然后将所有这些依赖生成到一个或多个bundle。
-
-
-预处理器（loader
+                            导语本系列旨在整理 CSS 考点的非重难点，帮助梳理 HTML 高频面试题。
+CSS选择器的优先级是怎样的？CSS 选择器的优先级是：内联选择器 &gt; id 选择器 &gt; 类选择器 &gt; 标签选择器
+到具体的计算层面，优先级是由
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-02
                         </span>
                         <span class="publish-author">
                             
@@ -679,8 +651,8 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Webpack/">
-                        <span class="chip bg-color">Webpack</span>
+                    <a href="/tags/面试题/">
+                        <span class="chip bg-color">面试题</span>
                     </a>
                     
                 </div>
@@ -694,35 +666,40 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/01/14/webpack-webpack-xi-lie-zhi-jian-jie/">
+                <a href="/2020/01/01/leetcode-001-liang-shu-zhi-he/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Webpack-Webpack系列之简介">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="LeetCode-001-两数之和">
                         
-                        <span class="card-title">Webpack-Webpack系列之简介</span>
+                        <span class="card-title">LeetCode-001-两数之和</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             导语
-webpack是一个现代JavaScript应用程序的静态模块打包器，在webpack处理应用程序时，它会在内部创建一个依赖图，用于映射到项目需要的每个模块，然后将所有这些依赖生成到一个或多个bundle。
+本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
 
 
-Webpack 简介W
+前言
+难度：简单
+
+设计知识：数组、哈希表
+
+题目地址：https://leetcode-cn.com/problems/two-sum/
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/前端/" class="post-category">
-                                    前端
+                            <a href="/categories/数据结构与算法/" class="post-category">
+                                    数据结构与算法
                                 </a>
                             
                             
@@ -732,8 +709,8 @@ Webpack 简介W
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Webpack/">
-                        <span class="chip bg-color">Webpack</span>
+                    <a href="/tags/LeetCode/">
+                        <span class="chip bg-color">LeetCode</span>
                     </a>
                     
                 </div>
