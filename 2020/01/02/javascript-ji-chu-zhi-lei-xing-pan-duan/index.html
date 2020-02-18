@@ -4,13 +4,13 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="JS-数据结构与算法之链表, W | 个人博客 | web前端">
+    <meta name="keywords" content="JS-类型判断, W | 个人博客 | web前端">
     <meta name="description" content="导语
-使用列表对数据进行排序，底层储存数据的数据结构是数组。然而，数组并不总是最优选择。
+类型判断在 Web 开发中有非常广泛的作用，简单的有判断数字、字符串，复杂的有判断数组还是对象等。
 
-               
 
-数组的缺点数组不总是组织数据的最佳数据结构，原因如下：在很多编程语言中，数组的长度是固定的，所以当数组已被数据填满">
+typeoftypeof 是一元操作符，放在其单个操作数的前面，操作数可以是任意类型。返回值为表示操作数类型的一个字符串。
+除了 ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>JS-数据结构与算法之链表 | W | 个人博客 | web前端</title>
+    <title>JS-类型判断 | W | 个人博客 | web前端</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -261,12 +261,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">JS-数据结构与算法之链表</h1>
+                    <h1 class="description center-align post-title">JS-类型判断</h1>
                 </div>
             </div>
         </div>
@@ -408,7 +408,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-03-25
+                    2020-01-02
                 </div>
                 
 
@@ -426,13 +426,60 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
-<p>使用列表对数据进行排序，底层储存数据的数据结构是数组。然而，数组并不总是最优选择。</p>
+<p>类型判断在 Web 开发中有非常广泛的作用，简单的有判断数字、字符串，复杂的有判断数组还是对象等。</p>
 </blockquote>
-<a id="more"></a>               
-<hr>
-<h3 id="数组的缺点"><a href="#数组的缺点" class="headerlink" title="数组的缺点"></a>数组的缺点</h3><p>数组不总是组织数据的最佳数据结构，原因如下：在很多编程语言中，数组的长度是固定的，所以当数组已被数据填满时，再需要加入新的元素就会非常困难。</p>
-<p>在数组中，添加和删除元素也很麻烦，需要将数组中的其它元素向前或向后移动，以反映数组刚刚进行了添加或删除操作。</p>
-<p>如果你发现数组在实际使用时很慢，就可以考虑使用链表来替代它。除了对数据的随机访问，</p>
+<a id="more"></a>
+<h1 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h1><p>typeof 是一元操作符，放在其单个操作数的前面，操作数可以是任意类型。返回值为表示操作数类型的一个字符串。</p>
+<p>除了 null 类型和 object 类型不能准确判断外，其它数据类型都可以返回正确的类型。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">typeof</span> undefined <span class="token comment" spellcheck="true">// 'undefined</span>
+<span class="token keyword">typeof</span> <span class="token string">'10'</span> <span class="token comment" spellcheck="true">// 'string'</span>
+<span class="token keyword">typeof</span> <span class="token number">10</span> <span class="token comment" spellcheck="true">// 'number'</span>
+<span class="token keyword">typeof</span> <span class="token boolean">false</span> <span class="token comment" spellcheck="true">// 'boolean'</span>
+<span class="token keyword">typeof</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 'symbol'</span>
+<span class="token keyword">typeof</span> Function <span class="token comment" spellcheck="true">// 'function'</span>
+<span class="token keyword">typeof</span> <span class="token keyword">null</span> <span class="token comment" spellcheck="true">// 'object'</span>
+<span class="token keyword">typeof</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">// 'object'</span>
+<span class="token keyword">typeof</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment" spellcheck="true">// 'object'</span>
+</code></pre>
+<h1 id="Object-prototype-toString"><a href="#Object-prototype-toString" class="headerlink" title="Object.prototype.toString"></a>Object.prototype.toString</h1><p>当 toString 方法被调用的时候，下面的步骤会被执行：</p>
+<ul>
+<li><p>如果 this 值是 undefined，就返回 [object Undefined]</p>
+</li>
+<li><p>如果 this 的值是 null，就返回 [object Null]</p>
+</li>
+<li><p>让 O 成为 ToObject(this) 的结果</p>
+</li>
+<li><p>让 class 成为 O 的内部属性 [[Class]] 的值</p>
+</li>
+<li><p>最后返回由 “[object “ 和 class 和 “]” 三个部分组成的字符串</p>
+</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object Number]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object String]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object Boolean]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>undefined<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object Undefined]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object Null]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">{</span>a<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object Object]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object Array]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object Date]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object Error]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token regex">/a/g</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object RegExp]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object Function]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object Symbol]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object Set]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object Map]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Math</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object Math]"</span>
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">JSON</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "[object JSON]"</span>
+</code></pre>
+<h1 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h1><p>instanceof 运算符用来判断一个对象在其原型链中是否存在一个构造函数的 prototype 属性。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a <span class="token keyword">instanceof</span> <span class="token class-name">Array</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
+
+<span class="token keyword">class</span> <span class="token class-name">A</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>A <span class="token keyword">instanceof</span> <span class="token class-name">Function</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
+</code></pre>
 
             </div>
             <hr/>
@@ -458,7 +505,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://qiandream.cn/2019/03/25/js-shu-ju-jie-gou-yu-suan-fa-zhi-lian-biao/">http://qiandream.cn/2019/03/25/js-shu-ju-jie-gou-yu-suan-fa-zhi-lian-biao/</a>
+                    <a href="http://qiandream.cn/2020/01/02/javascript-ji-chu-zhi-lei-xing-pan-duan/">http://qiandream.cn/2020/01/02/javascript-ji-chu-zhi-lei-xing-pan-duan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -542,28 +589,26 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/05/16/vue-yuan-ma-xi-lie-sui-du-bi-ji-zhi-object-bian-hua-zhen-ce/">
+                <a href="/2020/01/02/mian-shi-ti-chang-jian-mian-shi-ti-xi-lie-zhi-css-ji-chu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Vue-源码系列随读笔记之Object变化侦测">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="面试题-常见面试题系列之CSS基础">
                         
-                        <span class="card-title">Vue-源码系列随读笔记之Object变化侦测</span>
+                        <span class="card-title">面试题-常见面试题系列之CSS基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            导语
-Vue最独特的特性之一是看起来并不显眼的响应式系统。数据模型仅仅是普通的JS对象。而当你修改它们时，视图会进行更新。这使得状态管理非常简单、直接。不过理解其工作原理同样重要，这样你可以回避一些常见问题 —官方文档
-
-
-什么是变化侦测从
+                            导语本系列旨在整理 CSS 考点的非重难点，帮助梳理 HTML 高频面试题。
+CSS选择器的优先级是怎样的？CSS 选择器的优先级是：内联选择器 &gt; id 选择器 &gt; 类选择器 &gt; 标签选择器
+到具体的计算层面，优先级是由
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-05-16
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-02
                         </span>
                         <span class="publish-author">
                             
@@ -580,8 +625,8 @@ Vue最独特的特性之一是看起来并不显眼的响应式系统。数据�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Vue/">
-                        <span class="chip bg-color">Vue</span>
+                    <a href="/tags/面试题/">
+                        <span class="chip bg-color">面试题</span>
                     </a>
                     
                 </div>
@@ -595,29 +640,31 @@ Vue最独特的特性之一是看起来并不显眼的响应式系统。数据�
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/03/16/js-shu-ju-jie-gou-yu-suan-fa-zhi-dui-lie/">
+                <a href="/2020/01/01/javascript-ji-chu-zhi-shu-zu-qu-chong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="JS-数据结构与算法之队列">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="JavaScript-基础之数组去重">
                         
-                        <span class="card-title">JS-数据结构与算法之队列</span>
+                        <span class="card-title">JavaScript-基础之数组去重</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             导语
-队列是一种列表，不同的是，队列只能在队尾插入元素，在队首删除元素。队列用于存储按顺序排列的数据，先进先出。
+数组去重方法老生常谈，本文主要总结常见的数组去重方法。
 
                
 
-对队列的操作队列的两种主要操作是：向队列中插入新元素和删除队列中的元素。插入操作也叫做入队
+🌰 array = [1, ‘1’, 1, ‘1’]
+双层循环function unique(array) {
+    let result
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-03-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-01
                             </span>
                         <span class="publish-author">
                             
