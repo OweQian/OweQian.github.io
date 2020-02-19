@@ -4,12 +4,14 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Webpack-Webpack系列之模块打包, W | 个人博客 | web前端">
+    <meta name="keywords" content="JavaScript-基础之数据类型存储形式, W | 个人博客 | web前端">
     <meta name="description" content="导语
-webpack是一个现代JavaScript应用程序的静态模块打包器，在webpack处理应用程序时，它会在内部创建一个依赖图，用于映射到项目需要的每个模块，然后将所有这些依赖生成到一个或多个bundle。
+JavaScript 数据类型分为原始类型和引用类型（对象类型），两种类型在内存中有不同的存储形式。
 
+               
 
-模块打包多种不同的模块">
+栈（stack）和堆（Heap），是两种基本的数据结构。
+栈在内存中是自动分配内存空间，堆在内存">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Webpack-Webpack系列之模块打包 | W | 个人博客 | web前端</title>
+    <title>JavaScript-基础之数据类型存储形式 | W | 个人博客 | web前端</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -260,12 +262,12 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Webpack-Webpack系列之模块打包</h1>
+                    <h1 class="description center-align post-title">JavaScript-基础之数据类型存储形式</h1>
                 </div>
             </div>
         </div>
@@ -382,8 +384,8 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Webpack/">
-                                <span class="chip bg-color">Webpack</span>
+                            <a href="/tags/JavaScript/">
+                                <span class="chip bg-color">JavaScript</span>
                             </a>
                         
                     </div>
@@ -407,7 +409,7 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-14
+                    2020-01-05
                 </div>
                 
 
@@ -425,141 +427,17 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
-<p>webpack是一个现代JavaScript应用程序的静态模块打包器，在webpack处理应用程序时，它会在内部创建一个依赖图，用于映射到项目需要的每个模块，然后将所有这些依赖生成到一个或多个bundle。</p>
+<p>JavaScript 数据类型分为原始类型和引用类型（对象类型），两种类型在内存中有不同的存储形式。</p>
 </blockquote>
-<a id="more"></a>
-<h1 id="模块打包"><a href="#模块打包" class="headerlink" title="模块打包"></a>模块打包</h1><h2 id="多种不同的模块机制"><a href="#多种不同的模块机制" class="headerlink" title="多种不同的模块机制"></a>多种不同的模块机制</h2><h3 id="Commonjs"><a href="#Commonjs" class="headerlink" title="Commonjs"></a>Commonjs</h3><p>CommonJS最初只为服务端而设计，直到有了Browserify——一个运行在Node.js环境下的模块打包工具，它可以将CommonJS模块打包为浏览器可以运行的单个文件。这意味着客户端的代码也可以遵循CommonJS标准来编写了。</p>
-<p>CommonJS中规定每个文件是一个模块，所有的变量及函数只有自己能访问，对外是不可见的。</p>
-<h4 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h4><p>在CommonJS中，通过module.exports可以导出模块中的内容：</p>
-<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-    name<span class="token punctuation">:</span> <span class="token string">"calculate"</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>CommonJS模块内部会有一个module对象用于存放当前模块的信息。</p>
-<p>属性。为了书写方便，CommonJS也支持另一种简化的导出方式—直接使用exports:</p>
-<pre class=" language-javascript"><code class="language-javascript">exports<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"caculate"</span>
-</code></pre>
-<p>另外，要注意导出语句不代表模块的末尾，在module.exports或exports后面的代码依旧会照常执行。</p>
-<h4 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h4><p>在CommonJS中使用require进行模块导入：</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> calculator <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./caculate.js'</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> name <span class="token operator">=</span> calculator<span class="token punctuation">.</span>name
-</code></pre>
-<p>当我们require一个模块时会有两种情况：</p>
-<ul>
-<li><p>require的模块是第一次被加载。这时会首先执行该模块，然后导出内容。</p>
-</li>
-<li><p>require的模块曾被加载过。这时该模块的代码不会再次执行，而是直接导出上次执行后得到的结果。</p>
-</li>
-</ul>
-<p>模块会有一个module对象用来存放其信息，这个对象中有一个属性loaded用于记录该模块是否被加载过。它的值默认为false，当模块第一次被加载和执行过后会置为true，后面再次加载时检查到module.loaded为true，则不会再次执行模块代码。</p>
-<h3 id="ES6-Module"><a href="#ES6-Module" class="headerlink" title="ES6 Module"></a>ES6 Module</h3><p>ES6 Module也是将每个文件作为一个模块，每个模块拥有自身的作用域，不同的是导入、导出语句。</p>
-<p>ES6 Module会自动采用严格模式 – “use strict”。</p>
-<h4 id="导出-1"><a href="#导出-1" class="headerlink" title="导出"></a>导出</h4><p>在ES6 Module中使用export命令来导出模块。</p>
-<p>export有两种形式：</p>
-<ul>
-<li><p>命名导出</p>
-</li>
-<li><p>默认导出</p>
-</li>
-</ul>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">"calculate"</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> add <span class="token operator">=</span> <span class="token string">"add"</span>
-</code></pre>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">"calculate"</span>
-<span class="token keyword">const</span> add <span class="token operator">=</span> <span class="token string">"add"</span>
-<span class="token keyword">export</span> <span class="token punctuation">{</span> name<span class="token punctuation">,</span> add <span class="token punctuation">}</span>
-</code></pre>
-<p>在使用命名导出时，可以通过as关键字对变量重命名。如：</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">"calculate"</span>
-<span class="token keyword">const</span> add <span class="token operator">=</span> <span class="token string">"add"</span>
-<span class="token keyword">export</span> <span class="token punctuation">{</span> name<span class="token punctuation">,</span> add <span class="token keyword">as</span> sum <span class="token punctuation">}</span>
-</code></pre>
-<p>将export default 默认导出，我们可以理解为对外输出了一个名为default的变量，因此不需要像命名导出一样进行变量声明，直接导出值即可。</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token string">"calculate"</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span>  <span class="token keyword">class</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token operator">...</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h4 id="导入-1"><a href="#导入-1" class="headerlink" title="导入"></a>导入</h4><p>ES6 Module中使用import语法导入模块。</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> name <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./caculate.js'</span>
-</code></pre>
-<p>与命名导出类似，我们可以通过as关键字可以对导入的变量重命名。如：</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> name <span class="token keyword">as</span> caculate <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./caculate.js'</span>
-</code></pre>
-<p>在导入多个变量时，我们还可以采用整体导入的方式。如：</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> caculate <span class="token keyword">from</span> <span class="token string">'./caculate.js'</span>
-<span class="token keyword">const</span> name <span class="token operator">=</span> caculate<span class="token punctuation">.</span>name
-</code></pre>
-<p>对于默认导出来说，import后面直接跟变量名，并且这个名字可以自由指定（比如这里是myCalculator）。如：</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> myCalculator <span class="token keyword">from</span> <span class="token string">'./caculate.js'</span>
-</code></pre>
-<h3 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h3><p>AMD是英文Asynchronous Module Definition（异步模块定义）的缩写:</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'getSum'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'calculate'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>math<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>calculate<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
-</code></pre>
-<p>在AMD中使用define函数来定义模块，它可以接受3个参数:</p>
-<p>第1个参数是当前模块的id，相当于模块名；</p>
-<p>第2个参数是当前模块的依赖，比如上面我们定义的getSum模块需要引入calculator模块作为依赖；</p>
-<p>第3个参数用来描述模块的导出值，可以是函数或对象。如果是函数则导出的是函数的返回值；如果是对象则直接导出对象本身。</p>
-<p>和CommonJS类似，AMD也使用require函数来加载模块，只不过采用异步的形式。</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token function">require</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'getSum'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>getSum<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token function">getSum</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
-</code></pre>
-<p>require的第1个参数指定了加载的模块，第2个参数是当加载完成后执行的回调函数。</p>
-<p>通过AMD这种形式定义模块的好处在于其模块加载是非阻塞性的，当执行到require函数时并不会停下来去执行被加载的模块，而是继续执行require后面的代码，这使得模块加载操作并不会阻塞浏览器。</p>
-<h2 id="模块打包原理"><a href="#模块打包原理" class="headerlink" title="模块打包原理"></a>模块打包原理</h2><p>Webpack 将项目中成百上千个有依赖关系的模块组织在一起，打包后将会成为如下的形式：</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 立即执行匿名函数</span>
-<span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>module<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 模块缓存</span>
-    <span class="token keyword">var</span> installedModules <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 实现 require</span>
-    <span class="token keyword">function</span> <span class="token function">__webpack_require__</span><span class="token punctuation">(</span>moduleId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// ...</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 执行入口模块的加载</span>
-    <span class="token keyword">return</span> <span class="token function">__webpack_require__</span><span class="token punctuation">(</span>__webpack_require__<span class="token punctuation">.</span>s <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// modules: 以 key-value 的形式存储所有被打包的模块</span>
-        <span class="token number">0</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>module<span class="token punctuation">,</span> exports<span class="token punctuation">,</span> __webpack_require__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-           <span class="token comment" spellcheck="true">// 打包入口</span>
-            module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token function">__webpack_require__</span><span class="token punctuation">(</span><span class="token string">"3qiv"</span><span class="token punctuation">)</span>
-        <span class="token punctuation">}</span><span class="token punctuation">,</span>
-        <span class="token string">"3qiv"</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>module<span class="token punctuation">,</span> exports<span class="token punctuation">,</span> __webpack_require__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// 打包入口</span>
-            module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token function">__webpack_require__</span><span class="token punctuation">(</span><span class="token string">"3qiv"</span><span class="token punctuation">)</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
-</code></pre>
-<p>上面的bundle分为以下几个部分：</p>
-<ul>
-<li><p>最外层立即执行匿名函数。它用来包裹整个bundle，并构成自身的作用域。</p>
-</li>
-<li><p>installedModules对象。每个模块只在第一次被加载的时候执行，之后其导出值就被存储到这个对象里面，当再次被加载的时候直接从这里取值，而不会重新执行。</p>
-</li>
-<li><p><strong>webpack_require</strong>函数。对模块加载的实现，在浏览器中可以通过调用<strong>webpack_require</strong>(module_id)来完成模块导入。</p>
-</li>
-<li><p>modules对象。工程中所有产生了依赖关系的模块都会以key-value的形式放在这里。key可以理解为一个模块的id，由数字或者一个很短的hash字符串构成；value则是由一个匿名函数包裹的模块实体，匿名函数的参数则赋予了每个模块导出和导入的能力。</p>
-</li>
-</ul>
-<p>bundle是如何在浏览器中执行的：</p>
-<ul>
-<li><p>在最外层的匿名函数中会初始化浏览器执行环境，包括定义installedModules对象、<strong>webpack_require</strong>函数等，为模块的加载和执行做一些准备工作。</p>
-</li>
-<li><p>加载入口模块。每个bundle都有且只有一个入口模块，例如：index.js是入口模块，在浏览器中会从它开始执行。</p>
-</li>
-<li><p>执行模块代码。如果执行到了module.exports则记录下模块的导出值；如果中间遇到require函数（准确地说是<strong>webpack_require</strong>），则会暂时交出执行权，进入<strong>webpack_require</strong>函数体内进行加载其他模块的逻辑。</p>
-</li>
-<li><p>在<strong>webpack_require</strong>中会判断即将加载的模块是否存在于installedModules中。如果存在则直接取值，否则回到上一步，执行该模块的代码来获取导出值。</p>
-</li>
-<li><p>所有依赖的模块都已执行完毕，最后执行权又回到入口模块。当入口模块的代码执行到结尾，也就意味着整个bundle运行结束。</p>
-</li>
-</ul>
-<p>不难看出，第3步和第4步是一个递归的过程。Webpack为每个模块创造了一个可以导出和导入模块的环境，但本质上并没有修改代码的执行逻辑，因此代码执行的顺序与模块加载的顺序是完全一致的，这就是Webpack模块打包的奥秘。</p>
+<a id="more"></a>               
+<hr>
+<p>栈（stack）和堆（Heap），是两种基本的数据结构。</p>
+<p>栈在内存中是自动分配内存空间，堆在内存中是动态分配内存空间，不一定会自动释放。</p>
+<p>一般我们在项目中将对象类型手动置为 null，减少无用内存消耗。</p>
+<p>原始类型和对象类型分别在内存中的存在形式如下图：</p>
+<p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/aVp1YC8UV0fXooDPZouVS6juuGEP1GxibzBmJd1UmVEjEbyNxr7MlAk5jIQkmEjEMDclZgPogN8n940Lb3jwZfA/640?wx_fmt=png" alt=""></p>
+<p>原始类型是按值形式存放在栈中的数据段，内存空间可以自由分配，同时按值直接访问。</p>
+<p>引用类型在栈中保存的是这个对象在堆内存中的引用地址，值保存在堆内存中。</p>
 
             </div>
             <hr/>
@@ -585,7 +463,7 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://qiandream.cn/2020/01/14/webpack-webpack-xi-lie-zhi-mo-kuai-da-bao/">http://qiandream.cn/2020/01/14/webpack-webpack-xi-lie-zhi-mo-kuai-da-bao/</a>
+                    <a href="http://qiandream.cn/2020/01/05/javascript-ji-chu-zhi-shu-ju-lei-xing-cun-chu-xing-shi/">http://qiandream.cn/2020/01/05/javascript-ji-chu-zhi-shu-ju-lei-xing-cun-chu-xing-shi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -623,8 +501,8 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Webpack/">
-                                    <span class="chip bg-color">Webpack</span>
+                                <a href="/tags/JavaScript/">
+                                    <span class="chip bg-color">JavaScript</span>
                                 </a>
                             
                         </div>
@@ -669,59 +547,6 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/01/14/webpack-webpack-xi-lie-zhi-jian-jie/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Webpack-Webpack系列之简介">
-                        
-                        <span class="card-title">Webpack-Webpack系列之简介</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            导语
-webpack是一个现代JavaScript应用程序的静态模块打包器，在webpack处理应用程序时，它会在内部创建一个依赖图，用于映射到项目需要的每个模块，然后将所有这些依赖生成到一个或多个bundle。
-
-
-Webpack 简介W
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/前端/" class="post-category">
-                                    前端
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Webpack/">
-                        <span class="chip bg-color">Webpack</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
                 <a href="/2020/01/05/javascript-ji-chu-zhi-lei-xing-zhuan-huan/">
                     <div class="card-image">
                         
@@ -752,8 +577,67 @@ Webpack 简介W
                         
                     </div>
                     <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-05
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/前端/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/JavaScript/">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/01/04/javascript-ji-chu-zhi-shu-ju-lei-xing/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="JavaScript-基础之数据类型">
+                        
+                        <span class="card-title">JavaScript-基础之数据类型</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            导语
+JavaScript 数据类型分为原始类型和引用类型（对象类型）。               
+
+
+原始类型在 JavaScript 中，存在 6 种原始类型：
+
+string
+number
+boolean
+undefined
+sy
+                        
+                    </div>
+                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-04
                             </span>
                         <span class="publish-author">
                             
