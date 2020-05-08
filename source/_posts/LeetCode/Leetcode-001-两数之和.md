@@ -77,5 +77,48 @@ var twoSum = function(nums, target) {
 [0,1]
 ```
 
-* 解题思路：使用双重 for 循环
+* 解题思路：使用双重 for 循环，不过这样时间复杂度为 O(N^2)，空间复杂度为 O(1)，时间复杂度较高，我们要想办法进行优化。
+
+## 解法 - Map
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    let map = new Map()
+    for (let i = 0; i < nums.length; i++) {
+        let diff = target - nums[i]
+        if (map.has(diff)) {
+            return [map.get(diff), i]
+        }
+        map.set(nums[i], i)
+    }
+};
+```
+
+* 执行测试
+
+输入：
+
+```
+[2,7,11,15]
+9
+```
+
+输出：
+
+```
+[0,1]
+```
+
+预期结果：
+
+```
+[0,1]
+```
+
+* 我们可以增加一个 Map 记录已经遍历过的数字及其对应的索引值。这样当遍历一个新数字的时候去 Map 里查询，target 与该数的差值是否已经在前面的数字中出现过。如果出现过，那么已经得出答案，就不必再往下执行了。
 
