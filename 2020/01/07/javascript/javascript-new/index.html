@@ -603,33 +603,30 @@ new 内部发生了什么new 的过程包括以下四个阶段：
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/01/08/javascript/javascript-bi-bao/">
+                <a href="/2020/01/07/javascript/javascript-this/">
                     <div class="card-image">
                         
-                        <img src="https://miro.medium.com/max/2560/1*UvWOnSlWP7AbbOtSVUeHMg.png" class="responsive-img" alt="JavaScript-闭包">
+                        <img src="https://miro.medium.com/max/2560/1*UvWOnSlWP7AbbOtSVUeHMg.png" class="responsive-img" alt="JavaScript-this">
                         
-                        <span class="card-title">JavaScript-闭包</span>
+                        <span class="card-title">JavaScript-this</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             导语
-闭包，面试中的重难点，要从很多方面讲起。
+JavaScript 中的 this 就是一个对象，本文旨在分析各种情况下 this 的指向问题。
 
            
 
-什么是作用域规定函数和变量的可使用范围叫做作用域。
-function foo() {
-    let a = 1
-}
+this 就是一个对象，不同情况下，this 的指向不同，主要有以下几种情况：
 
-声明一个函数，创建一个私用作用域。其它函数不
+直接调用，指向全局对象 
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-08
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-07
                         </span>
                         <span class="publish-author">
                             
@@ -661,30 +658,37 @@ function foo() {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/01/07/javascript/javascript-this/">
+                <a href="/2020/01/05/javascript/javascript-shu-ju-lei-xing-zhuan-huan/">
                     <div class="card-image">
                         
-                        <img src="https://miro.medium.com/max/2560/1*UvWOnSlWP7AbbOtSVUeHMg.png" class="responsive-img" alt="JavaScript-this">
+                        <img src="https://miro.medium.com/max/2560/1*UvWOnSlWP7AbbOtSVUeHMg.png" class="responsive-img" alt="JavaScript-数据类型转换">
                         
-                        <span class="card-title">JavaScript-this</span>
+                        <span class="card-title">JavaScript-数据类型转换</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             导语
-JavaScript 中的 this 就是一个对象，本文旨在分析各种情况下 this 的指向问题。
+类型转换分为显式类型转换和隐式类型转换，每种转换又分为原始类型转换和对象类型转换。
 
-           
+             
 
-this 就是一个对象，不同情况下，this 的指向不同，主要有以下几种情况：
+显式类型转换显式类型转换就是我们所说的强制类型转换
+其它数据类型转字符串(对象除外)
 
-直接调用，指向全局对象 
+
+数据类型
+字符串类型
+
+
+
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-05
                             </span>
                         <span class="publish-author">
                             
