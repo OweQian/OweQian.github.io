@@ -70,19 +70,20 @@ const mergeTwoLists = function (l1, l2) {
 输入：
 
 ```
-"()[]{}"
+[1,2,4]
+[1,3,4]
 ```
 
 输出：
 
 ```
-true
+[1,1,2,3,4,4]
 ```
 
 预期结果：
 
 ```
-true
+[1,1,2,3,4,4]
 ```
 
 * 解题思路：
@@ -92,4 +93,3 @@ true
 * 时间复杂度：O(M+N)
 
 * 空间复杂度：O(M+N)
-![](https://github.com/azl397985856/leetcode/raw/master/assets/20.validParentheses.gif)
