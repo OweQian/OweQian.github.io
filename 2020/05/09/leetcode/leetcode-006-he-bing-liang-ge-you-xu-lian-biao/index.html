@@ -461,20 +461,26 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */</span>
-<span class="token keyword">const</span> mergeTwoLists <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>l1<span class="token punctuation">,</span> l2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>l1 <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> l2<span class="token punctuation">;</span>
+<span class="token keyword">var</span> mergeTwoLists <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>l1<span class="token punctuation">,</span> l2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 头结点</span>
+    <span class="token keyword">let</span> head <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ListNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 串联指针</span>
+    <span class="token keyword">let</span> cur <span class="token operator">=</span> head
+    <span class="token keyword">while</span><span class="token punctuation">(</span>l1 <span class="token operator">&amp;&amp;</span> l2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 如果 l2 的结点值较小</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>l1<span class="token punctuation">.</span>val <span class="token operator">></span> l2<span class="token punctuation">.</span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 先串起 l2 的结点</span>
+            cur<span class="token punctuation">.</span>next <span class="token operator">=</span> l2
+            <span class="token comment" spellcheck="true">// l2 指针向前一步    </span>
+            l2 <span class="token operator">=</span> l2<span class="token punctuation">.</span>next
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            cur<span class="token punctuation">.</span>next <span class="token operator">=</span> l1
+            l1 <span class="token operator">=</span> l1<span class="token punctuation">.</span>next
+        <span class="token punctuation">}</span>
+        cur <span class="token operator">=</span> cur<span class="token punctuation">.</span>next
     <span class="token punctuation">}</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>l2 <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> l1<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>l1<span class="token punctuation">.</span>val <span class="token operator">&lt;=</span> l2<span class="token punctuation">.</span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        l1<span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token function">mergeTwoLists</span><span class="token punctuation">(</span>l1<span class="token punctuation">.</span>next<span class="token punctuation">,</span> l2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> l1<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-        l2<span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token function">mergeTwoLists</span><span class="token punctuation">(</span>l1<span class="token punctuation">,</span> l2<span class="token punctuation">.</span>next<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> l2<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    cur<span class="token punctuation">.</span>next <span class="token operator">=</span> l1 <span class="token operator">||</span> l2
+    <span class="token keyword">return</span> head<span class="token punctuation">.</span>next
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <ul>
@@ -606,12 +612,12 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/05/09/leetcode/leetcode-007-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/">
+                <a href="/2020/05/09/leetcode/leetcode-009-yi-chu-yuan-su/">
                     <div class="card-image">
                         
-                        <img src="https://miro.medium.com/max/1200/1*9EEAMYxLObepKMaOCgYgvA.jpeg" class="responsive-img" alt="LeetCode-006-合并两个有序链表">
+                        <img src="https://miro.medium.com/max/1200/1*9EEAMYxLObepKMaOCgYgvA.jpeg" class="responsive-img" alt="LeetCode-009-移除元素">
                         
-                        <span class="card-title">LeetCode-006-合并两个有序链表</span>
+                        <span class="card-title">LeetCode-009-移除元素</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -626,7 +632,7 @@
 
 设计知识：数组
 
-题目地址：https://leetcode-cn.com/problems/remove-dupli
+题目地址：https://leetcode-cn.com/problems/remove-eleme
                         
                     </div>
                     <div class="publish-info">

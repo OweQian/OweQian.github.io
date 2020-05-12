@@ -4,17 +4,14 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="LeetCode-006-合并两个有序链表, W | 个人博客 | web前端">
+    <meta name="keywords" content="JavaScript-执行上下文和执行栈, W | 个人博客 | web前端">
     <meta name="description" content="导语
-本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
+执行上下文是评估和执行 JavaScript 代码的环境的抽象概念。每当 Javascript 代码在运行的时候，它都是在执行上下文中运行。           
 
 
-前言
-难度：简单
+执行上下文的类型JavaScript 中有三种执行上下文类型：
 
-设计知识：数组
-
-题目地址：https://leetcode-cn.com/problems/remove-dupli">
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>LeetCode-006-合并两个有序链表 | W | 个人博客 | web前端</title>
+    <title>JavaScript-执行上下文和执行栈 | W | 个人博客 | web前端</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -265,12 +262,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://miro.medium.com/max/1200/1*9EEAMYxLObepKMaOCgYgvA.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://miro.medium.com/max/2560/1*UvWOnSlWP7AbbOtSVUeHMg.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LeetCode-006-合并两个有序链表</h1>
+                    <h1 class="description center-align post-title">JavaScript-执行上下文和执行栈</h1>
                 </div>
             </div>
         </div>
@@ -387,8 +384,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/LeetCode/">
-                                <span class="chip bg-color">LeetCode</span>
+                            <a href="/tags/JavaScript/">
+                                <span class="chip bg-color">JavaScript</span>
                             </a>
                         
                     </div>
@@ -399,8 +396,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/数据结构与算法/" class="post-category">
-                                数据结构与算法
+                            <a href="/categories/前端/" class="post-category">
+                                前端
                             </a>
                         
                     </div>
@@ -412,7 +409,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-09
+                    2020-05-12
                 </div>
                 
 
@@ -430,84 +427,163 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
-<p>本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 </p>
+<p>执行上下文是评估和执行 JavaScript 代码的环境的抽象概念。每当 Javascript 代码在运行的时候，它都是在执行上下文中运行。<br><a id="more"></a>           </p>
+<hr>
 </blockquote>
-<a id="more"></a>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
-<li><p>难度：简单</p>
-</li>
-<li><p>设计知识：数组</p>
-</li>
-<li><p>题目地址：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/" target="_blank" rel="external">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/</a></p>
-</li>
-<li><p>题目内容：</p>
-</li>
-</ul>
-<pre><code>给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
-
-不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
-
-
-
-示例 1:
-
-给定数组 nums = [1,1,2], 
-
-函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 
-
-你不需要考虑数组中超出新长度后面的元素。
-示例 2:
-
-给定 nums = [0,0,1,1,1,2,2,3,3,4],
-
-函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。
-
-你不需要考虑数组中超出新长度后面的元素。
-
-
-说明:
-
-为什么返回数值是整数，但输出的答案是数组呢?
-
-请注意，输入数组是以「引用」方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。
-
-你可以想象内部操作如下:
-
-// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝
-int len = removeDuplicates(nums);
-
-// 在函数里修改输入数组对于调用者是可见的。
-// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。
-for (int i = 0; i &lt; len; i++) {
-    print(nums[i]);
-}
-</code></pre><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解法-遍历、splice"><a href="#解法-遍历、splice" class="headerlink" title="解法 - 遍历、splice"></a>解法 - 遍历、splice</h2><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
- * @param {number[]} nums
- * @return {number}
- */</span>
-<span class="token keyword">var</span> removeDuplicates <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> nums<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            nums<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
-            <span class="token operator">--</span>i
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> nums<span class="token punctuation">.</span>length
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
+<h1 id="执行上下文的类型"><a href="#执行上下文的类型" class="headerlink" title="执行上下文的类型"></a>执行上下文的类型</h1><p>JavaScript 中有三种执行上下文类型：</p>
 <ul>
-<li>执行测试</li>
+<li><p>全局执行上下文：任何不在函数内部的代码都在全局上下文中。它会执行两件事：创建一个全局的 window 对象（浏览器的情况下），并且设置 this 的值等于这个全局对象。一个程序中只会有一个全局执行上下文。</p>
+</li>
+<li><p>函数执行上下文：每当一个函数被调用时, 都会为该函数创建一个新的上下文。函数上下文可以有任意多个。每当一个新的执行上下文被创建，它会按定义的顺序执行一系列步骤。</p>
+</li>
+<li><p>Eval 函数执行上下文：执行在 eval 函数内部的代码也会有它属于自己的执行上下文。</p>
+</li>
 </ul>
-<p>输入：</p>
-<pre><code>[1,1,2]
-</code></pre><p>输出：</p>
-<pre><code>2
-</code></pre><p>预期结果：</p>
-<pre><code>2
-</code></pre><ul>
-<li>解题思路：</li>
+<h1 id="执行栈"><a href="#执行栈" class="headerlink" title="执行栈"></a>执行栈</h1><p>执行栈，也叫”调用栈”，是一种 LIFO（后进先出）的数据结构，被用来存储代码执行过程中创建的所有执行上下文。</p>
+<p>当 JavaScript 引擎第一次遇到你的脚本时，它会创建一个全局的执行上下文并且压入当前执行栈。每当引擎遇到一个函数调用，它会为该函数创建一个新的执行上下文并压入栈的顶部。</p>
+<p>引擎会执行那些执行上下文位于栈顶的函数。当该函数执行结束时，执行上下文从栈中弹出，控制流程到达当前栈中的下一个上下文。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token string">'Hello World!'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">first</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Inside first function'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">second</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Again inside first function'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">second</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Inside second function'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">first</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Inside Global Execution Context'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/20/165f539572076fe3?imageslim" alt=""></p>
+<p>上述代码的执行上下文栈。</p>
+<h1 id="如何创建执行上下文"><a href="#如何创建执行上下文" class="headerlink" title="如何创建执行上下文"></a>如何创建执行上下文</h1><p>在 JavaScript 代码执行前，执行上下文将经历创建阶段。在创建阶段会发生三件事：</p>
+<ol>
+<li>this 绑定</li>
+<li>创建词法环境组件</li>
+<li>创建变量环境组件</li>
+</ol>
+<p>所以执行上下文在概念上表示如下：</p>
+<pre class=" language-text"><code class="language-text">ExecutionContext = {
+  ThisBinding = <this value>,
+  LexicalEnvironment = {},
+  VariableEnvironment = {}
+}
+</code></pre>
+<h2 id="This-绑定"><a href="#This-绑定" class="headerlink" title="This 绑定"></a>This 绑定</h2><p>在全局执行上下文中，this 的值指向全局对象。</p>
+<p>在函数执行上下文中，this 的值取决于该函数是如何被调用的。如果它被一个引用对象调用，那么 this 会被设置成那个对象，否则 this 的值被设置为全局对象或者 undefined</p>
+<h2 id="词法环境"><a href="#词法环境" class="headerlink" title="词法环境"></a>词法环境</h2><p>简单来说词法环境是一种持有标识符—变量映射的结构。（这里的标识符指的是变量/函数的名字，而变量是对实际对象[包含函数类型对象]或原始数据的引用。</p>
+<p>词法环境内部有两个组件：1）环境记录器 2）对外部环境的引用</p>
+<ul>
+<li>环境记录器是存储变量和函数声明的实际位置。</li>
+<li>外部环境的引用意味着它可以访问其父级词法环境（作用域）。</li>
 </ul>
-<p>遍历数组，比较当前元素和下一个元素，如果两个元素相等，则移除元素，并处理当前索引(因为元素移除，当前索引值需要减一个值)，继续遍历，直到结束，返回数组长度。</p>
+<p>词法环境有两种类型：</p>
+<ul>
+<li>全局环境（在全局执行上下文中）是没有外部环境引用的词法环境。全局环境的外部环境引用是 null。它拥有内建的 Object/Array/等、在环境记录器内的原型函数（关联全局对象，比如 window 对象）还有任何用户定义的全局变量。</li>
+<li>在函数词法环境中，函数内部用户定义的变量存储在环境记录器中。并且引用的外部环境可能是全局环境，或者任何包含此内部函数的外部函数。</li>
+</ul>
+<p>环境记录器也有两种类型：</p>
+<ol>
+<li>声明式环境记录器存储变量、函数和参数。</li>
+<li>对象环境记录器用来定义出现在全局上下文中的变量和函数的关系。</li>
+</ol>
+<p>简而言之：</p>
+<ul>
+<li>在全局环境中，环境记录器是对象环境记录器。</li>
+<li>在函数环境中，环境记录器是声明式环境记录器。</li>
+</ul>
+<p>注意 — 对于函数环境，声明式环境记录器还包含了一个传递给函数的 arguments 对象。</p>
+<p>伪代码：</p>
+<pre class=" language-text"><code class="language-text">GlobalExecutionContext = {
+  LexicalEnvironment: {
+    EnvironmentRecord: {
+      Type: "Object",
+      // 在这里绑定标识符
+    }
+    outer: <null>
+  }
+}
+
+FunctionExecutionContext = {
+  LexicalEnvironment: {
+    EnvironmentRecord: {
+      Type: "Declarative",
+      // 在这里绑定标识符
+    }
+    outer: <Global or outer function environment reference>
+  }
+}
+</code></pre>
+<h2 id="变量环境"><a href="#变量环境" class="headerlink" title="变量环境"></a>变量环境</h2><p>变量环境也是一个词法环境，它与变量环境的一个不同就是前者被用来存储函数声明和变量（let 和 const）绑定，而后者只用来存储 var 变量绑定。</p>
+<p>🌰：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> c<span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">multiply</span><span class="token punctuation">(</span>e<span class="token punctuation">,</span> f<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">var</span> g <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+ <span class="token keyword">return</span> e <span class="token operator">*</span> f <span class="token operator">*</span> g<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+c <span class="token operator">=</span> <span class="token function">multiply</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>伪代码：</p>
+<pre class=" language-text"><code class="language-text">GlobalExecutionContext = {
+
+  ThisBinding: <Global Object>,
+
+  LexicalEnvironment: {
+    EnvironmentRecord: {
+      Type: "Object",
+      // 在这里绑定标识符
+      a: < uninitialized >,
+      b: < uninitialized >,
+      multiply: < func >
+    }
+    outer: <null>
+  },
+
+  VariableEnvironment: {
+    EnvironmentRecord: {
+      Type: "Object",
+      // 在这里绑定标识符
+      c: undefined,
+    }
+    outer: <null>
+  }
+}
+
+FunctionExecutionContext = {
+  ThisBinding: <Global Object>,
+
+  LexicalEnvironment: {
+    EnvironmentRecord: {
+      Type: "Declarative",
+      // 在这里绑定标识符
+      Arguments: {0: 20, 1: 30, length: 2},
+    },
+    outer: <GlobalLexicalEnvironment>
+  },
+
+VariableEnvironment: {
+    EnvironmentRecord: {
+      Type: "Declarative",
+      // 在这里绑定标识符
+      g: undefined
+    },
+    outer: <GlobalLexicalEnvironment>
+  }
+}
+</code></pre>
+<p>可能你已经注意到 let 和 const 定义的变量并没有关联任何值，但 var 定义的变量被设成了 undefined。</p>
+<p>这是因为在创建阶段时，引擎检查代码找出变量和函数声明，虽然函数声明完全存储在环境中，但是变量最初设置为 undefined（var 情况下），或者未初始化（let 和 const 情况下）。</p>
+<p>这就是我们说的变量声明提升。</p>
+<h1 id="执行阶段"><a href="#执行阶段" class="headerlink" title="执行阶段"></a>执行阶段</h1><p>完成对所有这些变量的分配，最后执行代码，在执行阶段，如果 JavaScript 引擎不能在源码中声明的实际位置找到 let 变量的值，它会被赋值为 undefined。</p>
+<p>参考：</p>
+<p>[[译] 理解 JavaScript 中的执行上下文和执行栈}]: <a href="https://juejin.im/post/5ba32171f265da0ab719a6d7" target="_blank" rel="external">https://juejin.im/post/5ba32171f265da0ab719a6d7</a></p>
 
             </div>
             <hr/>
@@ -533,7 +609,7 @@ for (int i = 0; i &lt; len; i++) {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://qiandream.cn/2020/05/09/leetcode/leetcode-007-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/">http://qiandream.cn/2020/05/09/leetcode/leetcode-007-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/</a>
+                    <a href="http://qiandream.cn/2020/05/12/javascript/javascript-zhi-xing-shang-xia-wen-he-zhi-xing-zhan/">http://qiandream.cn/2020/05/12/javascript/javascript-zhi-xing-shang-xia-wen-he-zhi-xing-zhan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -571,8 +647,8 @@ for (int i = 0; i &lt; len; i++) {
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/LeetCode/">
-                                    <span class="chip bg-color">LeetCode</span>
+                                <a href="/tags/JavaScript/">
+                                    <span class="chip bg-color">JavaScript</span>
                                 </a>
                             
                         </div>
@@ -617,24 +693,27 @@ for (int i = 0; i &lt; len; i++) {
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/05/12/javascript/javascript-zhi-xing-shang-xia-wen-he-zhi-xing-zhan/">
+                <a href="/2020/05/12/leetcode/leetcode-008-zui-chang-gong-gong-qian-zhui/">
                     <div class="card-image">
                         
-                        <img src="https://miro.medium.com/max/2560/1*UvWOnSlWP7AbbOtSVUeHMg.png" class="responsive-img" alt="JavaScript-执行上下文和执行栈">
+                        <img src="https://miro.medium.com/max/1200/1*9EEAMYxLObepKMaOCgYgvA.jpeg" class="responsive-img" alt="LeetCode-007-最长公共前缀">
                         
-                        <span class="card-title">JavaScript-执行上下文和执行栈</span>
+                        <span class="card-title">LeetCode-007-最长公共前缀</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             导语
-执行上下文是评估和执行 JavaScript 代码的环境的抽象概念。每当 Javascript 代码在运行的时候，它都是在执行上下文中运行。           
+本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
 
 
-执行上下文的类型JavaScript 中有三种执行上下文类型：
+前言
+难度：简单
 
+设计知识：水平扫描
 
+题目地址：https://leetcode-cn.com/problems/longest-co
                         
                     </div>
                     <div class="publish-info">
@@ -645,8 +724,8 @@ for (int i = 0; i &lt; len; i++) {
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/前端/" class="post-category">
-                                    前端
+                            <a href="/categories/数据结构与算法/" class="post-category">
+                                    数据结构与算法
                                 </a>
                             
                             
@@ -656,8 +735,8 @@ for (int i = 0; i &lt; len; i++) {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaScript/">
-                        <span class="chip bg-color">JavaScript</span>
+                    <a href="/tags/LeetCode/">
+                        <span class="chip bg-color">LeetCode</span>
                     </a>
                     
                 </div>
@@ -671,12 +750,12 @@ for (int i = 0; i &lt; len; i++) {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/09/leetcode/leetcode-010-shi-xian-strstr/">
+                <a href="/2020/05/09/leetcode/leetcode-007-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/">
                     <div class="card-image">
                         
-                        <img src="https://miro.medium.com/max/1200/1*9EEAMYxLObepKMaOCgYgvA.jpeg" class="responsive-img" alt="LeetCode-010-实现 strStr()">
+                        <img src="https://miro.medium.com/max/1200/1*9EEAMYxLObepKMaOCgYgvA.jpeg" class="responsive-img" alt="LeetCode-006-合并两个有序链表">
                         
-                        <span class="card-title">LeetCode-010-实现 strStr()</span>
+                        <span class="card-title">LeetCode-006-合并两个有序链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -689,9 +768,9 @@ for (int i = 0; i &lt; len; i++) {
 前言
 难度：简单
 
-设计知识：字符串
+设计知识：数组
 
-题目地址：https://leetcode-cn.com/problems/implement-s
+题目地址：https://leetcode-cn.com/problems/remove-dupli
                         
                     </div>
                     <div class="publish-info">
