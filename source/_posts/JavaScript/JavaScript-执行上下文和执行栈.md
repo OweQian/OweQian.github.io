@@ -103,7 +103,7 @@ ExecutionContext = {
 伪代码：
 
 ```text
-GlobalExectionContext = {
+GlobalExecutionContext = {
   LexicalEnvironment: {
     EnvironmentRecord: {
       Type: "Object",
@@ -113,7 +113,7 @@ GlobalExectionContext = {
   }
 }
 
-FunctionExectionContext = {
+FunctionExecutionContext = {
   LexicalEnvironment: {
     EnvironmentRecord: {
       Type: "Declarative",
@@ -146,7 +146,7 @@ c = multiply(20, 30);
 伪代码：
 
 ```text
-GlobalExectionContext = {
+GlobalExecutionContext = {
 
   ThisBinding: <Global Object>,
 
@@ -171,7 +171,7 @@ GlobalExectionContext = {
   }
 }
 
-FunctionExectionContext = {
+FunctionExecutionContext = {
   ThisBinding: <Global Object>,
 
   LexicalEnvironment: {
