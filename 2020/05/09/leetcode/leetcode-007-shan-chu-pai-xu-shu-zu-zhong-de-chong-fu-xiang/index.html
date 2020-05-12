@@ -4,12 +4,17 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Webpack-简介, W | 个人博客 | web前端">
+    <meta name="keywords" content="LeetCode-006-合并两个有序链表, W | 个人博客 | web前端">
     <meta name="description" content="导语
-webpack是一个现代JavaScript应用程序的静态模块打包器，在webpack处理应用程序时，它会在内部创建一个依赖图，用于映射到项目需要的每个模块，然后将所有这些依赖生成到一个或多个bundle。
+本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
 
 
-Webpack 简介W">
+前言
+难度：简单
+
+设计知识：数组
+
+题目地址：https://leetcode-cn.com/problems/remove-dupli">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +22,7 @@ Webpack 简介W">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Webpack-简介 | W | 个人博客 | web前端</title>
+    <title>LeetCode-006-合并两个有序链表 | W | 个人博客 | web前端</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -260,12 +265,12 @@ Webpack 简介W">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://media.trytn.us/library/2019/02/webpack.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://miro.medium.com/max/1200/1*9EEAMYxLObepKMaOCgYgvA.jpeg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Webpack-简介</h1>
+                    <h1 class="description center-align post-title">LeetCode-006-合并两个有序链表</h1>
                 </div>
             </div>
         </div>
@@ -382,8 +387,8 @@ Webpack 简介W">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Webpack/">
-                                <span class="chip bg-color">Webpack</span>
+                            <a href="/tags/LeetCode/">
+                                <span class="chip bg-color">LeetCode</span>
                             </a>
                         
                     </div>
@@ -394,8 +399,8 @@ Webpack 简介W">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/前端/" class="post-category">
-                                前端
+                            <a href="/categories/数据结构与算法/" class="post-category">
+                                数据结构与算法
                             </a>
                         
                     </div>
@@ -407,7 +412,7 @@ Webpack 简介W">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-14
+                    2020-05-09
                 </div>
                 
 
@@ -425,74 +430,84 @@ Webpack 简介W">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
-<p>webpack是一个现代JavaScript应用程序的静态模块打包器，在webpack处理应用程序时，它会在内部创建一个依赖图，用于映射到项目需要的每个模块，然后将所有这些依赖生成到一个或多个bundle。</p>
+<p>本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 </p>
 </blockquote>
 <a id="more"></a>
-<h1 id="Webpack-简介"><a href="#Webpack-简介" class="headerlink" title="Webpack 简介"></a>Webpack 简介</h1><h2 id="Webpack是什么"><a href="#Webpack是什么" class="headerlink" title="Webpack是什么"></a>Webpack是什么</h2><p>Webpack是一个开源的JavaScript模块打包工具，其最核心的功能是解决模块之间的依赖，把各个模块按照特定的规则和顺序组织在一起，最终合并为一个JS文件（有时会有多个，这里讨论的只是最基本的情况）。</p>
-<h2 id="模块打包工具"><a href="#模块打包工具" class="headerlink" title="模块打包工具"></a>模块打包工具</h2><p>模块打包工具（module bundler）的任务就是解决模块间的依赖，使其打包后的结果能运行在浏览器上。它的工作方式主要分为两种</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
+<li><p>难度：简单</p>
+</li>
+<li><p>设计知识：数组</p>
+</li>
+<li><p>题目地址：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/" target="_blank" rel="external">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/</a></p>
+</li>
+<li><p>题目内容：</p>
+</li>
+</ul>
+<pre><code>给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+
+不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
+
+
+
+示例 1:
+
+给定数组 nums = [1,1,2], 
+
+函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 
+
+你不需要考虑数组中超出新长度后面的元素。
+示例 2:
+
+给定 nums = [0,0,1,1,1,2,2,3,3,4],
+
+函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。
+
+你不需要考虑数组中超出新长度后面的元素。
+
+
+说明:
+
+为什么返回数值是整数，但输出的答案是数组呢?
+
+请注意，输入数组是以「引用」方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。
+
+你可以想象内部操作如下:
+
+// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝
+int len = removeDuplicates(nums);
+
+// 在函数里修改输入数组对于调用者是可见的。
+// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。
+for (int i = 0; i &lt; len; i++) {
+    print(nums[i]);
+}
+</code></pre><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解法-遍历、splice"><a href="#解法-遍历、splice" class="headerlink" title="解法 - 遍历、splice"></a>解法 - 遍历、splice</h2><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
+ * @param {number[]} nums
+ * @return {number}
+ */</span>
+<span class="token keyword">var</span> removeDuplicates <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> nums<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            nums<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token operator">--</span>i
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> nums<span class="token punctuation">.</span>length
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
 <ul>
-<li><p>将存在依赖关系的模块按照特定规则合并为单个JS文件，一次全部加载进页面中。</p>
-</li>
-<li><p>在页面初始时加载一个入口模块，其他模块异步地进行加载。</p>
-</li>
+<li>执行测试</li>
 </ul>
-<h2 id="Webpack-优势"><a href="#Webpack-优势" class="headerlink" title="Webpack 优势"></a>Webpack 优势</h2><ul>
-<li><p>默认支持多种模块标准，包括AMD、CommonJS，以及最新的ES6模块。</p>
-</li>
-<li><p>完备的代码分割（code splitting）解决方案，首屏只加载重要的部分。</p>
-</li>
-<li><p>可以处理各种类型的资源。除了JavaScript以外，Webpack还可以处理样式、模板，甚至图片等。</p>
-</li>
-<li><p>拥有庞大的社区支持。</p>
-</li>
+<p>输入：</p>
+<pre><code>[1,1,2]
+</code></pre><p>输出：</p>
+<pre><code>2
+</code></pre><p>预期结果：</p>
+<pre><code>2
+</code></pre><ul>
+<li>解题思路：</li>
 </ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用npm或者yarn来安装webpack</p>
-<hr>
-<h3 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h3><pre><code>$ npm i webpack webpack-cli -g
-
-or
-
-$ yarn -g add webpack webpack-cli
-</code></pre><p>等待安装完毕，就可以全局执行webpack命令了。注：webpack-cli在4.x版本之后不再作为webpack的依赖了，我们使用时需要单独安装。</p>
-<hr>
-<h3 id="局部安装"><a href="#局部安装" class="headerlink" title="局部安装"></a>局部安装</h3><p>在项目中，我们更推荐将webpack作为项目的开发依赖来安装使用，这样可以指定项目中使用的webpack版本。</p>
-<pre><code>$ npm i webpack webpack-cli -D
-
-or
-
-$ yarn add webpack webpack-cli -D
-</code></pre><p>等待安装完毕，webpack会出现在项目的package.json文件中，我们添加一个npm scripts:</p>
-<pre><code>  &quot;scripts&quot;: {
-    &quot;build&quot;: &quot;webpack --mode production&quot;
-  },
-  &quot;devDependencies&quot;: {
-    &quot;webpack&quot;: &quot;^4.1.1&quot;,
-    &quot;webpack-cli&quot;: &quot;^2.0.12&quot;,
-  }
-</code></pre><h2 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h2><p>webpack-dev-server可以看作一个服务者，它的主要工作就是接收浏览器的请求，然后将资源返回。当服务启动时，会先让Webpack进行模块打包并将资源准备好（在示例中就是bundle.js）。当webpack-dev-server接收到浏览器的资源请求时，它会首先进行URL地址校验。如果该地址是资源服务地址（上面配置的publicPath），就会从Webpack的打包结果中寻找该资源并返回给浏览器。反之，如果请求地址不属于资源服务地址，则直接读取硬盘中的源文件并将其返回。</p>
-<pre class=" language-javascript"><code class="language-javascript">$ npm i webpack<span class="token operator">-</span>dev<span class="token operator">-</span>server <span class="token operator">-</span>D
-</code></pre>
-<p>为了便捷地启动webpack-dev-server，我们在package.json中添加一个dev指令：</p>
-<pre class=" language-json"><code class="language-json"><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-  <span class="token property">"build"</span><span class="token operator">:</span> <span class="token string">"webpack"</span><span class="token punctuation">,</span>
-  <span class="token property">"dev"</span><span class="token operator">:</span> <span class="token string">"webpack-dev-server"</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>最后，我们还需要对webpack-dev-server进行配置。编辑webpack.config.js如下：</p>
-<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-    entry<span class="token punctuation">:</span> <span class="token string">"./src/index.js"</span><span class="token punctuation">,</span>
-    output<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-        filename<span class="token punctuation">:</span> <span class="token string">"./bundle.js"</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    mode<span class="token punctuation">:</span> <span class="token string">"development"</span><span class="token punctuation">,</span>
-    devServer<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-        publicPath<span class="token punctuation">:</span> <span class="token string">"/dist"</span>
-    <span class="token punctuation">}</span>   
-<span class="token punctuation">}</span>
-</code></pre>
-<p>这里有一点需要注意。直接用Webpack开发和使用webpack-dev-server有一个很大的区别，前者每次都会生成budnle.js，而webpack-dev-server只是将打包结果放在内存中，并不会写入实际的bundle.js，在每次webpack-dev-server接收到请求时都只是将内存中的打包结果返回给浏览器。</p>
-<p>webpack-dev-server还有一项很便捷的特性就是live-reloading（自动刷新）。</p>
-<p>注：关于内容自动更新，webpack-dev-server 与 hot-module-replacement（模块热替换）的区别在于：前者会刷新浏览器，后者不需要刷新浏览器就能获得更新之后的内容。</p>
+<p>遍历数组，比较当前元素和下一个元素，如果两个元素相等，则移除元素，并处理当前索引(因为元素移除，当前索引值需要减一个值)，继续遍历，直到结束，返回数组长度。</p>
 
             </div>
             <hr/>
@@ -518,7 +533,7 @@ $ yarn add webpack webpack-cli -D
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://qiandream.cn/2020/01/14/webpack/webpack-webpack-xi-lie-zhi-jian-jie/">http://qiandream.cn/2020/01/14/webpack/webpack-webpack-xi-lie-zhi-jian-jie/</a>
+                    <a href="http://qiandream.cn/2020/05/09/leetcode/leetcode-007-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/">http://qiandream.cn/2020/05/09/leetcode/leetcode-007-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -556,8 +571,8 @@ $ yarn add webpack webpack-cli -D
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Webpack/">
-                                    <span class="chip bg-color">Webpack</span>
+                                <a href="/tags/LeetCode/">
+                                    <span class="chip bg-color">LeetCode</span>
                                 </a>
                             
                         </div>
@@ -598,49 +613,56 @@ $ yarn add webpack webpack-cli -D
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/01/14/webpack/webpack-webpack-xi-lie-zhi-zi-yuan-shu-ru-shu-chu/">
+                <a href="/2020/05/09/leetcode/leetcode-007-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/">
                     <div class="card-image">
                         
-                        <img src="https://media.trytn.us/library/2019/02/webpack.jpg" class="responsive-img" alt="Webpack-资源输入输出">
+                        <img src="https://miro.medium.com/max/1200/1*9EEAMYxLObepKMaOCgYgvA.jpeg" class="responsive-img" alt="LeetCode-006-合并两个有序链表">
                         
-                        <span class="card-title">Webpack-资源输入输出</span>
+                        <span class="card-title">LeetCode-006-合并两个有序链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             导语
-webpack是一个现代JavaScript应用程序的静态模块打包器，在webpack处理应用程序时，它会在内部创建一个依赖图，用于映射到项目需要的每个模块，然后将所有这些依赖生成到一个或多个bundle。
+本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
 
 
-资源输入输出资源处理流
+前言
+难度：简单
+
+设计知识：数组
+
+题目地址：https://leetcode-cn.com/problems/remove-dupli
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/前端/" class="post-category">
-                                    前端
+                            <a href="/categories/数据结构与算法/" class="post-category">
+                                    数据结构与算法
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Webpack/">
-                        <span class="chip bg-color">Webpack</span>
+                    <a href="/tags/LeetCode/">
+                        <span class="chip bg-color">LeetCode</span>
                     </a>
                     
                 </div>
@@ -654,40 +676,39 @@ webpack是一个现代JavaScript应用程序的静态模块打包器，在webpac
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/01/08/javascript/javascript-bi-bao/">
+                <a href="/2020/05/09/leetcode/leetcode-006-he-bing-liang-ge-you-xu-lian-biao/">
                     <div class="card-image">
                         
-                        <img src="https://miro.medium.com/max/2560/1*UvWOnSlWP7AbbOtSVUeHMg.png" class="responsive-img" alt="JavaScript-闭包">
+                        <img src="https://miro.medium.com/max/1200/1*9EEAMYxLObepKMaOCgYgvA.jpeg" class="responsive-img" alt="LeetCode-006-合并两个有序链表">
                         
-                        <span class="card-title">JavaScript-闭包</span>
+                        <span class="card-title">LeetCode-006-合并两个有序链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             导语
-闭包，面试中的重难点，要从很多方面讲起。
+本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
 
-           
 
-什么是作用域规定函数和变量的可使用范围叫做作用域。
-function foo() {
-    let a = 1
-}
+前言
+难度：简单
 
-声明一个函数，创建一个私用作用域。其它函数不
+设计知识：链表
+
+题目地址：https://leetcode-cn.com/problems/merge-two-so
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/前端/" class="post-category">
-                                    前端
+                            <a href="/categories/数据结构与算法/" class="post-category">
+                                    数据结构与算法
                                 </a>
                             
                             
@@ -697,8 +718,8 @@ function foo() {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaScript/">
-                        <span class="chip bg-color">JavaScript</span>
+                    <a href="/tags/LeetCode/">
+                        <span class="chip bg-color">LeetCode</span>
                     </a>
                     
                 </div>
