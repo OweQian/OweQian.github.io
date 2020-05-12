@@ -48,20 +48,26 @@ categories: 数据结构与算法
  * @param {ListNode} l2
  * @return {ListNode}
  */
-const mergeTwoLists = function (l1, l2) {
-    if (l1 === null) {
-        return l2;
+var mergeTwoLists = function(l1, l2) {
+    // 头结点
+    let head = new ListNode()
+    // 串联指针
+    let cur = head
+    while(l1 && l2) {
+        // 如果 l2 的结点值较小
+        if (l1.val > l2.val) {
+            // 先串起 l2 的结点
+            cur.next = l2
+            // l2 指针向前一步    
+            l2 = l2.next
+        } else {
+            cur.next = l1
+            l1 = l1.next
+        }
+        cur = cur.next
     }
-    if (l2 === null) {
-        return l1;
-    }
-    if (l1.val <= l2.val) {
-        l1.next = mergeTwoLists(l1.next, l2);
-        return l1;
-    } else {
-        l2.next = mergeTwoLists(l1, l2.next);
-        return l2;
-    }
+    cur.next = l1 || l2
+    return head.next
 };
 ```
 
