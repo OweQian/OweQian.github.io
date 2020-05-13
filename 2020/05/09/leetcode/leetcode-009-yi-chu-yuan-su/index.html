@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="LeetCode-006-合并两个有序链表, W | 个人博客 | web前端">
+    <meta name="keywords" content="LeetCode-009-移除元素, W | 个人博客 | web前端">
     <meta name="description" content="导语
 本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
 
@@ -14,7 +14,7 @@
 
 设计知识：数组
 
-题目地址：https://leetcode-cn.com/problems/remove-dupli">
+题目地址：https://leetcode-cn.com/problems/remove-eleme">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +22,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>LeetCode-006-合并两个有序链表 | W | 个人博客 | web前端</title>
+    <title>LeetCode-009-移除元素 | W | 个人博客 | web前端</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -270,7 +270,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LeetCode-006-合并两个有序链表</h1>
+                    <h1 class="description center-align post-title">LeetCode-009-移除元素</h1>
                 </div>
             </div>
         </div>
@@ -438,29 +438,33 @@
 </li>
 <li><p>设计知识：数组</p>
 </li>
-<li><p>题目地址：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/" target="_blank" rel="external">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/</a></p>
+<li><p>题目地址：<a href="https://leetcode-cn.com/problems/remove-element/" target="_blank" rel="external">https://leetcode-cn.com/problems/remove-element/</a></p>
 </li>
 <li><p>题目内容：</p>
 </li>
 </ul>
-<pre><code>给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+<pre><code>给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。
 
-不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
+不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。
+
+元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
 
 
 
 示例 1:
 
-给定数组 nums = [1,1,2], 
+给定 nums = [3,2,2,3], val = 3,
 
-函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 
+函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。
 
 你不需要考虑数组中超出新长度后面的元素。
 示例 2:
 
-给定 nums = [0,0,1,1,1,2,2,3,3,4],
+给定 nums = [0,1,2,2,3,0,4,2], val = 2,
 
-函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。
+函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。
+
+注意这五个元素可为任意顺序。
 
 你不需要考虑数组中超出新长度后面的元素。
 
@@ -473,21 +477,22 @@
 
 你可以想象内部操作如下:
 
-// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝
-int len = removeDuplicates(nums);
+// nums 是以“引用”方式传递的。也就是说，不对实参作任何拷贝
+int len = removeElement(nums, val);
 
 // 在函数里修改输入数组对于调用者是可见的。
-// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。
+// 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。
 for (int i = 0; i &lt; len; i++) {
     print(nums[i]);
 }
 </code></pre><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解法-遍历、splice"><a href="#解法-遍历、splice" class="headerlink" title="解法 - 遍历、splice"></a>解法 - 遍历、splice</h2><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
  * @param {number[]} nums
+ * @param {number} val
  * @return {number}
  */</span>
-<span class="token keyword">var</span> removeDuplicates <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">var</span> removeElement <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> nums<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             nums<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
             <span class="token operator">--</span>i
         <span class="token punctuation">}</span>
@@ -499,15 +504,43 @@ for (int i = 0; i &lt; len; i++) {
 <li>执行测试</li>
 </ul>
 <p>输入：</p>
-<pre><code>[1,1,2]
+<pre><code>[3,2,2,3]
+3
 </code></pre><p>输出：</p>
-<pre><code>2
+<pre><code>[2,2]
 </code></pre><p>预期结果：</p>
-<pre><code>2
+<pre><code>[2,2]
 </code></pre><ul>
 <li>解题思路：</li>
 </ul>
-<p>遍历数组，比较当前元素和下一个元素，如果两个元素相等，则移除元素，并处理当前索引(因为元素移除，当前索引值需要减一个值)，继续遍历，直到结束，返回数组长度。</p>
+<p>遍历数组，比较当前元素和 val，如果相等，则移除元素，并处理当前索引(因为元素移除，当前索引值需要减一个值)，继续遍历，直到结束，返回数组长度。</p>
+<h2 id="解法-递归"><a href="#解法-递归" class="headerlink" title="解法 - 递归"></a>解法 - 递归</h2><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */</span>
+<span class="token keyword">var</span> removeElement <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       nums<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+       <span class="token keyword">return</span> <span class="token function">removeElement</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> val<span class="token punctuation">)</span>
+   <span class="token punctuation">}</span>
+   <span class="token keyword">return</span> nums<span class="token punctuation">.</span>length
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>执行测试</li>
+</ul>
+<p>输入：</p>
+<pre><code>[3,2,2,3]
+3
+</code></pre><p>输出：</p>
+<pre><code>[2,2]
+</code></pre><p>预期结果：</p>
+<pre><code>[2,2]
+</code></pre><ul>
+<li>解题思路：</li>
+</ul>
+<p>Array.prototype.indexOf 查找数组中第一个复合条件的元素，如果存在，就移除元素，并递归调用函数进行下一轮查找。</p>
 
             </div>
             <hr/>
@@ -533,7 +566,7 @@ for (int i = 0; i &lt; len; i++) {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://qiandream.cn/2020/05/09/leetcode/leetcode-007-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/">http://qiandream.cn/2020/05/09/leetcode/leetcode-007-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/</a>
+                    <a href="http://qiandream.cn/2020/05/09/leetcode/leetcode-009-yi-chu-yuan-su/">http://qiandream.cn/2020/05/09/leetcode/leetcode-009-yi-chu-yuan-su/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -617,60 +650,6 @@ for (int i = 0; i &lt; len; i++) {
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/05/12/javascript/javascript-zhi-xing-shang-xia-wen-he-zhi-xing-zhan/">
-                    <div class="card-image">
-                        
-                        <img src="https://miro.medium.com/max/2560/1*UvWOnSlWP7AbbOtSVUeHMg.png" class="responsive-img" alt="JavaScript-执行上下文和执行栈">
-                        
-                        <span class="card-title">JavaScript-执行上下文和执行栈</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            导语
-执行上下文是评估和执行 JavaScript 代码的环境的抽象概念。每当 Javascript 代码在运行的时候，它都是在执行上下文中运行。           
-
-
-执行上下文的类型JavaScript 中有三种执行上下文类型：
-
-
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-12
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/前端/" class="post-category">
-                                    前端
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/JavaScript/">
-                        <span class="chip bg-color">JavaScript</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
                 <a href="/2020/05/09/leetcode/leetcode-010-shi-xian-strstr/">
                     <div class="card-image">
                         
@@ -692,6 +671,63 @@ for (int i = 0; i &lt; len; i++) {
 设计知识：字符串
 
 题目地址：https://leetcode-cn.com/problems/implement-s
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/数据结构与算法/" class="post-category">
+                                    数据结构与算法
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/LeetCode/">
+                        <span class="chip bg-color">LeetCode</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/05/09/leetcode/leetcode-006-he-bing-liang-ge-you-xu-lian-biao/">
+                    <div class="card-image">
+                        
+                        <img src="https://miro.medium.com/max/1200/1*9EEAMYxLObepKMaOCgYgvA.jpeg" class="responsive-img" alt="LeetCode-006-合并两个有序链表">
+                        
+                        <span class="card-title">LeetCode-006-合并两个有序链表</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            导语
+本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
+
+
+前言
+难度：简单
+
+设计知识：链表
+
+题目地址：https://leetcode-cn.com/problems/merge-two-so
                         
                     </div>
                     <div class="publish-info">

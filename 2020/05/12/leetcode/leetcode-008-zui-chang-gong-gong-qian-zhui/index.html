@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="LeetCode-006-合并两个有序链表, W | 个人博客 | web前端">
+    <meta name="keywords" content="LeetCode-007-最长公共前缀, W | 个人博客 | web前端">
     <meta name="description" content="导语
 本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
 
@@ -12,9 +12,9 @@
 前言
 难度：简单
 
-设计知识：数组
+设计知识：水平扫描
 
-题目地址：https://leetcode-cn.com/problems/remove-dupli">
+题目地址：https://leetcode-cn.com/problems/longest-co">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +22,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>LeetCode-006-合并两个有序链表 | W | 个人博客 | web前端</title>
+    <title>LeetCode-007-最长公共前缀 | W | 个人博客 | web前端</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -270,7 +270,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LeetCode-006-合并两个有序链表</h1>
+                    <h1 class="description center-align post-title">LeetCode-007-最长公共前缀</h1>
                 </div>
             </div>
         </div>
@@ -412,7 +412,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-09
+                    2020-05-12
                 </div>
                 
 
@@ -436,78 +436,63 @@
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
 <li><p>难度：简单</p>
 </li>
-<li><p>设计知识：数组</p>
+<li><p>设计知识：水平扫描</p>
 </li>
-<li><p>题目地址：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/" target="_blank" rel="external">https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/</a></p>
+<li><p>题目地址：<a href="https://leetcode-cn.com/problems/longest-common-prefix/" target="_blank" rel="external">https://leetcode-cn.com/problems/longest-common-prefix/</a></p>
 </li>
 <li><p>题目内容：</p>
 </li>
 </ul>
-<pre><code>给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+<pre><code>编写一个函数来查找字符串数组中的最长公共前缀。
 
-不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
-
-
+如果不存在公共前缀，返回空字符串 &quot;&quot;。
 
 示例 1:
 
-给定数组 nums = [1,1,2], 
-
-函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 
-
-你不需要考虑数组中超出新长度后面的元素。
+输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]
+输出: &quot;fl&quot;
 示例 2:
 
-给定 nums = [0,0,1,1,1,2,2,3,3,4],
-
-函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。
-
-你不需要考虑数组中超出新长度后面的元素。
-
-
+输入: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]
+输出: &quot;&quot;
+解释: 输入不存在公共前缀。
 说明:
 
-为什么返回数值是整数，但输出的答案是数组呢?
-
-请注意，输入数组是以「引用」方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。
-
-你可以想象内部操作如下:
-
-// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝
-int len = removeDuplicates(nums);
-
-// 在函数里修改输入数组对于调用者是可见的。
-// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。
-for (int i = 0; i &lt; len; i++) {
-    print(nums[i]);
-}
-</code></pre><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解法-遍历、splice"><a href="#解法-遍历、splice" class="headerlink" title="解法 - 遍历、splice"></a>解法 - 遍历、splice</h2><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
- * @param {number[]} nums
- * @return {number}
+所有输入只包含小写字母 a-z 。
+</code></pre><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解法-水平扫描"><a href="#解法-水平扫描" class="headerlink" title="解法 - 水平扫描"></a>解法 - 水平扫描</h2><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
+ * @param {string[]} strs
+ * @return {string}
  */</span>
-<span class="token keyword">var</span> removeDuplicates <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> nums<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            nums<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
-            <span class="token operator">--</span>i
+<span class="token keyword">var</span> longestCommonPrefix <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>strs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>strs<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> strs<span class="token punctuation">.</span>length <span class="token operator">?</span> strs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token punctuation">:</span> <span class="token string">''</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">let</span> result <span class="token operator">=</span> strs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> result<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> strs<span class="token punctuation">.</span>length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>result<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!==</span> strs<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> result<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> nums<span class="token punctuation">.</span>length
+    <span class="token keyword">return</span> result
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <ul>
 <li>执行测试</li>
 </ul>
 <p>输入：</p>
-<pre><code>[1,1,2]
+<pre><code>[&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]
 </code></pre><p>输出：</p>
-<pre><code>2
+<pre><code>&quot;fl&quot;
 </code></pre><p>预期结果：</p>
-<pre><code>2
+<pre><code>&quot;fl&quot;
 </code></pre><ul>
 <li>解题思路：</li>
 </ul>
-<p>遍历数组，比较当前元素和下一个元素，如果两个元素相等，则移除元素，并处理当前索引(因为元素移除，当前索引值需要减一个值)，继续遍历，直到结束，返回数组长度。</p>
+<p>首先判断数组为空或者数组长度为1，若数组为空，直接返回空字符串。若数组长度为1，直接返回数组的第一个元素。</p>
+<p>定义变量 result，取值为数组的第一个元素，遍历 result 中的每个字符，嵌套循环遍历输入数组的其它元素，如果对比元素不相等，则截取 result 并返回子字符串。</p>
+<p>负责，默认情况下返回 result。</p>
 
             </div>
             <hr/>
@@ -533,7 +518,7 @@ for (int i = 0; i &lt; len; i++) {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://qiandream.cn/2020/05/09/leetcode/leetcode-007-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/">http://qiandream.cn/2020/05/09/leetcode/leetcode-007-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/</a>
+                    <a href="http://qiandream.cn/2020/05/12/leetcode/leetcode-008-zui-chang-gong-gong-qian-zhui/">http://qiandream.cn/2020/05/12/leetcode/leetcode-008-zui-chang-gong-gong-qian-zhui/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -613,9 +598,68 @@ for (int i = 0; i &lt; len; i++) {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/05/12/leetcode/leetcode-008-zui-chang-gong-gong-qian-zhui/">
+                    <div class="card-image">
+                        
+                        <img src="https://miro.medium.com/max/1200/1*9EEAMYxLObepKMaOCgYgvA.jpeg" class="responsive-img" alt="LeetCode-007-最长公共前缀">
+                        
+                        <span class="card-title">LeetCode-007-最长公共前缀</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            导语
+本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
+
+
+前言
+难度：简单
+
+设计知识：水平扫描
+
+题目地址：https://leetcode-cn.com/problems/longest-co
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/数据结构与算法/" class="post-category">
+                                    数据结构与算法
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/LeetCode/">
+                        <span class="chip bg-color">LeetCode</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/05/12/javascript/javascript-zhi-xing-shang-xia-wen-he-zhi-xing-zhan/">
                     <div class="card-image">
@@ -638,9 +682,9 @@ for (int i = 0; i &lt; len; i++) {
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -658,63 +702,6 @@ for (int i = 0; i &lt; len; i++) {
                     
                     <a href="/tags/JavaScript/">
                         <span class="chip bg-color">JavaScript</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/05/09/leetcode/leetcode-010-shi-xian-strstr/">
-                    <div class="card-image">
-                        
-                        <img src="https://miro.medium.com/max/1200/1*9EEAMYxLObepKMaOCgYgvA.jpeg" class="responsive-img" alt="LeetCode-010-实现 strStr()">
-                        
-                        <span class="card-title">LeetCode-010-实现 strStr()</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            导语
-本系列为 LeetCode 刷题系列，旨在夯实 JavaScript基础，了解常见算法。 
-
-
-前言
-难度：简单
-
-设计知识：字符串
-
-题目地址：https://leetcode-cn.com/problems/implement-s
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-09
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/数据结构与算法/" class="post-category">
-                                    数据结构与算法
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/LeetCode/">
-                        <span class="chip bg-color">LeetCode</span>
                     </a>
                     
                 </div>
